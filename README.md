@@ -14,7 +14,7 @@
 3、点开watchlist文件夹，  
 里面的model.py为数据库相关的，view.py为主要代码（功能实现）  
 templates文件夹里面为html文件  
-static文件夹里面为css文件，pic文件夹装了css相关的图片（由于前端还没有给主页，因此暂时用了别的代替所以又两个css，等前端写好即替换掉）  
+static文件夹里面为css文件，pic文件夹装了css相关的图片（由于前端还没有给主页，因此暂时用了别的代替所以有两个css，等前端写好即替换掉）  
 4、test_watchlist.py为测试文件，先不用
 
 三、功能介绍  
