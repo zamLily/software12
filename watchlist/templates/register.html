@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>register</title>
+	 <link rel="stylesheet" href="/static/style.css" type="text/css">
+</head>
+<body>
+	{% for message in get_flashed_messages() %}
+
+        <div class="alert">{{ message }}</div>
+
+    {% endfor %}
+
+	<div id="container">
+		<div id="header" >
+			<div id="logo"></div>
+
+			<div id="other">
+				<span>visitor&nbsp</span>
+				<!-- <img src="pic/1.jpg" alt="image"> -->
+				<span>&nbsp&nbsp</span>
+			</div>
+		</div>
+
+		<div id="main">
+			<div id="login">
+				<div class="login-box">
+					<p>Please regist</p>
+					<p>请注册</p>
+					<form action="/register"  method="POST">
+
+						Username<br>
+
+						<input type="text" name="username" required><br><br>
+
+						Password<br>
+
+						<!-- 密码输入框的 type 属性使用 password，会将输入值显示为圆点 -->
+
+						<input type="password" name="password" required><br><br>
+
+						<input class="btn" type="submit" name="submit" value="Regist">
+
+					</form>
+					<input class="btn" type="button" value="have an account? login!" name="login"  onclick='location.href=("/login")' style="float: right;font-size: 15px;margin-top:5px;padding:1px;">
+
+
+				</div>	
+			</div>
+
+		</div>
+
+</body>
+</html>
