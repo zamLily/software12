@@ -1,8 +1,9 @@
 # 软件工程第12组
 
 一、使用方法  
-1、将代码clone至本地：git clone https://github.com/zamLily/software12.git  
-2、进入software12文件夹  
+1. 将代码clone至本地：git clone https://github.com/zamLily/software12.git  
+2. 进入software12目录
+3. 执行命令pip install -r requirements.txt
 3、进入虚拟环境：env\Scripts\activate  
 4、运行：flask run  
 4、用浏览器打开 http://127.0.0.1:5000/   
