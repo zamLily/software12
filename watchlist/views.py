@@ -6,11 +6,6 @@ from watchlist import app, db
 from watchlist.models import User
 
 
-#主页
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    return render_template('index.html')
-
 
 # 登录
 @app.route('/login', methods=['GET', 'POST'])
@@ -76,3 +71,34 @@ def register():
             return redirect(url_for('index'))  # 返回主页
 
     return render_template('register.html')
+
+
+#主页
+@app.route('/index', methods=['GET', 'POST'])
+@login_required
+def index():
+    return render_template('index.html')
+
+# my_courses
+@app.route('/my_courses', methods=['GET', 'POST'])
+@login_required
+def my_courses():
+    return render_template('my_courses.html')
+
+# process
+@app.route('/process', methods=['GET', 'POST'])
+@login_required
+def process():
+    return render_template('process.html')
+
+# submit
+@app.route('/submit', methods=['GET', 'POST'])
+@login_required
+def submit():
+    return render_template('submit.html')
+
+# settings
+@app.route('/settings', methods=['GET', 'POST'])
+@login_required
+def settings():
+    return render_template('settings.html')

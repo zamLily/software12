@@ -1,20 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>register</title>
-	 <link rel="stylesheet" href="/static/style.css" type="text/css">
+	<title>regist</title>
+	<link rel="stylesheet" href="style/style.css" />
 </head>
 <body>
-	{% for message in get_flashed_messages() %}
-
-        <div class="alert">{{ message }}</div>
-
-    {% endfor %}
-
 	<div id="container">
 		<div id="header" >
-			<div id="logo"></div>
+			<div id="logo">
+				<img src="pic/logo.png" alt="">
+				<span>GPU管理系统</span>
+			</div>
 
 			<div id="other">
 				<span>visitor&nbsp</span>
@@ -24,31 +21,42 @@
 		</div>
 
 		<div id="main">
-			<div id="login">
+<div id="login">
 				<div class="login-box">
-					<p>Please regist</p>
-					<p>请注册</p>
-					<form action="/register"  method="POST">
+					<p>Please Regist&nbsp&nbsp请注册
+						<select name="certification" class="select_button">
+							<option selected="selected" value="0">请选择</option>
+							<option value="1">学生</option>
+							<option value="2">老师</option>
+						</select>
+					</p>
 
-						Username<br>
-
-						<input type="text" name="username" required><br><br>
-
-						Password<br>
-
-						<!-- 密码输入框的 type 属性使用 password，会将输入值显示为圆点 -->
-
-						<input type="password" name="password" required><br><br>
-
-						<input class="btn" type="submit" name="submit" value="Regist">
-
+					<form method="post">
+						<table>
+							<tr>
+								<td>UserName：</td>
+								<td>
+									<input type="text" name="username" required style="line-height: 150%;">
+								</td>
+							</tr>
+							<tr>
+								<td>Password：</td>
+								<td>
+									<input type="password" name="password" required style="line-height: 150%;">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="submit" value="regist" name="regist" class="login_button" onclick="location.href("/regist")>
+								</td>
+								<td>
+									<input type="login" value="have accounts? login!" name="login" class="login_button" onclick="location.href("/login")>
+								</td>
+							</tr>
+						</table>
 					</form>
-					<input class="btn" type="button" value="have an account? login!" name="login"  onclick='location.href=("/login")' style="float: right;font-size: 15px;margin-top:5px;padding:1px;">
-
-
-				</div>	
+				</div>
 			</div>
-
 		</div>
 
 </body>

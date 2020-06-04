@@ -3,18 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>login</title>
-	 <link rel="stylesheet" href="/static/style.css" type="text/css">
+	<link rel="stylesheet" href="style/style.css" />
 </head>
 <body>
-	{% for message in get_flashed_messages() %}
-
-        <div class="alert">{{ message }}</div>
-
-    {% endfor %}
-
 	<div id="container">
 		<div id="header" >
-			<div id="logo"></div>
+			<div id="logo">
+				<img src="pic/logo.png" alt="">
+				<span>GPU管理系统</span>
+			</div>
 
 			<div id="other">
 				<span>visitor&nbsp</span>
@@ -26,30 +23,40 @@
 		<div id="main">
 			<div id="login">
 				<div class="login-box">
-					<p>Please login</p>
-					<p>请登录</p>
-					<form action="/login" method="post">
+					<p>Please Login&nbsp&nbsp请登录
+						<select name="certification" class="select_button">
+							<option selected="selected" value="0">请选择</option>
+							<option value="1">学生</option>
+							<option value="2">老师</option>
+						</select>
+					</p>
 
-						Username<br>
-
-						<input type="text" name="username" required><br><br>
-
-						Password<br>
-
-						<!-- 密码输入框的 type 属性使用 password，会将输入值显示为圆点 -->
-
-						<input type="password" name="password" required><br><br>
-
-						<input class="btn" type="submit" name="submit" value="Login">
-
+					<form method="post">
+						<table>
+							<tr>
+								<td>UserName：</td>
+								<td>
+									<input type="text" name="username" required style="line-height: 150%;">
+								</td>
+							</tr>
+							<tr>
+								<td>Password：</td>
+								<td>
+									<input type="password" name="password" required style="line-height: 150%;">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="submit" value="login" name="login" class="login_button" onclick="location.href("/login")>
+								</td>
+								<td>
+									<input type="submit" value="no account? regist!" name="register" class="login_button" onclick="location.href("/regist")>
+								</td>
+							</tr>
+						</table>
 					</form>
-
-					<input class="btn" type="submit" value="no account? regist!" name="register"  onclick='location.href=("/register")' style="float: right;font-size: 15px;margin-top:5px;padding:1px;">
-
-
-				</div>	
+				</div>
 			</div>
-
 		</div>
 
 </body>
