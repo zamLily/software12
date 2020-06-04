@@ -1,4 +1,4 @@
-# 软件工程第12组后端
+# 软件工程第12组
 
 一、使用方法  
 1、将代码clone至本地：git clone https://github.com/zamLily/software12.git  
