@@ -8,7 +8,7 @@ from watchlist.models import User
 
 
 # 登录
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -39,7 +39,7 @@ def login():
 
 
 # 登出
-@app.route('/logout')
+@app.route('/logout/')
 @login_required
 def logout():
     logout_user()
@@ -48,7 +48,7 @@ def logout():
 
 
 # 注册
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register/', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         """Create user."""
@@ -74,31 +74,36 @@ def register():
 
 
 #主页
-@app.route('/index', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
+def visitor():
+    return render_template('visitor.html')
+
+#主页
+@app.route('/index/', methods=['GET', 'POST'])
 @login_required
 def index():
     return render_template('index.html')
 
 # my_courses
-@app.route('/my_courses', methods=['GET', 'POST'])
+@app.route('/my_courses/', methods=['GET', 'POST'])
 @login_required
 def my_courses():
     return render_template('my_courses.html')
 
 # process
-@app.route('/process', methods=['GET', 'POST'])
+@app.route('/process/', methods=['GET', 'POST'])
 @login_required
 def process():
     return render_template('process.html')
 
 # submit
-@app.route('/submit', methods=['GET', 'POST'])
+@app.route('/submit/', methods=['GET', 'POST'])
 @login_required
 def submit():
     return render_template('submit.html')
 
 # settings
-@app.route('/settings', methods=['GET', 'POST'])
+@app.route('/settings/', methods=['GET', 'POST'])
 @login_required
 def settings():
     return render_template('settings.html')

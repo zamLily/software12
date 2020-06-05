@@ -1,308 +1,356 @@
-*{
+* {
 	margin: 0;
 	padding: 0;
-	font-family: "阿里巴巴普惠体","微软雅黑";
+	font-family: "阿里巴巴普惠体", "微软雅黑";
 }
 
-#container{
-	margin:0;
+body {
+	/* background-color: #b0c4de; */
+	background: linear-gradient(to top right,#7A88FF,#7AFFAF);
+}
+
+#container {
+	margin: 0;
 	/*background: linear-gradient(to top right,#2069F9,#48E9B2);*/
-	background:url(../pic/bg.gif);
+	/* background:url("/static/pic/bg.gif"); */
+
 }
 
-#header{
-	height:40px;
+#header {
+	height: 40px;
 }
-#userimg{
+
+#userimg {
 	height: 80%;
 	width: 5%;
-	float:right;
+	float: right;
 	line-height: 100%;
 	margin: 5px;
 
 }
-#userimg img{margin: 5px auto;}
-#user{
-	font-size:15px;
-	margin-top:-5px;
+
+#userimg img {
+	margin: 5px auto;
+}
+
+#user {
+	font-size: 15px;
+	margin-top: -5px;
 	margin-left: 5px;
-	padding:2px;
+	padding: 2px;
 	background: rgba(255, 255, 255, 0.2);
-	border:1px solid white;
-	border-radius:5px;
+	border: 1px solid white;
+	border-radius: 5px;
 	color: white;
 }
-.userselect{
-	background-color: rgba(0,0,0,0.75);
-	line-height:25px;
+
+.userselect {
+	background-color: rgba(0, 0, 0, 0.75);
+	line-height: 25px;
 	padding: 2px;
 	margin-left: 2px;
 }
 
 
-#logo{
-	height:100%;
-	width:20%;
+#logo {
+	height: 100%;
+	width: 20%;
 	float: left;
-	background: rgba(255,255 ,255 , 0.2);
+	background: rgba(255, 255, 255, 0.2);
 }
-#logo img{
+
+#logo img {
 	float: left;
 	margin-left: 40px;
-	height:80%;
+	height: 80%;
 	margin-top: 3px;
-	/*border:1px solid black;*/ 
+	/*border:1px solid black;*/
 }
-#logo span{
+
+#logo span {
 	float: left;
 	margin-left: 10px;
 	margin-top: 8px;
-	font-weight:bold;
+	font-weight: bold;
 	font-size: 23px;
 }
-#other{
-	height:100%;
-	width:80%;
+
+#other {
+	height: 100%;
+	width: 80%;
 	float: left;
-	background: rgba(255,255 ,255 , 0.2);
+	background: rgba(255, 255, 255, 0.2);
 	text-align: right;
 	line-height: 40px;
 	font-size: 20px;
 	color: white;
 }
 
-#main{
-	height:538px;
+#main {
+	height: auto;
 }
 
-#aside{
-	float:left;
-	width:20%;
-	height:100%;
+#aside {
+	float: left;
+	width: 20%;
+	height: 100%;
 	/*background: rgba(0, 0, 0, 0.5);*/
 	background: rgba(255, 255, 255, 0.2);
-    border-radius：30px;
+	border-radius: 30px;
 }
-#aside div{
-    height:60px;	
-    margin:auto;
-    text-align: left;
-    margin-left: 5px; 
-    padding: 10px;
+
+#aside div {
+	height: 60px;
+	margin: auto;
+	text-align: left;
+	margin-left: 5px;
+	padding: 10px;
 }
-#aside a{
+
+#aside a {
 	text-decoration: none;
 	text-align: center;
-    font-size: 20px;
-    line-height:60px;
-    height:60px;
-    color:black;
+	font-size: 20px;
+	line-height: 60px;
+	height: 60px;
+	color: black;
 }
-.asidepic{
+
+.asidepic {
 	height: 80%;
 	width: 25px;
-	float:left;
-	line-height: 100%;
-}
-.asidepic img{
-	height: 70%;
-	margin:2px; 
-}
-.asidechoices{
-	height: 80%;
-	float:left;
+	float: left;
 	line-height: 100%;
 }
 
-#content{
+.asidepic img {
+	height: 70%;
+	margin: 2px;
+}
+
+.asidechoices {
+	height: 80%;
+	float: left;
+	line-height: 100%;
+}
+
+#content {
 	float: right;
-	width:80%;
-	height:90%;
-	overflow:auto;
+	width: 80%;
+	height: 90%;
+	overflow: auto;
 }
-#login{
-	width:100%;
-	height:100%;
-	overflow:auto;
+
+#login {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
 }
-.login-box{
+
+.login-box {
 	line-height: 180%;
 	font-size: 20px;
 	height: 30%;
 	width: 25%;
 	padding: 10px;
 	margin-top: 10%;
-	margin-left: 35%; 
+	margin-left: 35%;
 	background: rgba(255, 255, 255, 0.2);
-	border:1px solid white;
-	border-radius:8px;
+	border: 1px solid white;
+	border-radius: 8px;
 }
-#login span{font-size:15px;line-height:15px;margin-left:-15px;}
-#login form{
+
+#login span {
+	font-size: 15px;
+	line-height: 15px;
+	margin-left: -15px;
+}
+
+#login form {
 	margin-left: 25px;
 }
-#login p{
-	font-weight:bold;
+
+#login p {
+	font-weight: bold;
 	text-align: center;
 }
 
-.select_button{
-	font-size:15px;
-	margin-top:8px;
+.select_button {
+	font-size: 15px;
+	margin-top: 8px;
 	margin-left: 5px;
-	padding:4px;
+	padding: 4px;
 	background: rgba(255, 255, 255, 0.2);
-	border:1px solid white;
-	border-radius:5px;
+	border: 1px solid white;
+	border-radius: 5px;
 }
-.login_button{
+
+.login_button {
 	float: right;
 	font-size: 15px;
-	margin-right:10px;
-	margin-top:8px;
-	padding:4px;
+	margin-right: 10px;
+	margin-top: 8px;
+	padding: 4px;
 	background: rgba(255, 255, 255, 0.2);
-	border:1px solid white;
-	border-radius:5px;
+	border: 1px solid white;
+	border-radius: 5px;
 }
-.index_box{
-	height:150px; 
+
+.index_box {
+	height: 150px;
 	width: 40%;
 	float: left;
-	margin: 25px;  
-    border:1px solid white;
-    background: rgba(255, 255, 255, 0.2);
-    padding:20px;
-    font-size: 20px;
-    border-radius:30px;
+	margin: 25px;
+	border: 1px solid white;
+	background: rgba(255, 255, 255, 0.2);
+	padding: 20px;
+	font-size: 20px;
+	border-radius: 30px;
 }
-.index_box a{
+
+.index_box a {
 	font-size: 25px;
 	text-decoration: none;
 }
-.teacherpic{
+
+.teacherpic {
 	height: 10%;
-	float:left;
+	float: left;
 	line-height: 100%;
 	margin-right: 2px;
 }
-.teacherpic img{
+
+.teacherpic img {
 	height: 20px;
-	margin:2px; 
+	margin: 2px;
 }
-#loginbutton{
+
+#loginbutton {
 	float: right;
 	font-size: 15px;
-	margin-top:8px;
-	padding:1px;
+	margin-top: 8px;
+	padding: 1px;
 }
-.program{
-    height:100px;   
-    border:1px solid white;
-    background: rgba(255, 255, 255, 0.2);
-    padding:20px;
-    margin:10px;
-    font-size: 20px;
-    border-radius:30px;
+
+.program {
+	height: 100px;
+	border: 1px solid white;
+	background: rgba(255, 255, 255, 0.2);
+	padding: 20px;
+	margin: 10px;
+	font-size: 20px;
+	border-radius: 30px;
 }
-.program a{
+
+.program a {
 	text-decoration: none;
-    font-size: 20px;
-    height:60px;
+	font-size: 20px;
+	height: 60px;
 }
-#ssh{
-	float:left;
+
+#ssh {
+	float: left;
 	height: 60px;
 	width: 50%;
-	border:1px solid #cff; 
-    padding:10px;
-    margin:10px;
-    font-size: 20px;
+	border: 1px solid #cff;
+	padding: 10px;
+	margin: 10px;
+	font-size: 20px;
 }
-#submit{
-	float:right;
+
+#submit {
+	float: right;
 	height: 60px;
 	width: 40%;
-	border:1px solid #cff; 
-    padding:10px;
-    margin:10px;
-    font-size: 20px;
+	border: 1px solid #cff;
+	padding: 10px;
+	margin: 10px;
+	font-size: 20px;
 }
-#edit{
+
+#edit {
 	height: 380px;
-	border:1px solid #cff; 
-    padding:10px;
-    margin:10px;
-    font-size: 20px;
-    float: auto;
-    clear:both;
-}
-.result{
-	width:90%;
-	border:1px solid #cff; 
-    padding:10px;
-    margin:10px;
-    font-size: 20px;
-    text-align：left;
-}
-#result-xxx{
-	height:300px;
-	width:100%;
-	border:1px solid white;
+	border: 1px solid #cff;
+	padding: 10px;
+	margin: 10px;
 	font-size: 20px;
-	text-index: 40em;
+	float: auto;
+	clear: both;
+}
+
+.result {
+	width: 90%;
+	border: 1px solid #cff;
+	padding: 10px;
+	margin: 10px;
+	font-size: 20px;
+	text-align: left;
+}
+
+#result-xxx {
+	height: 300px;
+	width: 100%;
+	border: 1px solid white;
+	font-size: 20px;
+	text-indent: 40em;
 	background-color: #cfe;
 }
-.box{
-	width:100%;
-	
+
+.box {
+	width: 100%;
+
 	font-size: 20px;
-	text-index: 40em;
+	text-indent: 40em;
 	background-color: #cfe;
 }
-.title{
-	width:90%;
+
+.title {
+	width: 90%;
 	height: 1em;
-	
-    padding:10px;
-    margin:10px;
-    font-size: 20px;
-    text-align：left;
-    clear:both;
+
+	padding: 10px;
+	margin: 10px;
+	font-size: 20px;
+	text-align: left;
+	clear: both;
 }
-.gpu-box{
-	width:95%;
+
+.gpu-box {
+	width: 95%;
 	height: 32%;
-	border:1px #fafafa;
-    border-radius:30px;
-    padding:5px;
-    margin:10px;
-    font-size: 20px;
-    text-align：left;
-    clear:both;
-    overflow: auto;
+	border: 1px #fafafa;
+	border-radius: 30px;
+	padding: 5px;
+	margin: 10px;
+	font-size: 20px;
+	text-align: left;
+	clear: both;
+	overflow: auto;
 }
-.gpu-box-each{
-	float:left;
+
+.gpu-box-each {
+	float: left;
 	width: 30%;
 	height: 80%;
-/*    border:1px solid white;*/
-    border-radius:6px;
+	/*    border:1px solid white;*/
+	border-radius: 6px;
 	padding: 5px;
-    margin:10px;
-    font-size: 20px;
-    text-align：left;
-/*	color: white;
+	margin: 10px;
+	font-size: 20px;
+	text-align: left;
+	/*	color: white;
 	background: rgba(0, 0, 0, 0.5);*/
 	background: rgba(255, 255, 255, 0.2);
 }
-.gpu-box-each a{
+
+.gpu-box-each a {
 	text-decoration: none;
 	/*color: white;*/
 }
-.information{
-    font-size: 15px;
-    padding: 3px;
-    line-height: 24px;
-    overflow: auto;
+
+.information {
+	font-size: 15px;
+	padding: 3px;
+	line-height: 24px;
+	overflow: auto;
 }
