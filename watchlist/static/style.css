@@ -4,9 +4,14 @@
 	font-family: "阿里巴巴普惠体", "微软雅黑";
 }
 
+html {
+	height: 100%;
+}
+
 body {
 	/* background-color: #b0c4de; */
-	background: linear-gradient(to top right,#7A88FF,#7AFFAF);
+	height: 100%;
+	background: linear-gradient(to  right,#7A88FF,#7AFFAF);
 }
 
 #container {
