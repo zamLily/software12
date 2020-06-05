@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
+
 <div id="container">
     <div id="header" >
         <div id="logo">
@@ -15,9 +16,9 @@
     </div>
 
     <div id="main">
-        <div id="login">
+<div id="login">
             <div class="login-box">
-                <p>Please Login&nbsp&nbsp请登录
+                <p>Please Regist&nbsp&nbsp请注册
                     <select name="certification" class="select_button">
                         <option selected="selected">请选择</option>
                         <option value="student">学生</option>
@@ -25,7 +26,7 @@
                     </select>
                 </p>
 
-                <form method="POST" action="/login/">
+                <form method="POST" action="/signup/">
                     <table>
                         <tr>
                             <td>UserName：</td>
@@ -41,10 +42,11 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="submit" class="button is-info" value="登录">
+                                <input type="submit" class="button is-primary" value="注册">
+                                
                             </td>
                             <td>
-                                <a href="/signup/" class="button">没有账号？去注册</a>
+                                <a href="/login/" class="button">已有账号？去登录</a>
                             </td>
                         </tr>
                     </table>
@@ -52,5 +54,6 @@
             </div>
         </div>
     </div>
+
 
 {% endblock %}

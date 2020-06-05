@@ -1,50 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>login</title>
-	<link rel="stylesheet" href="/static/style.css" />
-</head>
-<body>
-	<div id="container">
-		<div id="header" >
-			<div id="logo">
-				<img src="pic/logo.png" alt="">
-				<span>GPU管理系统</span>
-			</div>
+{% extends "layout.html" %}
+{% block body %}
 
-			<div id="other">
-				<span>visitor&nbsp</span>
-				<!-- <img src="pic/1.jpg" alt="image"> -->
-				<span>&nbsp&nbsp</span>
-			</div>
+<div id="container">
+	<div id="header" >
+		<div id="logo">
+			<img src="pic/logo.png" alt="">
+			<span>GPU管理系统</span>
 		</div>
 
-		<div id="main">
-			<div id="login">
-				<div class="login-box">
-					<form method="post">
-						<p>Hi Vistor!</p>
-						<span>这是2017级软件工程12组开发的GPU管理系统</span><br>
-						<span>用于课程/实验室中使用GPU</span><br>
-						<span>欢迎使用！</span>
-						<input type="submit" value="regist" name="register" class="login_button" onclick="location.href('/regist/')" style="margin-right:125px;">
-						<input type="submit" value="login" name="login" class="login_button" onclick="location.href('/login/')">
+		<div id="other">
+			<span>visitor&nbsp</span>
+			<!-- <img src="pic/1.jpg" alt="image"> -->
+			<span>&nbsp&nbsp</span>
+		</div>
+	</div>
 
-						<table>
-							<tr>
-								<td>
-									
-								</td>
-								<td>
-									
-								</td>
-							</tr>
-						</table>
-					</form>
-				</div>
+	<div id="main">
+		<div id="login">
+			<div class="login-box">
+				<form method="post">
+					<p>Hi Vistor!</p>
+					<span>这是2017级软件工程12组开发的GPU管理系统</span><br>
+					<span>用于课程/实验室中使用GPU</span><br>
+					<span>欢迎使用！</span>
+					<a href="/login/" class="button is-info">登录</a>
+					<a href="/signup/" class="button is-primary">注册</a>
+
+					<table>
+						<tr>
+							<td>
+								
+							</td>
+							<td>
+								
+							</td>
+						</tr>
+					</table>
+				</form>
 			</div>
 		</div>
+	</div>
 
-</body>
-</html>
+{% endblock %}

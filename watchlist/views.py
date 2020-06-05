@@ -48,8 +48,8 @@ def logout():
 
 
 # 注册
-@app.route('/register/', methods=['GET', 'POST'])
-def register():
+@app.route('/signup/', methods=['GET', 'POST'])
+def signup():
     if request.method == 'POST':
         """Create user."""
         #db.drop_all()   # 想要重置数据库可以用这个
@@ -70,7 +70,7 @@ def register():
             flash('Successfully creating user!')
             return redirect(url_for('index'))  # 返回主页
 
-    return render_template('register.html')
+    return render_template('signup.html')
 
 
 #主页
