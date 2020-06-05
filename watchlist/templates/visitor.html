@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 {% block body %}
+{% for message in get_flashed_messages() %}
 
+    <div class="alert">{{ message }}</div>
+
+{% endfor %}
 <div id="container">
 	<div id="header" >
 		<div id="logo">

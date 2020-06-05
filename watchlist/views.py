@@ -29,7 +29,7 @@ def login():
 
         if user.validate_password(password):
             login_user(user)
-            flash('登录成功.')
+            flash('登录成功！')
             return redirect(url_for('index'))
         else:
             flash('密码错误！')
@@ -61,14 +61,14 @@ def signup():
         # user = User.query.first()
 
         if user is not None:  # 该用户注册过
-            flash('User has already existed!')
+            flash('用户已经存在！')
         else:  # 新用户
             user = User(username=username)
             user.set_password(password)  # 设置密码
             db.session.add(user)
             db.session.commit()  # 提交数据库会话
-            flash('Successfully creating user!')
-            return redirect(url_for('index'))  # 返回主页
+            flash('成功注册！')
+            return redirect(url_for('visitor'))  # 返回主页
 
     return render_template('signup.html')
 
