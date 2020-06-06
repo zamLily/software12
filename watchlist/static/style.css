@@ -9,16 +9,16 @@ html {
 }
 
 body {
-	/* background-color: #b0c4de; */
 	height: 100%;
-	background: linear-gradient(to  right,#7A88FF,#7AFFAF);
+	/*background: linear-gradient(to top right,#7A88FF,#7AFFAF);*/
+	background:url("/static/pic/bg.gif") no-repeat;
+	background-size: 100%;
 }
 
 #container {
 	margin: 0;
 	/*background: linear-gradient(to top right,#2069F9,#48E9B2);*/
 	/* background:url("/static/pic/bg.gif"); */
-
 }
 
 #header {
@@ -31,7 +31,6 @@ body {
 	float: right;
 	line-height: 100%;
 	margin: 5px;
-
 }
 
 #userimg img {
@@ -39,9 +38,11 @@ body {
 }
 
 #user {
+	float: right;
 	font-size: 15px;
-	margin-top: -5px;
+	margin-top: 6px;
 	margin-left: 5px;
+	margin-right: 15px;
 	padding: 2px;
 	background: rgba(255, 255, 255, 0.2);
 	border: 1px solid white;
@@ -90,6 +91,12 @@ body {
 	font-size: 20px;
 	color: white;
 }
+#other span{
+	height: 80%;
+	width: 20%;
+	color: white;
+	margin-right:20px;
+}
 
 #main {
 	height: auto;
@@ -99,9 +106,7 @@ body {
 	float: left;
 	width: 20%;
 	height: 100%;
-	/*background: rgba(0, 0, 0, 0.5);*/
 	background: rgba(255, 255, 255, 0.2);
-	border-radius: 30px;
 }
 
 #aside div {
@@ -149,15 +154,14 @@ body {
 #login {
 	width: 100%;
 	height: 100%;
-	overflow: auto;
 }
 
 .login-box {
 	line-height: 180%;
 	font-size: 20px;
-	height: 30%;
-	width: 25%;
-	padding: 10px;
+	height: 33%;
+	width: 27%;
+	padding: 5px 5px 5px 5px;
 	margin-top: 10%;
 	margin-left: 35%;
 	background: rgba(255, 255, 255, 0.2);
@@ -169,6 +173,7 @@ body {
 	font-size: 15px;
 	line-height: 15px;
 	margin-left: -15px;
+	color:black;
 }
 
 #login form {
@@ -178,13 +183,50 @@ body {
 #login p {
 	font-weight: bold;
 	text-align: center;
+	color: black;
+	font-size:21px;
 }
-
+#visitor_regit{
+	 padding:0 8px;
+	 margin:2px 45% 2px 5px;
+	 font-size:13px;
+	 float:right;
+	 background: rgba(255, 255, 255, 0.2);
+	 color:black;
+	 border:1px solid white;
+}
+#visitor_login{
+	padding:0 8px;
+	 margin:2px 5px;
+	 font-size:13px;
+	 float:right;
+	 background: rgba(255, 255, 255, 0.2);
+	 color:black;
+	 border:1px solid white;
+}
+#login_login{
+	 padding:0 8px;
+	 margin:2px -1px 2px 5px;
+	 font-size:13px;
+	 float:right;
+	 background: rgba(255, 255, 255, 0.2);
+	 color:black;
+	 border:1px solid white;
+}
+#login_regit{
+	padding:0 8px;
+	margin:2px -80% 2px 5px;
+	font-size:13px;
+	float:right;
+	background: rgba(255, 255, 255, 0.2);
+	color:black;
+	border:1px solid white;
+}
 .select_button {
 	font-size: 15px;
 	margin-top: 8px;
-	margin-left: 5px;
-	padding: 4px;
+	margin-left: 2px;
+	padding: 2px;
 	background: rgba(255, 255, 255, 0.2);
 	border: 1px solid white;
 	border-radius: 5px;

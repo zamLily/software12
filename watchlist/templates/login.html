@@ -1,41 +1,33 @@
 {% extends "layout.html" %}
 {% block body %}
-{% for message in get_flashed_messages() %}
-
-    <div class="alert">{{ message }}</div>
-
-{% endfor %}
 <div id="container">
     <div id="header" >
-        <div id="logo">
-            <img src="pic/logo.png" alt="">
-            <span>GPU管理系统</span>
-        </div>
+		<div id="logo">
+			<img src="../static/pic/logo.png" alt="">
+			<span>GPU管理系统</span>
+		</div>
 
-        <div id="other">
-            <span>visitor&nbsp</span>
-            <!-- <img src="pic/1.jpg" alt="image"> -->
-            <span>&nbsp&nbsp</span>
-        </div>
-    </div>
+		<div id="other">
+			<span>visitor</span>
+		</div>
+	</div>
 
     <div id="main">
         <div id="login">
             <div class="login-box">
-                <p>Please Login&nbsp&nbsp请登录
-                    <select name="certification" class="select_button">
-                        <option selected="selected">请选择</option>
-                        <option value="student">学生</option>
-                        <option value="teacher">老师</option>
-                    </select>
-                </p>
-
                 <form method="POST" action="/login/">
-                    <table>
+                    <p>Please Login&nbsp&nbsp请登录
+                        <select name="certification" class="select_button">
+                            <option selected="selected">请选择</option>
+                            <option value="student">学生</option>
+                            <option value="teacher">老师</option>
+                        </select>
+                    </p>
+                    <table style="color:black;">
                         <tr>
                             <td>UserName：</td>
                             <td>
-                                <input type="text" name="username" required style="line-height: 150%;">
+                                <input type="text" name="username" required style="line-height:150%;">
                             </td>
                         </tr>
                         <tr>
@@ -46,10 +38,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="submit" class="button is-info" value="登录">
+                                <a id="login_regit" href="/signup/" class="button">没有账号？去注册</a>
                             </td>
                             <td>
-                                <a href="/signup/" class="button">没有账号？去注册</a>
+                                <input id="login_login" type="submit" class="button is-info" value="登录">
                             </td>
                         </tr>
                     </table>

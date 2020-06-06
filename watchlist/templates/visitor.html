@@ -1,21 +1,15 @@
 {% extends "layout.html" %}
 {% block body %}
-{% for message in get_flashed_messages() %}
 
-    <div class="alert">{{ message }}</div>
-
-{% endfor %}
 <div id="container">
 	<div id="header" >
 		<div id="logo">
-			<img src="pic/logo.png" alt="">
+			<img src="../static/pic/logo.png" alt="">
 			<span>GPU管理系统</span>
 		</div>
 
 		<div id="other">
-			<span>visitor&nbsp</span>
-			<!-- <img src="pic/1.jpg" alt="image"> -->
-			<span>&nbsp&nbsp</span>
+			<span>visitor</span>
 		</div>
 	</div>
 
@@ -27,19 +21,8 @@
 					<span>这是2017级软件工程12组开发的GPU管理系统</span><br>
 					<span>用于课程/实验室中使用GPU</span><br>
 					<span>欢迎使用！</span>
-					<a href="/login/" class="button is-info">登录</a>
-					<a href="/signup/" class="button is-primary">注册</a>
-
-					<table>
-						<tr>
-							<td>
-								
-							</td>
-							<td>
-								
-							</td>
-						</tr>
-					</table>
+					<a id="visitor_regit" href="/signup/" class="button is-primary">注册</a>
+					<a id="visitor_login" href="/login/" class="button is-info">登录</a>
 				</form>
 			</div>
 		</div>
