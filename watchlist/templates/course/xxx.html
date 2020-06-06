@@ -2,10 +2,15 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Progress</title>
+	<title>My courses</title>
 	<link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
+{% for message in get_flashed_messages() %}
+
+    <div class="alert">{{ message }}</div>
+
+{% endfor %}
 	<div id="container">
 		<div id="header" >
 			<div id="logo">
@@ -70,38 +75,58 @@
 			</div>
 
 			<div id="content">
-				<div id="program1" class="program">
-					<a href="/static/program/1/">Program 1</a>
-					<div class="programsum">
-						<p>xxx</p>
+				<div id="课程图片" class="coursephoto">
+					<img src="../pic/course_origin.jpg" alt="">
+				</div>
+
+				<div id="通知" class="coursenotice">
+					<a href="/message/xxx.html">通知</a>
+					<div class="coursegpubox">
+						通知1
+					</div>
+					<div class="coursegpubox">
+						通知2
+					</div>
+					<div class="coursegpubox">
+						通知3
+					</div>
+					<div class="coursegpubox">
+						通知4
 					</div>
 				</div>
 
-				<div id="program2" class="program">
-					<a href="program/2/">Program 2</a>
-					<div class="programsum">
-						<p>xxx</p>
+				<div id="xxx" class="courseinfo">
+					<a href="xxx.html">人工智能原理</a>
+					<div id="人工智能原理info" class="information">
+						<div id="teacherpic" class="teacherpic">
+							<img src="../pic/teacher.png" alt="">
+						</div>
+						<strong id="人工智能原理teacher">梁小丹&nbsp</strong> 
+						<span id="人工智能原理term">2017-2018学年&nbsp第1学期</span>
+						<p>课程简介：xxx</p>
 					</div>
 				</div>
-
-				<div id="program3" class="program">
-					<a href="program/3/">Program 3</a>
-					<div class="programsum">
-						<p>xxx</p>
+				
+				<div id="GPU" class="coursegpu">
+					<a href="#">GPUs</a>
+					<div class="coursegpubox">
+						gpu1
+					</div>
+					<div class="coursegpubox">
+						gpu2
+					</div>
+					<div class="coursegpubox">
+						gpu3
+					</div>
+					<div class="coursegpubox">
+						gpu4
+					</div>
+					<div class="coursegpubox">
+						gpu5
 					</div>
 				</div>
-
-				<div id="program4" class="program">
-					<a href="program/4/">Program 4</a>
-					<div class="programsum">
-						<p>xxx</p>
-					</div>
-				</div>
-				<p class="index_box_no">--没有更多进程--</p>
 			</div>
-			
 		</div>
 
-	</div>
 </body>
 </html>

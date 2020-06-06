@@ -9,16 +9,11 @@
 	<div id="container">
 		<div id="header" >
 			<div id="logo">
-				<img src="/static/pic/logo.png" alt="">
-				<span><a href="/" style="text-decoration: none;">GPU管理系统</a></span>
-				
-			</div>
+	            <img src="../static/pic/logo.png" alt="">
+	            <span>GPU管理系统</span>
+	        </div>
 
 			<div id="other">
-				<div id="userimg">
-					<img src="/static/pic/1.jpg" alt="image">
-					<span>&nbsp&nbsp&nbsp</span>
-				</div>
 				<div id="userinfo">
 					<select name="user" id="user">
 						<option selected="selected" value="0" class="userselect">
@@ -27,19 +22,22 @@
 						<option value="1" class="userselect">通知</option>
 						<option value="2" class="userselect">退出登录</option>
 					</select>
+				</div>
+				<div id="userimg">
+					<img src="/static/pic/1.jpg" alt="image">
 				</div>				
 			</div>
 		</div>
 
 		<div id="main">
 			<div id="aside">
-			<br>
+				<br>
 				<div id="Home Page">
 					<div class="asidepic">
 						<img src="/static/pic/home.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/index/">Home Page</a>
+						<a href="/index/">主页</a>
 					</div>
 				</div>
 
@@ -48,7 +46,7 @@
 						<img src="/static/pic/courses.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/my_courses/">My courses</a>
+						<a href="/my_courses/">我的课程</a>
 					</div>
 				</div>
 
@@ -57,7 +55,7 @@
 						<img src="/static/pic/process.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/process/">Process</a>
+						<a href="/process/">进程</a>
 					</div>
 				</div>
 
@@ -66,25 +64,49 @@
 						<img src="/static/pic/settings.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/settings/">Settings</a>
+						<a href="/settings/">设置</a>
 					</div>
 				</div>
 			</div>
 
 			<div id="content">
 				<div id="my_courses" class="index_box">
-					<a href="/my_courses/">My courses</a>
-					<p>xxx</p>
+					<a href="/my_courses/">我的课程</a>
+					<div class="index_coursebox">
+						课程1
+					</div>
+					<div class="index_coursebox">
+						课程2
+					</div>
+					<div class="index_coursebox">
+						课程3
+					</div>
+					<p class="index_box_no">--没有更多课程--</p>
 				</div>
 
 				<div id="my_process" class="index_box">
-					<a href="/process/">My process</a>
-					<p>xxx</p>
+					<a href="/process/">我的进程</a>
+					<div class="index_coursebox">
+						process1
+					</div>
+					<div class="index_coursebox">
+						process2
+					</div>
+					<div class="index_coursebox">
+						process3
+					</div>
+					<p class="index_box_no">--没有更多进程--</p>
 				</div>
 
 				<div id="my_message" class="index_box">
-					<a href="/message/">Messages</a>
-					<p>xxx</p>
+					<a href="/message/">通知</a>
+					<div class="index_coursebox">
+						message1
+					</div>
+					<div class="index_coursebox">
+						message2
+					</div>
+					<p class="index_box_no">--没有更多通知--</p>
 				</div>
 				
 			</div>

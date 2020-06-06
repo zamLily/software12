@@ -6,18 +6,19 @@
 	<link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
+{% for message in get_flashed_messages() %}
+
+    <div class="alert">{{ message }}</div>
+
+{% endfor %}
 	<div id="container">
 		<div id="header" >
 			<div id="logo">
-				<img src="/static/pic/logo.png" alt="">
-				<span>GPU管理系统</span>
-			</div>
+	            <img src="../static/pic/logo.png" alt="">
+	            <span>GPU管理系统</span>
+	        </div>
 
 			<div id="other">
-				<div id="userimg">
-					<img src="/static/pic/1.jpg" alt="image">
-					<span>&nbsp&nbsp&nbsp</span>
-				</div>
 				<div id="userinfo">
 					<select name="user" id="user">
 						<option selected="selected" value="0" class="userselect">
@@ -26,18 +27,22 @@
 						<option value="1" class="userselect">通知</option>
 						<option value="2" class="userselect">退出登录</option>
 					</select>
+				</div>
+				<div id="userimg">
+					<img src="/static/pic/1.jpg" alt="image">
 				</div>				
 			</div>
 		</div>
 
 		<div id="main">
-			<div id="aside"><br>
+			<div id="aside">
+				<br>
 				<div id="Home Page">
 					<div class="asidepic">
 						<img src="/static/pic/home.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/index/">Home Page</a>
+						<a href="/index/">主页</a>
 					</div>
 				</div>
 
@@ -46,7 +51,7 @@
 						<img src="/static/pic/courses.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/my_courses/">My courses</a>
+						<a href="/my_courses/">我的课程</a>
 					</div>
 				</div>
 
@@ -55,7 +60,7 @@
 						<img src="/static/pic/process.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/process/">Process</a>
+						<a href="/process/">进程</a>
 					</div>
 				</div>
 
@@ -64,50 +69,57 @@
 						<img src="/static/pic/settings.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/settings/">Settings</a>
+						<a href="/settings/">设置</a>
 					</div>
 				</div>
 			</div>
 
 			<div id="content">
 				<div id="程序设计" class="index_box">
-					<a href="courses/xxx/">程序设计基础</a>
+					<a href="course/xxx/">程序设计基础</a>
 					<div id="程序设计info" class="information">
 						<div id="teacherpic" class="teacherpic">
 							<img src="/static/pic/teacher.png" alt="">
 						</div>
 						<strong id="程序设计teacher">谭光&nbsp</strong> 
 						<span id="程序设计term">2017-2018学年&nbsp第1学期</span>
-						<p>课程简介：xxx</p>
+						<div class="courseintro">
+							<p>课程简介：xxx</p>
+						</div>
+						
 					</div>
 				</div>
 
 				<div id="人工智能原理" class="index_box">
-					<a href="courses/xxx/">人工智能原理</a>
+					<a href="course/xxx/">人工智能原理</a>
 					<div id="人工智能原理info" class="information">
 						<div id="teacherpic" class="teacherpic">
 							<img src="/static/pic/teacher.png" alt="">
 						</div>
 						<strong id="人工智能原理teacher">梁小丹&nbsp</strong> 
 						<span id="人工智能原理term">2017-2018学年&nbsp第1学期</span>
-						<p>课程简介：xxx</p>
+						<div class="courseintro">
+							<p>课程简介：xxx</p>
+						</div>
 					</div>
 				</div>
 
 				<div id="xxx" class="index_box">
-					<a href="courses/xxx/">xxx实验室</a>
+					<a href="course/xxx/">xxx实验室</a>
 					<div id="xxxinfo" class="information">
 						<div id="teacherpic" class="teacherpic">
 							<img src="/static/pic/teacher.png" alt="">
 						</div>
 						<strong id="xxxteacher">xxx&nbsp</strong> 
 						<span id="xxxterm">xxx学年&nbsp第xx学期</span>
-						<p>课程简介：xxx</p>
+						<div class="courseintro">
+							<p>课程简介：xxx</p>
+						</div>
 					</div>
 				</div>
 				
 				<div id="add" class="index_box">
-					<a href="courses/all_courses/">
+					<a href="course/all_courses/">
 						<p>添加课程</p>
 					</a>
 					<div id="xxxinfo" class="information">

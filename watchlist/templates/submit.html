@@ -8,55 +8,95 @@
 <body>
 	<div id="container">
 		<div id="header" >
-
-			<div id="logo"></div>
+			<div id="logo">
+	            <img src="../static/pic/logo.png" alt="">
+	            <span>GPU管理系统</span>
+	        </div>
 
 			<div id="other">
-				<span>Username&nbsp</span>
-				<img src="/static/pic/1.jpg" alt="image">
-				<span>&nbsp&nbsp</span>
+				<div id="userinfo">
+					<select name="user" id="user">
+						<option selected="selected" value="0" class="userselect">
+							<span>Username</span>
+						</option>
+						<option value="1" class="userselect">通知</option>
+						<option value="2" class="userselect">退出登录</option>
+					</select>
+				</div>
+				<div id="userimg">
+					<img src="/static/pic/1.jpg" alt="image">
+				</div>				
 			</div>
-
 		</div>
 
 		<div id="main">
 			<div id="aside">
+				<br>
 				<div id="Home Page">
-					<a href="/index/">Home Page</a>
+					<div class="asidepic">
+						<img src="/static/pic/home.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/index/">主页</a>
+					</div>
 				</div>
 
 				<div id="My courses">
-					<a href="/my_courses/">My courses</a>
+					<div class="asidepic">
+						<img src="/static/pic/courses.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/my_courses/">我的课程</a>
+					</div>
 				</div>
 
-				<div id="Procress">
-					<a href="/process/">Process</a>
+				<div id="Process">
+					<div class="asidepic">
+						<img src="/static/pic/process.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/process/">进程</a>
+					</div>
 				</div>
 
 				<div id="Settings">
-					<a href="/settings/">Settings</a>
+					<div class="asidepic">
+						<img src="/static/pic/settings.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/settings/">设置</a>
+					</div>
 				</div>
 			</div>
 
 			<div id="content">
-				<div id="ssh">
-					<p>SSH方式</p>
-					<textarea name="SSH方式" cols="75" rows="2"></textarea>
-				</div>
-
-				<div id="submit">
-					<p>直接上传文件</p>
-					<input type="submit" value="选择文件" name="submit-file" style="font-size:16px;margin-right:10px;margin-top:8px;padding:1px;">
-				</div>
-
-				<div id="edit">
-					<p>代码编辑器</p>
-					<textarea name="edit" cols="145" rows="18"></textarea>
-					<a href="result/1/" style="float:right;font-size:15px;">
-					    <button style="font-size:16px;margin-right:10px;margin-top:8px;padding:1px;">运行</button>
-					</a>
-				</div>
-
+				<form method="POST" action="/">
+					<div id="ssh">
+						<p>
+							<strong>SSH方式</strong>
+							<input id="ssh_button" type="submit" class="button is-info" value="提交">
+						</p>						
+						<input type="text" name="SSH方式" required style="height:2em;width:100%;margin-top:3px;">
+					</div>
+				</form>
+				
+				<form method="POST" action="/">
+					<div id="submit">
+						<p><strong>直接上传文件</strong></p>
+						<input id="submit_button" type="submit" class="button is-info" value="选择文件">
+					</div>
+				</form>
+				
+				<form method="POST" action="/">
+					<div id="edit">
+						<p>
+							<strong>代码编辑器</strong>
+						</p>
+						<textarea id="edit_text" name="edit" cols="145" rows="18"></textarea>
+						<input id="edit_button" type="submit" class="button is-info" value="运行">
+						</a>
+					</div>
+				</form>
 			</div>
 
 		</div>
