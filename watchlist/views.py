@@ -112,11 +112,8 @@ def settings():
 @app.route('/my_courses/all_courses/', methods=['GET', 'POST'])
 @login_required
 def all_courses():
-    course=[]
-    for i in range(Courses.query.count()):
-        course.append(Courses.query.filter_by(id=str(i)).first())
-
-    return render_template('all_courses.html', course=course)
+    courses = Courses.query.all()
+    return render_template('all_courses.html', courses=courses)
 
 @app.cli.command()
 def forge():

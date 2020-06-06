@@ -70,16 +70,16 @@
 			</div>
 
 			<div id="content">
-				{% for c in course %}
+				{% for course in courses %}
 					<div id="程序设计" class="index_box">
-						<a href="xxx.html">{{ c['name'] }}</a>
+						<a href="xxx.html">{{ course.name }}</a>
 						<div id="程序设计info" class="information">
 							<div id="teacherpic" class="teacherpic">
 								<img src="/static/pic/teacher.png" alt="">
 							</div>
-							<strong id="程序设计teacher">{{ c['teacher'] }}&nbsp</strong>
-							<span id="程序设计term">{{ c['time'] }}</span>
-							<p>课程简介：{{ c['info'] }}</p>
+							<strong id="程序设计teacher">{{ course['teacher'] }}&nbsp</strong>
+							<span id="程序设计term">{{ course['time'] }}</span>
+							<p>课程简介：{{ course['info'] }}</p>
 						</div>
 					</div>
 				{% endfor %}
