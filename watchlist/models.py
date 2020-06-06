@@ -17,4 +17,9 @@ class User(db.Model, UserMixin):
     def validate_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-
+class Courses(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    teacher = db.Column(db.String(50))
+    time = db.Column(db.String(50))
+    info = db.Column(db.String(300))

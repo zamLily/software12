@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from flask import render_template, request, url_for, redirect, flash
 from flask_login import login_user, login_required, logout_user, current_user
-
+import click
 from watchlist import app, db
-from watchlist.models import User
+from watchlist.models import User, Courses
 
 
 
@@ -107,3 +107,27 @@ def submit():
 @login_required
 def settings():
     return render_template('settings.html')
+
+# all_courses
+@app.route('/my_courses/all_courses/', methods=['GET', 'POST'])
+@login_required
+def all_courses():
+    course=[]
+    for i in range(Courses.query.count()):
+        course.append(Courses.query.filter_by(id=str(i)).first())
+
+    return render_template('all_courses.html', course=course)
+
+@app.cli.command()
+def forge():
+    """Generate fake data."""
+    db.create_all()
+
+    courses = [
+    {
+        'name': '程序设计基础', 'teacher': '谭光', 'time': '2017-2018学年 第1学期', 'info': 'xxx'}
+    ]
+    for c in courses:
+        course = Courses(name=c['name'], teacher=c['teacher'], time=c['time'], info=c['info'])
+        db.session.add(course)
+    db.session.commit()
