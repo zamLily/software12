@@ -219,8 +219,16 @@ class WatchlistTestCase(unittest.TestCase):
     # 注册测试
     def test_signup(self):
         #self.login()
+        #signup
         response = self.client.post('/signup', data=dict(
             username='test_signup',
+            password='123'
+        ), follow_redirects=True)
+        data = response.get_data(as_text=True)
+
+        #已经存在
+        response = self.client.post('/signup', data=dict(
+            username='test',
             password='123'
         ), follow_redirects=True)
         data = response.get_data(as_text=True)
