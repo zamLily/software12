@@ -4,7 +4,7 @@ import unittest
 
 from watchlist import app, db
 from watchlist.models import  User
-from watchlist.commands import initdb
+from watchlist.commands import forge, initdb
 
 
 class WatchlistTestCase(unittest.TestCase):

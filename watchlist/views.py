@@ -115,16 +115,16 @@ def all_courses():
     courses = Courses.query.all()
     return render_template('all_courses.html', courses=courses)
 
-@app.cli.command()
-def forge():
-    """Generate fake data."""
-    db.create_all()
+# @app.cli.command()
+# def forge():
+#     """Generate fake data."""
+#     db.create_all()
 
-    courses = [
-    {
-        'name': '程序设计基础', 'teacher': '谭光', 'time': '2017-2018学年 第1学期', 'info': 'xxx'}
-    ]
-    for c in courses:
-        course = Courses(name=c['name'], teacher=c['teacher'], time=c['time'], info=c['info'])
-        db.session.add(course)
-    db.session.commit()
+#     courses = [
+#     {
+#         'name': '程序设计基础', 'teacher': '谭光', 'time': '2017-2018学年 第1学期', 'info': 'xxx'}
+#     ]
+#     for c in courses:
+#         course = Courses(name=c['name'], teacher=c['teacher'], time=c['time'], info=c['info'])
+#         db.session.add(course)
+#     db.session.commit()
