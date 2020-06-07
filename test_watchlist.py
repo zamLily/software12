@@ -216,6 +216,15 @@ class WatchlistTestCase(unittest.TestCase):
         # self.assertNotIn('Edit', data)
         # self.assertNotIn('<form method="post">', data)
 
+    # 注册测试
+    def test_signup(self):
+        #self.login()
+        response = self.client.post('/signup', data=dict(
+            username='test_signup',
+            password='123'
+        ), follow_redirects=True)
+        data = response.get_data(as_text=True)
+
     # 测试设置
     def test_settings(self):
         self.login()
@@ -242,11 +251,11 @@ class WatchlistTestCase(unittest.TestCase):
         #self.assertNotIn('Settings updated.', data)
         #self.assertIn('Invalid input.', data)
 
-    # # 测试虚拟数据
-    # def test_forge_command(self):
-    #     result = self.runner.invoke(forge)
-    #     self.assertIn('Done.', result.output)
-    #     self.assertNotEqual(Movie.query.count(), 0)
+    # 测试虚拟数据
+    def test_forge_command(self):
+        result = self.runner.invoke(forge)
+        #self.assertIn('Done.', result.output)
+        #self.assertNotEqual(Movie.query.count(), 0)
 
     # 测试初始化数据库
     def test_initdb_command(self):
