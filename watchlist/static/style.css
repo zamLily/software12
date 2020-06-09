@@ -12,19 +12,6 @@ html {
 body {
 	/*background: linear-gradient(to top right,#7A88FF,#7AFFAF);*/
 	background:url("/static/pic/bg.gif") no-repeat;
-	position:fixed;
-	top: 0;
-	left: 0;
-	width:100%;
-	height:100%;
-	min-width: 1000px;
-	z-index:-10;
-	zoom: 1;
-	background-repeat: no-repeat;
-	background-size: cover;
-	-webkit-background-size: cover;
-	-o-background-size: cover;
-	background-position: center 0;
 }
 
 #container {
@@ -36,6 +23,9 @@ body {
 
 #header {
 	height: 40px;
+	width: 100%;
+	position: fixed;
+	z-index: 1000;left: 0; top: 0; 
 }
 
 #userimg {
@@ -103,12 +93,12 @@ body {
 	text-align: right;
 	line-height: 40px;
 	font-size: 20px;
-	color: white;
+	color: black;
 }
 #other span{
 	height: 80%;
 	width: 20%;
-	color: white;
+	color: black;
 	margin-right:20px;
 }
 
@@ -117,10 +107,12 @@ body {
 }
 
 #aside {
+	margin-top: 40px;
 	float: left;
 	width: 20%;
 	height: 100%;
 	background: rgba(255, 255, 255, 0.2);
+	position: fixed;
 }
 
 #aside div {
@@ -166,8 +158,9 @@ body {
 #content {
 	float: right;
 	width: 80%;
-	height: 90%;
+	height: 100%;
 	overflow: auto;
+	margin-top:40px; 
 }
 
 #login {
@@ -281,6 +274,16 @@ body {
 	color: black;
 	font-weight: bold;
 }
+.index_img {
+	height: 1.5em;
+	float: left;
+	line-height: 100%;
+}
+
+.index_img img {
+	height: 70%;
+	margin: 5px;
+}
 .index_box_no{
 	font-size: 18px;
 	margin: 10px;
@@ -294,6 +297,11 @@ body {
 	border-radius: 5px;
 	margin-top: 8px;
 	padding: 5px;
+}
+.index_coursebox a{
+	font-size: 22px;
+	color: black;
+	font-weight: normal;
 }
 
 .teacherpic {
@@ -456,6 +464,7 @@ body {
 }
 
 .information {
+	margin-top: 5px;
 	font-size: 15px;
 	padding: 3px;
 	line-height: 24px;
