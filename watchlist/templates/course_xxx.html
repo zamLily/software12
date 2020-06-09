@@ -2,15 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>My courses</title>
-	<link rel="stylesheet" href="/static/style.css" />
+	<title>Programm1-Result</title>
+	<link rel="stylesheet" href="../static/style.css" />
 </head>
 <body>
-{% for message in get_flashed_messages() %}
-
-    <div class="alert">{{ message }}</div>
-
-{% endfor %}
 	<div id="container">
 		<div id="header" >
 			<div id="logo">
@@ -29,7 +24,7 @@
 					</select>
 				</div>
 				<div id="userimg">
-					<img src="/static/pic/1.jpg" alt="image">
+					<img src="../static/pic/1.jpg" alt="image">
 				</div>				
 			</div>
 		</div>
@@ -39,7 +34,7 @@
 				<br>
 				<div id="Home Page">
 					<div class="asidepic">
-						<img src="/static/pic/home.png" alt="">
+						<img src="../static/pic/home.png" alt="">
 					</div>
 					<div class="asidechoices">
 						<a href="/index/">主页</a>
@@ -48,25 +43,25 @@
 
 				<div id="My courses">
 					<div class="asidepic">
-						<img src="/static/pic/courses.png" alt="">
+						<img src="../static/pic/courses.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/my_courses/">我的课程</a>
+						<a href="../my_courses/">我的课程</a>
 					</div>
 				</div>
 
 				<div id="Process">
 					<div class="asidepic">
-						<img src="/static/pic/process.png" alt="">
+						<img src="../static/pic/process.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/process/">进程</a>
+						<a href="../process/">进程</a>
 					</div>
 				</div>
 
 				<div id="Settings">
 					<div class="asidepic">
-						<img src="/static/pic/settings.png" alt="">
+						<img src="../static/pic/settings.png" alt="">
 					</div>
 					<div class="asidechoices">
 						<a href="/settings/">设置</a>
@@ -75,56 +70,114 @@
 			</div>
 
 			<div id="content">
-				<div id="课程图片" class="coursephoto">
-					<img src="../pic/course_origin.jpg" alt="">
+				<div id="course_photo">
+					<img src="../static/pic/course_logo.png" alt="">
 				</div>
 
-				<div id="通知" class="coursenotice">
-					<a href="/message/xxx.html">通知</a>
+				<div id="course_notice">
+					<div class="index_img">
+						<img src="../static/pic/message.png" alt="">
+					</div>
+					<span>
+						通知
+					</span>
 					<div class="coursegpubox">
-						通知1
+						<a href="">
+							<div class="index_img">
+								<img src="../static/pic/message_.png" alt="">
+							</div>
+							通知1
+						</a>
 					</div>
 					<div class="coursegpubox">
-						通知2
+						<a href="">
+							<div class="index_img">
+								<img src="../static/pic/message_.png" alt="">
+							</div>
+							通知2
+						</a>
 					</div>
 					<div class="coursegpubox">
-						通知3
+						<a href="">
+							<div class="index_img">
+								<img src="../static/pic/message_.png" alt="">
+							</div>
+							通知3
+						</a>
 					</div>
 					<div class="coursegpubox">
-						通知4
+						<a href="">
+							<div class="index_img">
+								<img src="../static/pic/message_.png" alt="">
+							</div>
+							通知4
+						</a>
 					</div>
+					<p class="index_box_no">--没有更多通知--</p>
 				</div>
 
-				<div id="xxx" class="courseinfo">
+				<div id="courseinfo">
 					<a href="xxx.html">人工智能原理</a>
 					<div id="人工智能原理info" class="information">
 						<div id="teacherpic" class="teacherpic">
-							<img src="../pic/teacher.png" alt="">
+							<img src="../static/pic/teacher.png" alt="">
 						</div>
 						<strong id="人工智能原理teacher">梁小丹&nbsp</strong> 
 						<span id="人工智能原理term">2017-2018学年&nbsp第1学期</span>
 						<p>课程简介：xxx</p>
 					</div>
 				</div>
-				
-				<div id="GPU" class="coursegpu">
-					<a href="#">GPUs</a>
+
+				<div id="coursegpu">
+					<div class="index_img">
+						<img src="../static/pic/gpu_big.png" alt="">
+					</div>
+					<span>
+						GPUs
+					</span>
 					<div class="coursegpubox">
-						gpu1
+						<a href="">
+							<div class="index_img">
+								<img src="../static/pic/gpu.png" alt="">
+							</div>
+							gpu1
+						</a>
 					</div>
 					<div class="coursegpubox">
-						gpu2
+						<a href="">
+							<div class="index_img">
+								<img src="../static/pic/gpu.png" alt="">
+							</div>
+							gpu2
+						</a>
 					</div>
 					<div class="coursegpubox">
-						gpu3
+						<a href="">
+							<div class="index_img">
+								<img src="../static/pic/gpu.png" alt="">
+							</div>
+							gpu3
+						</a>
 					</div>
 					<div class="coursegpubox">
-						gpu4
+						<a href="">
+							<div class="index_img">
+								<img src="../static/pic/gpu.png" alt="">
+							</div>
+							gpu4
+						</a>
 					</div>
 					<div class="coursegpubox">
-						gpu5
+						<a href="">
+							<div class="index_img">
+								<img src="../static/pic/gpu.png" alt="">
+							</div>
+							gpu5
+						</a>
 					</div>
+					<p class="index_box_no">--没有更多gpu--</p>
 				</div>
+				
 			</div>
 		</div>
 
