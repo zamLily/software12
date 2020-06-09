@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 	font-family: "阿里巴巴普惠体", "微软雅黑";
+	color: black;
 }
 
 html {
@@ -9,14 +10,26 @@ html {
 }
 
 body {
-	height: 100%;
 	/*background: linear-gradient(to top right,#7A88FF,#7AFFAF);*/
 	background:url("/static/pic/bg.gif") no-repeat;
-	background-size: 100%;
+	position:fixed;
+	top: 0;
+	left: 0;
+	width:100%;
+	height:100%;
+	min-width: 1000px;
+	z-index:-10;
+	zoom: 1;
+	background-repeat: no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+	background-position: center 0;
 }
 
 #container {
 	margin: 0;
+	height: 100%;
 	/*background: linear-gradient(to top right,#2069F9,#48E9B2);*/
 	/* background:url("/static/pic/bg.gif"); */
 }
@@ -26,7 +39,7 @@ body {
 }
 
 #userimg {
-	height: 80%;
+	height: 88%;
 	width: 5%;
 	float: right;
 	line-height: 100%;
@@ -48,11 +61,11 @@ body {
 	background: rgba(255, 255, 255, 0.2);
 	border: 1px solid white;
 	border-radius: 5px;
-	color: white;
+	color: black;
 }
 
 .userselect {
-	background-color: rgba(0, 0, 0, 0.75);
+	background-color: rgba(255, 255, 255, 0.2);
 	line-height: 25px;
 	padding: 2px;
 	margin-left: 2px;
@@ -69,14 +82,14 @@ body {
 #logo img {
 	float: left;
 	margin-left: 40px;
-	height: 80%;
+	height: 85%;
 	margin-top: 3px;
 	/*border:1px solid black;*/
 }
 
 #logo span {
 	float: left;
-	margin-left: 10px;
+	margin-left: 5px;
 	margin-top: 8px;
 	font-weight: bold;
 	font-size: 23px;
@@ -255,7 +268,7 @@ body {
 	float: left;
 	margin: 25px;
 	border: 1px solid white;
-	background: rgba(255, 255, 255, 0.3);
+	background: rgba(255, 255, 255, 0.2);
 	padding: 20px;
 	font-size: 20px;
 	border-radius: 8px;
