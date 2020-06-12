@@ -394,6 +394,7 @@ html {
 	background: rgba(255, 255, 255, 0.65);
 	padding: 3px;
 	border: 1px solid rgba(255, 255, 255, 0.6);
+	border-radius: 10px;
 }
 
 #result1 {
@@ -661,4 +662,31 @@ html {
 	background: rgba(255, 255, 255,0.9);
 	color:black;
 	border-radius: 3px;
+}
+#new_notice_button{
+	float: right;
+	padding:2px 5px;
+	margin:-30px -5px;
+	font-size:15px;
+	background: rgba(255, 255, 255,0.9);
+	color:black;
+	border-radius: 3px;
+	display: inline;
+}
+#new_notice_submit{
+	float: right;
+	padding:2px 5px;
+	margin:1px;
+	font-size:15px;
+	background: rgba(255, 255, 255,0.9);
+	color:black;
+	border-radius: 3px;
+}
+#new_notice_edit {
+	height: 390px;
+	padding: 0 10px;
+	font-size: 20px;
+	float: auto;
+	clear: both;
+	border-radius: 10px;
 }
