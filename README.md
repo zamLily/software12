@@ -3,10 +3,10 @@
 一、使用方法  
 1. 将代码clone至本地：git clone https://github.com/zamLily/software12.git  
 2. 进入software12目录
-3. 执行命令pip install -r requirements.txt
-3、进入虚拟环境：env\Scripts\activate  
-4、运行：flask run  
-4、用浏览器打开 http://127.0.0.1:5000/   
+3. 执行命令pip install -r requirements.txt（报错的话可以先跳过这步试试）  
+4、进入虚拟环境：env\Scripts\activate  
+5、运行：flask run  
+6、用浏览器打开 http://127.0.0.1:5000/   
 
 
 二、文件介绍  
