@@ -2,7 +2,7 @@
 
 一、使用方法  
 1. 将代码clone至本地：git clone https://github.com/zamLily/software12.git  
-2. 进入software12目录
+2. 进入software12目录(clone下来可能会有两层software12，进入里面那层）
 3. 执行命令pip install -r requirements.txt（报错的话可以先跳过这步试试）  
 4、进入虚拟环境：env\Scripts\activate  
 5、运行：flask run   
