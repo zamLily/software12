@@ -7,7 +7,7 @@
 
 html {
 	height: 100%;
-	background:url("pic/bg.gif") no-repeat;
+	background:url("pic/bg.gif") repeat-y;
 	background-size: cover;
 }
 
@@ -435,6 +435,7 @@ html {
 	background: rgba(255, 255, 255, 0.2);
 	border-radius: 5px;
 	font-size: 15px;
+	overflow: auto;
 }
 
 
@@ -601,7 +602,7 @@ html {
 	height: 250px;
 	width: 60%;
 	float: right;
-	margin: 10px;
+	margin: 8px 10px;
 	border: 1px solid white;
 	background: rgba(255, 255, 255, 0.3);
 	padding: 20px;
@@ -619,4 +620,45 @@ html {
 	font-size: 25px;
 	font-weight: bold;
 	text-align: 100%;
+}
+#notice_xxx{
+	height: 80%;
+	padding: 10px;
+	margin: 10px;
+	font-size: 20px;
+	float: auto;
+	clear: both;
+	border: 1px solid white;
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 10px;
+	overflow: auto;
+}
+#notice_xxx p{
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+}
+#notice_xxx span{
+	text-align: center;
+	font-size: 20px;
+}
+#notice_xxx_xxx{
+	height: 360px;
+	padding: 10px 20px;
+	margin: 10px;
+	font-size: 20px;
+	overflow: auto;
+	clear: both;
+	border: 1px solid white;
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 10px;
+}
+#notice_button{
+	float: right;
+	padding:2px 5px;
+	margin:1px 46%;
+	font-size:15px;
+	background: rgba(255, 255, 255,0.9);
+	color:black;
+	border-radius: 3px;
 }
