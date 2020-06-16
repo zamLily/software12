@@ -6,6 +6,11 @@
 	<link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
+	{% for message in get_flashed_messages() %}
+	    <div class="alert" style="float:left;margin-left:45%;margin-top:8px;text-align:center;font-size:18px;color:black;width:20%;font-weight:bold;">
+	    	{{ message }}
+	    </div>
+	{% endfor %}
 	<div id="container">
 		<div id="header" >
 			<div id="logo">
@@ -14,18 +19,15 @@
 	        </div>
 
 			<div id="other">
-				<div id="userinfo">
-					<select name="user" id="user">
-						<option selected="selected" value="0" class="userselect">
-							<span>Username</span>
-						</option>
-						<option value="1" class="userselect">通知</option>
-						<option value="2" class="userselect">退出登录</option>
-					</select>
-				</div>
-				<div id="userimg">
-					<img src="/static/pic/1.jpg" alt="image">
-				</div>				
+				<form form method="POST" action="/logout/">
+					<a id="login_out" href="/logout/" class="button">退出登录</a>
+					<div id="user_name">
+						<span>Username</span>
+					</div>
+					<div id="user_img">
+						<img src="/static/pic/1.jpg" alt="image">
+					</div>
+				</form>			
 			</div>
 		</div>
 
@@ -165,7 +167,43 @@
 					</div>
 				</div>
 
-				
+				<div id="人工智能原理" class="index_box">
+					<a href="/my_courses/xxx/">
+						<div class="index_img">
+							<img src="/static/pic/courses.png" alt="">
+						</div>
+						人工智能原理
+					</a>
+					<div id="人工智能原理info" class="information">
+						<div id="teacherpic" class="teacherpic">
+							<img src="/static/pic/teacher.png" alt="">
+						</div>
+						<strong id="人工智能原理teacher">梁小丹&nbsp</strong> 
+						<span id="人工智能原理term">2017-2018学年&nbsp第1学期</span>
+						<div class="courseintro">
+							<p>课程简介：xxx</p>
+						</div>
+					</div>
+				</div>
+
+				<div id="人工智能原理" class="index_box">
+					<a href="/my_courses/xxx/">
+						<div class="index_img">
+							<img src="/static/pic/courses.png" alt="">
+						</div>
+						人工智能原理
+					</a>
+					<div id="人工智能原理info" class="information">
+						<div id="teacherpic" class="teacherpic">
+							<img src="/static/pic/teacher.png" alt="">
+						</div>
+						<strong id="人工智能原理teacher">梁小丹&nbsp</strong> 
+						<span id="人工智能原理term">2017-2018学年&nbsp第1学期</span>
+						<div class="courseintro">
+							<p>课程简介：xxx</p>
+						</div>
+					</div>
+				</div>
 
 				<p style="clear:both;" class="index_box_no">--没有更多课程--</p>
 			</div>
