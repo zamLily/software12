@@ -48,22 +48,26 @@ html {
 	border-radius: 5px;
 }
 #user_img{
-	width: 2%;
-	height: 88%;
+	margin-top: -80px;
+	margin-right: -40px
+	padding-top: -10px;
 	float: right;
-	margin: 8px 5px;
+	margin: 10px;
+	height: 30px;
+	width: 30px;
+	/*border: 1px solid;*/
 }
-#user_img{
-	padding: 1px;
-	margin: 4px 1px;
-	border-radius: 3px;
+#user_img img{
+	width: 95%;
+	height:95%;
 }
 
 #user_name {
+	/*border: 1px solid;*/
 	width: 80px;
 	height: 88%;
 	float: right;
-	margin:1px 0 1px 5px;
+	margin:1px 0 1px -5px;
 	padding: 1px;
 	color: black;
 	text-align: right;
@@ -706,4 +710,86 @@ html {
 	float: auto;
 	clear: both;
 	border-radius: 10px;
+}
+#settings{
+	height: 400px;
+	width: 96%;
+	padding: 10px;
+	margin: 10px;
+	float: auto;
+	clear: both;
+	background: rgba(255, 255, 255, 0.3);
+	border: 1px solid white;
+	/*border-radius: 10px;*/
+	overflow: auto;
+}
+#settings p{
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	margin:5px;
+}
+#setting_table{
+	width: 68%;
+	font-size: 20px;
+	color: black;
+	float: left;
+	margin: 10px 15px;
+}
+#setting_table tr td{
+	height: 45px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	/*border: 1px solid;*/
+	text-align: justify;
+	width: 50%;
+	padding: 5px 20px 0 20px;
+	font-size: 18px;
+}
+#setting_table tr th{
+	font-size: 20px;
+	height: 45px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	/*border: 1px solid;*/
+	text-align: justify;
+	width: 30%;
+	padding: 5px 20px 0 20px;
+}
+#setting_img{
+	float: left;
+	margin: 10px;
+	height: 250px;
+	width: 250px;
+}
+#setting_img img{
+	width: 95%;
+	height:95%;
+	margin-bottom: 5px;
+}
+#setting_img span{
+	text-align: center;
+	margin-left: 85px;
+	margin-top: 5px;
+	text-decoration: none;
+	border: 1px solid white;
+	padding: 2px 5px;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 3px;
+}
+#setting_img a{
+	text-decoration: none;
+}
+
+
+.setting_button{
+	height: 30px;
+	padding: 1px 5px;
+	float: left;
+	/*margin-left: 2%;*/
+	font-size:15px;
+	line-height: 30px;
+	background: rgba(255, 255, 255, 0.2);
+	color:black;
+	text-decoration: none;
+	border:1px solid white;
+	border-radius: 3px;
 }
