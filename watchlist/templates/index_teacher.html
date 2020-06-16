@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>home page</title>
+	<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+	<div id="container">
+		<div id="header" >
+			<div id="logo">
+	            <img src="../static/pic/logo.png" alt="">
+	            <span>GPU管理系统</span>
+	        </div>
+
+			<div id="other">
+				<div id="userinfo">
+					<select name="user" id="user">
+						<option selected="selected" value="0" class="userselect">
+							<span>Username</span>
+						</option>
+						<option value="1" class="userselect">通知</option>
+						<option value="2" class="userselect">退出登录</option>
+					</select>
+				</div>
+				<div id="userimg">
+					<img src="/static/pic/1.jpg" alt="image">
+				</div>				
+			</div>
+		</div>
+
+		<div id="main">
+			<div id="aside">
+				<br>
+				<div id="Home Page">
+					<div class="asidepic">
+						<img src="/static/pic/home.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/index/">主页</a>
+					</div>
+				</div>
+
+				<div id="My courses">
+					<div class="asidepic">
+						<img src="/static/pic/courses.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/my_courses/">我的课程</a>
+					</div>
+				</div>
+
+				<div id="Process">
+					<div class="asidepic">
+						<img src="/static/pic/process.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/process/">进程</a>
+					</div>
+				</div>
+
+				<div id="Settings">
+					<div class="asidepic">
+						<img src="/static/pic/settings.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/settings/">设置</a>
+					</div>
+				</div>
+			</div>
+
+			<div id="content">
+				<div id="my_courses" class="index_box">
+					<a href="/my_courses/">
+						<div class="index_img">
+							<img src="/static/pic/courses.png" alt="">
+						</div>
+						我的课程
+					</a>
+					<div class="index_coursebox">
+						<a href="">
+							<div class="index_img">
+								<img src="/static/pic/course_.png" alt="">
+							</div>
+							课程1
+						</a>
+					</div>
+					<div class="index_coursebox">
+						<a href="">
+							<div class="index_img">
+								<img src="/static/pic/course_.png" alt="">
+							</div>
+							课程2
+						</a>
+					</div>
+					<div class="index_coursebox">
+						<a href="">
+							<div class="index_img">
+								<img src="/static/pic/course_.png" alt="">
+							</div>
+							课程3
+						</a>
+					</div>
+					<p class="index_box_no">--没有更多课程--</p>
+				</div>
+
+				<div id="my_process" class="index_box">
+					<a href="/process/">
+						<div class="index_img">
+							<img src="/static/pic/process.png" alt="">
+						</div>
+						&nbsp我的GPU
+					</a>
+					<div class="index_coursebox">
+						<a href="">
+							<div class="index_img">
+								<img src="/static/pic/process_.png" alt="">
+							</div>
+							GTX 1080Ti
+						</a>
+					</div>
+					<div class="index_coursebox">
+						<a href="">
+							<div class="index_img">
+								<img src="/static/pic/process_.png" alt="">
+							</div>
+							RTX 2080Ti
+						</a>
+					</div>
+					<div class="index_coursebox">
+						<a href="">
+							<div class="index_img">
+								<img src="/static/pic/process_.png" alt="">
+							</div>
+							Titan RTX
+						</a>
+					</div>
+					<p class="index_box_no">--没有更多进程--</p>
+				</div>
+
+				<div id="my_message" class="index_box">
+					<a href="/message/">
+						<div class="index_img">
+							<img src="/static/pic/message.png" alt="">
+						</div>
+						&nbsp通知
+					</a>
+					<div class="index_coursebox">
+						<a href="">
+							<div class="index_img">
+								<img src="/static/pic/process_.png" alt="">
+							</div>
+							message1
+						</a>
+					</div>
+					<div class="index_coursebox">
+						<a href="">
+							<div class="index_img">
+								<img src="/static/pic/process_.png" alt="">
+							</div>
+							message2
+						</a>
+					</div>
+					<p class="index_box_no">--没有更多通知--</p>
+				</div>
+				
+			</div>
+		</div>
+
+</body>
+</html>
