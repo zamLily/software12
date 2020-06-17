@@ -22,7 +22,7 @@
 				<form form method="POST" action="/logout/">
 					<a id="login_out" href="/logout/" class="button">退出登录</a>
 					<div id="user_name">
-						<span>Username</span>
+						<span>{{ current_user.username }}</span>
 					</div>
 					<div id="user_img">
 						<img src="/static/pic/1.jpg" alt="image">
@@ -72,64 +72,28 @@
 			</div>
 
 			<div id="content">
+				{% for c in courses %}
 				<div id="程序设计" class="index_box">
-					<a href="/my_courses/xxx/">
+					<a href="/my_courses/all_courses/{{ c['id'] }}/">
 						<div class="index_img">
 							<img src="/static/pic/courses.png" alt="">
 						</div>
-						程序设计基础
+						{{ c['name'] }}
 					</a>
 					<div id="程序设计info" class="information">
 						<div id="teacherpic" class="teacherpic">
 							<img src="/static/pic/teacher.png" alt="">
 						</div>
-						<strong id="程序设计teacher">谭光&nbsp</strong> 
-						<span id="程序设计term">2017-2018学年&nbsp第1学期</span>
+						<strong id="程序设计teacher">{{ c['teacher'] }}&nbsp</strong>
+						<span id="程序设计term">{{ c['time'] }}</span>
 						<div class="courseintro">
-							<p>课程简介：xxx</p>
+							<p>课程简介：{{ c['info'] }}</p>
 						</div>
 						
 					</div>
 				</div>
+				{% endfor %}
 
-				<div id="人工智能原理" class="index_box">
-					<a href="/my_courses/xxx/">
-						<div class="index_img">
-							<img src="/static/pic/courses.png" alt="">
-						</div>
-						人工智能原理
-					</a>
-					<div id="人工智能原理info" class="information">
-						<div id="teacherpic" class="teacherpic">
-							<img src="/static/pic/teacher.png" alt="">
-						</div>
-						<strong id="人工智能原理teacher">梁小丹&nbsp</strong> 
-						<span id="人工智能原理term">2017-2018学年&nbsp第1学期</span>
-						<div class="courseintro">
-							<p>课程简介：xxx</p>
-						</div>
-					</div>
-				</div>
-
-				<div id="xxx" class="index_box">
-					<a href="/my_courses/xxx/">
-						<div class="index_img">
-							<img src="/static/pic/courses.png" alt="">
-						</div>
-						xxx实验室
-					</a>
-					<div id="xxxinfo" class="information">
-						<div id="teacherpic" class="teacherpic">
-							<img src="/static/pic/teacher.png" alt="">
-						</div>
-						<strong id="xxxteacher">xxx&nbsp</strong> 
-						<span id="xxxterm">xxx学年&nbsp第xx学期</span>
-						<div class="courseintro">
-							<p>课程简介：xxx</p>
-						</div>
-					</div>
-				</div>
-				
 				<div id="add" class="index_box">
 					<a href="/my_courses/all_courses/">
 						<div class="index_img">
@@ -144,6 +108,7 @@
 						<p>课程不在列表里？加入新的课程</p>
 					</div>
 				</div>
+				<p class="index_box_no">--没有更多课程--</p>
 			</div>
 
 		</div>

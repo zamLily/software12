@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>notice_xxx</title>
-	<link rel="stylesheet" href="../static/style.css" />
+	<link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
 	{% for message in get_flashed_messages() %}
@@ -14,7 +14,7 @@
 	<div id="container">
 		<div id="header" >
 			<div id="logo">
-	            <img src="../static/pic/logo.png" alt="">
+	            <img src="/static/pic/logo.png" alt="">
 	            <span>GPU管理系统</span>
 	        </div>
 
@@ -22,7 +22,7 @@
 				<form form method="POST" action="/logout/">
 					<a id="login_out" href="/logout/" class="button">退出登录</a>
 					<div id="user_name">
-						<span>Username</span>
+						<span>{{ current_user.username }}</span>
 					</div>
 					<div id="user_img">
 						<img src="/static/pic/1.jpg" alt="image">
@@ -36,7 +36,7 @@
 				<br>
 				<div id="Home Page">
 					<div class="asidepic">
-						<img src="../static/pic/home.png" alt="">
+						<img src="/static/pic/home.png" alt="">
 					</div>
 					<div class="asidechoices">
 						<a href="/index/">主页</a>
@@ -45,7 +45,7 @@
 
 				<div id="My courses">
 					<div class="asidepic">
-						<img src="../static/pic/courses.png" alt="">
+						<img src="/static/pic/courses.png" alt="">
 					</div>
 					<div class="asidechoices">
 						<a href="/my_courses/">我的课程</a>
@@ -54,7 +54,7 @@
 
 				<div id="Process">
 					<div class="asidepic">
-						<img src="../static/pic/process.png" alt="">
+						<img src="/static/pic/process.png" alt="">
 					</div>
 					<div class="asidechoices">
 						<a href="/process/">进程</a>
@@ -63,7 +63,7 @@
 
 				<div id="Settings">
 					<div class="asidepic">
-						<img src="../static/pic/settings.png" alt="">
+						<img src="/static/pic/settings.png" alt="">
 					</div>
 					<div class="asidechoices">
 						<a href="/settings/">设置</a>
@@ -74,28 +74,10 @@
 			<div id="content">
 				<form method="POST" action="/">
 					<div id="notice_xxx">
-						<p>xxx课程通知</p>
-						<p style="font-weight:normal;font-size:18px;">xxxx年xx月xx日</p>
+						<p>{{ message['course_name'] }}通知</p>
+						<p style="font-weight:normal;font-size:18px;">{{ message['title'] }}</p>
 						<div id="notice_xxx_xxx">
-							xxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
+							{{ message['info'] }}
 						</div>
 						<input id="notice_button" type="submit" class="button is-info" value="已查看">
 					</div>

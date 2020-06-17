@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Programm1-Result</title>
-	<link rel="stylesheet" href="../static/style.css" />
+	<link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
 	{% for message in get_flashed_messages() %}
@@ -14,7 +14,7 @@
 	<div id="container">
 		<div id="header" >
 			<div id="logo">
-	            <img src="../static/pic/logo.png" alt="">
+	            <img src="/static/pic/logo.png" alt="">
 	            <span>GPU管理系统</span>
 	        </div>
 
@@ -22,7 +22,7 @@
 				<form form method="POST" action="/logout/">
 					<a id="login_out" href="/logout/" class="button">退出登录</a>
 					<div id="user_name">
-						<span>Username</span>
+						<span>{{ current_user.username }}</span>
 					</div>
 					<div id="user_img">
 						<img src="/static/pic/1.jpg" alt="image">
@@ -36,7 +36,7 @@
 				<br>
 				<div id="Home Page">
 					<div class="asidepic">
-						<img src="../static/pic/home.png" alt="">
+						<img src="/static/pic/home.png" alt="">
 					</div>
 					<div class="asidechoices">
 						<a href="/index/">主页</a>
@@ -45,25 +45,25 @@
 
 				<div id="My courses">
 					<div class="asidepic">
-						<img src="../static/pic/courses.png" alt="">
+						<img src="/static/pic/courses.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="../my_courses/">我的课程</a>
+						<a href="/my_courses/">我的课程</a>
 					</div>
 				</div>
 
 				<div id="Process">
 					<div class="asidepic">
-						<img src="../static/pic/process.png" alt="">
+						<img src="/static/pic/process.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="../process/">进程</a>
+						<a href="/process/">进程</a>
 					</div>
 				</div>
 
 				<div id="Settings">
 					<div class="asidepic">
-						<img src="../static/pic/settings.png" alt="">
+						<img src="/static/pic/settings.png" alt="">
 					</div>
 					<div class="asidechoices">
 						<a href="/settings/">设置</a>
@@ -73,110 +73,62 @@
 
 			<div id="content">
 				<div id="course_photo">
-					<img src="../static/pic/course_logo.png" alt="">
+					<img src="/static/pic/course_logo.png" alt="">
 				</div>
 
 				<div id="course_notice">
 					<div class="index_img">
-						<img src="../static/pic/message.png" alt="">
+						<img src="/static/pic/message.png" alt="">
 					</div>
 					<span>
 						通知
 					</span>
+					{% for m in messages %}
+					{% if m['course_name'] == course['name'] %}
 					<div class="coursegpubox">
-						<a href="">
+						<a href="/message/{{ m['id'] }}/">
 							<div class="index_img">
-								<img src="../static/pic/message_.png" alt="">
+								<img src="/static/pic/message_.png" alt="">
 							</div>
-							通知1
+							{{ m['title'] }}
 						</a>
 					</div>
-					<div class="coursegpubox">
-						<a href="">
-							<div class="index_img">
-								<img src="../static/pic/message_.png" alt="">
-							</div>
-							通知2
-						</a>
-					</div>
-					<div class="coursegpubox">
-						<a href="">
-							<div class="index_img">
-								<img src="../static/pic/message_.png" alt="">
-							</div>
-							通知3
-						</a>
-					</div>
-					<div class="coursegpubox">
-						<a href="">
-							<div class="index_img">
-								<img src="../static/pic/message_.png" alt="">
-							</div>
-							通知4
-						</a>
-					</div>
+					{% endif %}
+					{% endfor %}
 					<p class="index_box_no">--没有更多通知--</p>
 				</div>
 
 				<div id="courseinfo">
-					<a href="xxx.html">人工智能原理</a>
+					<a href="xxx.html">{{ course.name }}</a>
 					<div id="人工智能原理info" class="information">
 						<div id="teacherpic" class="teacherpic">
-							<img src="../static/pic/teacher.png" alt="">
+							<img src="/static/pic/teacher.png" alt="">
 						</div>
-						<strong id="人工智能原理teacher">梁小丹&nbsp</strong> 
-						<span id="人工智能原理term">2017-2018学年&nbsp第1学期</span>
-						<p>课程简介：xxx</p>
+						<strong id="人工智能原理teacher">{{ course.teacher }}&nbsp</strong>
+						<span id="人工智能原理term">{{ course.time }}</span>
+						<p>课程简介：{{ course.info }}</p>
 					</div>
 				</div>
 
 				<div id="coursegpu">
 					<div class="index_img">
-						<img src="../static/pic/gpu_big.png" alt="">
+						<img src="/static/pic/gpu_big.png" alt="">
 					</div>
 					<span>
 						GPUs
 					</span>
+					{% for g in gpus %}
+					{% if g['course_name'] == course['name'] %}
 					<div class="coursegpubox">
-						<a href="">
+						<a href="/submit/">
 							<div class="index_img">
-								<img src="../static/pic/gpu.png" alt="">
+								<img src="/static/pic/gpu.png" alt="">
 							</div>
-							gpu1
+							{{ g['name'] }} --- {{ g['info'] }}
 						</a>
 					</div>
-					<div class="coursegpubox">
-						<a href="">
-							<div class="index_img">
-								<img src="../static/pic/gpu.png" alt="">
-							</div>
-							gpu2
-						</a>
-					</div>
-					<div class="coursegpubox">
-						<a href="">
-							<div class="index_img">
-								<img src="../static/pic/gpu.png" alt="">
-							</div>
-							gpu3
-						</a>
-					</div>
-					<div class="coursegpubox">
-						<a href="">
-							<div class="index_img">
-								<img src="../static/pic/gpu.png" alt="">
-							</div>
-							gpu4
-						</a>
-					</div>
-					<div class="coursegpubox">
-						<a href="">
-							<div class="index_img">
-								<img src="../static/pic/gpu.png" alt="">
-							</div>
-							gpu5
-						</a>
-					</div>
+					{% endif %}
+					{% endfor %}
 					<p class="index_box_no">--没有更多gpu--</p>
 				</div>
 				

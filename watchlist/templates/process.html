@@ -22,7 +22,7 @@
 				<form form method="POST" action="/logout/">
 					<a id="login_out" href="/logout/" class="button">退出登录</a>
 					<div id="user_name">
-						<span>Username</span>
+						<span>{{ current_user.username }}</span>
 					</div>
 					<div id="user_img">
 						<img src="/static/pic/1.jpg" alt="image">
@@ -72,48 +72,20 @@
 			</div>
 
 			<div id="content">
+				{% for p in processes %}
 				<div id="program1" class="program">
-					<a href="/static/program/1/">
+					<a href="/process/{{ p['id'] }}/">
 						<div class="index_img">
 							<img src="/static/pic/process_.png" alt="">
 						</div>
-						Program 1
+						{{ p['name'] }}
 					</a>
 					<div class="programsum">
-						<p>xxx</p>
+						<p>{{ p['info'] }}</p>
 					</div>
 				</div>
+				{% endfor %}
 
-				<div id="program2" class="program">
-					<a href="/static/program/1/">
-						<div class="index_img">
-							<img src="/static/pic/process_.png" alt="">
-						</div>
-						Program 2
-					</a>
-					<div class="programsum">
-						<p>xxx</p>
-					</div>
-				</div>
-
-				<div id="program3" class="program">
-					<a href="/static/program/1/">
-						<div class="index_img">
-							<img src="/static/pic/process_.png" alt="">
-						</div>
-						Program 3
-					</a>
-					<div class="programsum">
-						<p>xxx</p>
-					</div>
-				</div>
-
-				<div id="program4" class="program">
-					<a href="program/4/">Program 4</a>
-					<div class="programsum">
-						<p>xxx</p>
-					</div>
-				</div>
 				<p class="index_box_no">--没有更多进程--</p>
 			</div>
 		</div>
