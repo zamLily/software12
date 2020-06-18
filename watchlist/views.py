@@ -5,7 +5,34 @@ import click
 from watchlist import app, db
 from watchlist.models import *
 
+# -------------------------------- 教师端 --------------------------------------------#
 
+# index_teacher
+@app.route('/index_teacher/', methods=['GET', 'POST'])
+# @login_required
+def index_teacher():
+    return render_template('index_teacher.html')
+
+# courses_xxx_teacher
+@app.route('/courses_xxx_teacher/', methods=['GET', 'POST'])
+# @login_required
+def courses_xxx_teacher():
+    return render_template('courses_xxx_teacher.html')
+
+
+# my_courses_teacher
+@app.route('/my_courses_teacher/', methods=['GET', 'POST'])
+# @login_required
+def my_courses_teacher():
+    return render_template('my_courses_teacher.html')
+
+# gpu_xxx_teacher
+@app.route('/gpu_xxx_teacher/', methods=['GET', 'POST'])
+# @login_required
+def gpu_xxx_teacher():
+    return render_template('gpu_xxx_teacher.html')
+
+# -------------------------------- 学生端 --------------------------------------------#
 
 # 登录
 @app.route('/login/', methods=['GET', 'POST'])
