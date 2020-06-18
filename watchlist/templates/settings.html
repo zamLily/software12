@@ -21,11 +21,11 @@
 			<div id="other">
 				<form form method="POST" action="/logout/">
 					<a id="login_out" href="/logout/" class="button">退出登录</a>
-					<div id="user_name">
-						<span>{{ current_user.username }}</span>
-					</div>
 					<div id="user_img">
 						<img src="/static/pic/1.jpg" alt="image">
+					</div>
+					<div id="user_name">
+						<span>{{ current_user.username }}</span>
 					</div>
 				</form>			
 			</div>
@@ -76,58 +76,161 @@
 					<div id="settings">
 						<p>个人设置</p>
 						<div id="setting_img">
-							<a id="/" href="/" class="button">
-								<img src="/static/pic/1.jpg" alt="image">
-								<span>修改头像</span>
-							</a>
+							<form method="post" action="#" enctype="#">
+								<div id="/" href="/" class="button">
+									<img src="/static/pic/1.jpg" alt="image">
+									<span>修改头像</span>
+									<input type="file" id="upload" name="image" value="更改头像" />
+								</div>
+							</form>
 						</div>
 						<table id="setting_table">
 							<tr>
 								<th>用户名称</th>
-								<td>Username</td>
 								<td>
-									<a class="setting_button" href="/" class="button">
-										编辑
-									</a>
+									Username
+									<div id="usernameedit">
+										<p id="user_name_edit">
+											<input type="text"value="username" style="width:7em;">
+											&nbsp
+											<input id="user_name_button" type="submit" class="button is-info" value="提交">
+										</p>
+									</div>
+								</td>
+								<td>	
+									<span class="setting_button" onClick="spanClick1();">编辑</span>
+									<script>
+									function spanClick1(){
+									    var obj=document.getElementById("user_name_edit");
+									    var att=obj.getAttribute("open");
+									    if(att!="open"){
+									        obj.setAttribute("open","open");
+									        }
+									    else{
+									        obj.removeAttribute("open");
+									        }
+									    }
+									</script>
 								</td>
 							</tr>
+
 							<tr>
 								<th>用户密码</th>
-								<td>*******</td>
 								<td>
-									<a class="setting_button" href="/" class="button">
-										编辑
-									</a>
+									*******
+									<div id="usernameedit">
+										<p id="user_name_password">
+											<input type="text" value="*******" style="width:7em;">
+											&nbsp
+											<input id="user_name_button" type="submit" class="button is-info" value="提交">
+										</p>
+									</div>
+								</td>
+								<td>	
+									<span class="setting_button" onClick="spanClick2();">编辑</span>
+									<script>
+									function spanClick2(){
+									    var obj=document.getElementById("user_name_password");
+									    var att=obj.getAttribute("open");
+									    if(att!="open"){
+									        obj.setAttribute("open","open");
+									        }
+									    else{
+									        obj.removeAttribute("open");
+									        }
+									    }
+									</script>
 								</td>
 							</tr>
+
 							<tr>
 								<th>用户学号</th>
-								<td>未填写</td>
 								<td>
-									<a class="setting_button" href="/" class="button">
-										编辑
-									</a>
+									未填写
+									<div id="usernameedit">
+										<p id="user_name_id">
+											<input type="text" value="未填写" style="width:7em;">
+											&nbsp
+											<input id="user_name_button" type="submit" class="button is-info" value="提交">
+										</p>
+									</div>
+								</td>
+								<td>	
+									<span class="setting_button" onClick="spanClick3();">编辑</span>
+									<script>
+									function spanClick3(){
+									    var obj=document.getElementById("user_name_id");
+									    var att=obj.getAttribute("open");
+									    if(att!="open"){
+									        obj.setAttribute("open","open");
+									        }
+									    else{
+									        obj.removeAttribute("open");
+									        }
+									    }
+									</script>
 								</td>
 							</tr>
+
 							<tr>
 								<th>用户年级</th>
-								<td>未填写</td>
 								<td>
-									<a class="setting_button" href="/" class="button">
-										编辑
-									</a>
+									未填写
+									<div id="usernameedit">
+										<p id="user_name_year">
+											<input type="text" value="未填写" style="width:7em;">
+											&nbsp
+											<input id="user_name_button" type="submit" class="button is-info" value="提交">
+										</p>
+									</div>
+								</td>
+								<td>	
+									<span class="setting_button" onClick="spanClick4();">编辑</span>
+									<script>
+									function spanClick4(){
+									    var obj=document.getElementById("user_name_year");
+									    var att=obj.getAttribute("open");
+									    if(att!="open"){
+									        obj.setAttribute("open","open");
+									        }
+									    else{
+									        obj.removeAttribute("open");
+									        }
+									    }
+									</script>
 								</td>
 							</tr>
+
 							<tr>
 								<th>用户班级</th>
-								<td>未填写</td>
 								<td>
-									<a class="setting_button" href="/" class="button">
-										编辑
-									</a>
+									未填写
+									<div id="usernameedit">
+										<p id="user_name_class">
+											<input type="text" value="未填写" style="width:7em;">
+											&nbsp
+											<input id="user_name_button" type="submit" class="button is-info" value="提交">
+										</p>
+									</div>
+								</td>
+								<td>	
+									<span class="setting_button" onClick="spanClick5();">编辑</span>
+									<script>
+									function spanClick5(){
+									    var obj=document.getElementById("user_name_class");
+									    var att=obj.getAttribute("open");
+									    if(att!="open"){
+									        obj.setAttribute("open","open");
+									        }
+									    else{
+									        obj.removeAttribute("open");
+									        }
+									    }
+									</script>
 								</td>
 							</tr>
 						</table>
+
 					</div>
 				</form>
 			</div>

@@ -21,11 +21,11 @@
 			<div id="other">
 				<form form method="POST" action="/logout/">
 					<a id="login_out" href="/logout/" class="button">退出登录</a>
-					<div id="user_name">
-						<span>{{ current_user.username }}</span>
-					</div>
 					<div id="user_img">
 						<img src="/static/pic/1.jpg" alt="image">
+					</div>
+					<div id="user_name">
+						<span>{{ current_user.username }}</span>
 					</div>
 				</form>			
 			</div>
@@ -78,7 +78,7 @@
 							<strong>SSH方式</strong>
 							<input id="ssh_button" type="submit" class="#" value="提交">
 						</p>						
-						<input type="text" name="SSH方式" required style="height:2em;width:100%;margin-top:3px;">
+						<input id="ssh_text" type="text" name="SSH方式" required style="height:2em;width:100%;margin-top:3px;background:rgba(255,255,255,0.7);border-radius:5px;border:1px solid white;">
 					</div>
 				</form>
 				
