@@ -48,9 +48,9 @@ html {
 	border-radius: 5px;
 }
 #user_img{
-	margin-top: -80px;
+	margin-top: 5px;
 	margin-right: -40px
-	padding-top: -10px;
+	padding-top: -50px;
 	float: right;
 	margin: 10px;
 	height: 30px;
@@ -58,8 +58,11 @@ html {
 	/*border: 1px solid;*/
 }
 #user_img img{
+	margin-top:-15px;
 	width: 95%;
 	height:95%;
+	border: 1px solid white;
+	border-radius: 5px;
 }
 
 #user_name {
@@ -67,18 +70,17 @@ html {
 	width: 80px;
 	height: 88%;
 	float: right;
-	margin:1px 0 1px -5px;
+	margin:1px -23px 1px 0;
 	padding: 1px;
 	color: black;
 	text-align: right;
+	/*border:1px solid;*/
 }
 #user_name span{
 	font-size: 15px;
 	font-weight: bold;
-	text-align: right;
+	/*text-align: right;*/
 }
-
-
 
 #logo {
 	height: 100%;
@@ -529,15 +531,16 @@ html {
 	overflow: auto;
 }
 #ssh_button{
-	padding:2px 5px;
+	padding:1px 5px;
 	margin:1px;
+	margin-left: 5px;
 	font-size:15px;
 	background: rgba(255, 255, 255,0.9);
 	color:black;
 	border-radius: 3px;
 }
 #submit_button{
-	padding:2px 5px;
+	padding:1px 5px;
 	margin-top:8px;
 	font-size:15px;
 	background: rgba(255, 255, 255,0.9);
@@ -546,7 +549,7 @@ html {
 }
 #edit_button{
 	float: right;
-	padding:2px 5px;
+	padding:1px 5px;
 	margin:1px;
 	font-size:15px;
 	background: rgba(255, 255, 255,0.9);
@@ -554,8 +557,22 @@ html {
 	border-radius: 3px;
 }
 
+#course_above{
+	margin:5px;
+	height: 220px;
+	width: 99%;
+	/*border:1px solid;*/
+	clear:both;
+}
+#course_below{
+	margin:5px;
+	height: 295px;
+	width: 99%;
+	/*border:1px solid white;*/
+	clear:both;
+}
 #course_photo {
-	height: 20%;
+	height: 80%;
 	width: 25%;
 	float: left;
 	margin: 10px;
@@ -566,7 +583,7 @@ html {
 	text-align: center;
 }
 #course_photo img{
-	height: 70%;
+	height: 90%;
 	width: 70%;
 }
 #course_notice {
@@ -605,7 +622,7 @@ html {
 	height: 250px;
 	width: 25%;
 	float: left;
-	margin: 10px;
+	margin: 0 10px;
 	border: 1px solid white;
 	background: rgba(255, 255, 255, 0.3);
 	padding: 20px;
@@ -624,7 +641,7 @@ html {
 	height: 250px;
 	width: 60%;
 	float: right;
-	margin: 8px 10px;
+	margin: 0px 10px;
 	border: 1px solid white;
 	background: rgba(255, 255, 255, 0.3);
 	padding: 20px;
@@ -652,7 +669,7 @@ html {
 	clear: both;
 	border: 1px solid white;
 	background: rgba(255, 255, 255, 0.3);
-	border-radius: 10px;
+	border-radius: 5px;
 	overflow: auto;
 }
 #notice_xxx p{
@@ -673,7 +690,7 @@ html {
 	clear: both;
 	border: 1px solid white;
 	background: rgba(255, 255, 255, 0.3);
-	border-radius: 10px;
+	border-radius: 5px;
 }
 #notice_button{
 	float: right;
@@ -759,24 +776,52 @@ html {
 	margin: 10px;
 	height: 250px;
 	width: 250px;
+	border:1px solid;
 }
 #setting_img img{
-	width: 95%;
-	height:95%;
+	width: 100%;
+	height:100%;
 	margin-bottom: 5px;
 }
 #setting_img span{
+	position:;
 	text-align: center;
-	margin-left: 85px;
-	margin-top: 5px;
+/*	margin-left: 85px;
+	margin-top: -55px;*/
 	text-decoration: none;
-	border: 1px solid white;
-	padding: 2px 5px;
-	background: rgba(255, 255, 255, 0.2);
-	border-radius: 3px;
+	/*border: 1px solid white;*/
+	background: rgba(0,0,0,0.2);
+	position:absolute;
+	top:285px;
+	left:22.5%;
+	width:250px;
+    height:80px;
+    z-index: 1;
+    line-height: 500%;
+    color: (255,255,255,0.2);
+    font-size: 18px;
+    color: white;
+    /*border:1px solid;*/
+}
+#setting_img :hover{
+	display: 
 }
 #setting_img a{
 	text-decoration: none;
+}
+
+#upload {
+	position:absolute;
+	top:265px;
+	left:22.5%;
+	width:250px;
+    height:100px;
+    z-index: 1;
+    border:1px solid;
+    opacity: 0;
+}
+#upload:hover{
+    cursor: pointer;
 }
 
 
@@ -792,4 +837,36 @@ html {
 	text-decoration: none;
 	border:1px solid white;
 	border-radius: 3px;
+}
+.setting_button:hover{cursor: pointer;}
+#usernameedit{
+	margin:0;
+	padding:0;
+}
+#usernameedit p{
+	color:white;
+	overflow:hidden;
+	height:0;
+	display:block;
+	float:right;
+	margin-top:-22px;
+	/*margin-left:2%;*/
+	font-size:15px;
+	line-height: 30px;
+	color:black;
+	/*border:1px solid;*/
+	/*border-radius: 3px;
+	background: rgba(255, 255, 255, 0.2);*/
+}
+#usernameedit p[open]{height:auto;}
+
+#user_name_button{
+	margin:5px 0 0 0 ;
+	padding:0 5px;
+	font-size:13px;
+	float:right;
+	background: rgba(255, 255, 255, 0.2);
+	color:black;
+	border:1px solid white;
+	border-radius: 2px;
 }
