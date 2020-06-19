@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Submit</title>
-	<link rel="stylesheet" href="/static/style.css" />
+	<title>Settings</title>
+	<link rel="stylesheet" href="/static/style_student.css" />
 </head>
 <body>
 	{% for message in get_flashed_messages() %}
@@ -22,7 +22,7 @@
 				<form form method="POST" action="/logout/">
 					<a id="login_out" href="/logout/" class="button">退出登录</a>
 					<div id="user_img">
-						<img src="/static/pic/1.jpg" alt="image">
+						<img src="{{ current_user.pic_path }}" alt="image">
 					</div>
 					<div id="user_name">
 						<span>{{ current_user.username }}</span>
@@ -85,7 +85,8 @@
 				<form method="POST" action="/">
 					<div id="submit">
 						<p><strong>直接上传文件</strong></p>
-						<input id="submit_button" type="submit" class="#" value="选择文件">
+						<input id="submit_button_file" type="file" class="#">
+						<input id="submit_button" type="submit" class="#" value="提交">
 					</div>
 				</form>
 				

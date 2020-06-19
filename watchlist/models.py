@@ -9,13 +9,15 @@ class User(db.Model, UserMixin):
     __tablename__ = 'User'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(20))
+
     username = db.Column(db.String(20))
     password_hash = db.Column(db.String(128))
     identity = db.Column(db.String(128))
 
-    ingrade = db.Column(db.String(20))
-    inclass = db.Column(db.String(20))
+    pic_path = db.Column(db.String(128), default="/static/pic/1.jpg")
+    stu_id = db.Column(db.String(20), default="未填写")
+    ingrade = db.Column(db.String(20), default="未填写")
+    inclass = db.Column(db.String(20), default="未填写")
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)

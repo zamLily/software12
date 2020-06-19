@@ -547,6 +547,16 @@ html {
 	color:black;
 	border-radius: 3px;
 }
+#submit_button_file{
+	width:45%;
+	/*border:1px solid;*/
+	padding:1px 5px;
+	margin-top:8px;
+	font-size:15px;
+	/*background: rgba(255, 255, 255,0.9);*/
+	color:black;
+	border-radius: 3px;
+}
 #edit_button{
 	float: right;
 	padding:1px 5px;
@@ -681,6 +691,20 @@ html {
 	text-align: center;
 	font-size: 20px;
 }
+#notice_xxx a{
+	text-decoration: none;
+	height: 30px;
+	padding: 0 5px;
+	margin:5px 15px 6px 2px;
+	font-size:15px;
+	line-height: 30px;
+	float:right;
+	background: rgba(255, 255, 255, 0.2);
+	color:black;
+	text-decoration: none;
+	border:1px solid white;
+	border-radius: 5px;
+}
 #notice_xxx_xxx{
 	height: 360px;
 	padding: 10px 20px;
@@ -793,7 +817,7 @@ html {
 	background: rgba(0,0,0,0.2);
 	position:absolute;
 	top:285px;
-	left:22.5%;
+	left:22.45%;
 	width:250px;
     height:80px;
     z-index: 1;
@@ -802,6 +826,7 @@ html {
     font-size: 18px;
     color: white;
     /*border:1px solid;*/
+    border-radius: 0 0 5px 5px;
 }
 #setting_img a{
 	text-decoration: none;

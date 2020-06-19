@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Settings</title>
-	<link rel="stylesheet" href="/static/style.css" />
+	<link rel="stylesheet" href="/static/style_student.css" />
 </head>
 <body>
 	{% for message in get_flashed_messages() %}
@@ -19,10 +19,10 @@
 	        </div>
 
 			<div id="other">
-				<form form method="POST" action="/logout/">
+				<form method="POST" action="/logout/">
 					<a id="login_out" href="/logout/" class="button">退出登录</a>
 					<div id="user_img">
-						<img src="/static/pic/1.jpg" alt="image">
+						<img src="{{ current_user.pic_path }}" alt="image">
 					</div>
 					<div id="user_name">
 						<span>{{ current_user.username }}</span>
@@ -72,28 +72,56 @@
 			</div>
 
 			<div id="content">
-				<form method="POST" action="/">
+				<form method="POST" action="/settings/" enctype=multipart/form-data>
 					<div id="settings">
 						<p>个人设置</p>
-						<div id="setting_img">
-							<form method="post" action="#" enctype="#">
-								<div id="/" href="/" class="button">
-									<img src="/static/pic/1.jpg" alt="image">
-									<span>修改头像</span>
-									<input type="file" id="upload" name="image" value="更改头像" />
+							<div id="setting_img">
+								<img id="set_img" src="{{ current_user.pic_path }}" alt="image">
+								<span>修改头像</span>
+								<input type="file" name="upload_img" id="upload_img" onchange="getFileContent();" onClick="spanClick0();">
+								<div id="userimgedit">
+									<p id="user_img_edit">
+										<input type="submit" name="submit_name" value="确定" style="margin-left:2px;">
+										<input type="submit" name="submit_name" value="取消" style="margin-left:50px;">
+									</p>
 								</div>
-							</form>
-						</div>
+									<script>
+									function spanClick0(){
+									    var obj=document.getElementById("user_img_edit");
+									    var att=obj.getAttribute("open");
+									    if(att!="open"){
+									        obj.setAttribute("open","open");
+									        }
+									    else{
+									        obj.removeAttribute("open");
+									        }
+									    }
+									</script>
+							</div>
+							<script>
+								var div_img=document.querySelector("#setting_img");
+								function getFileContent(){
+									var reader=new FileReader();
+									var file=document.querySelector("#upload_img").files;
+									console.log(file)
+									reader.readAsDataURL(file[0]);
+									reader.onload=function(){
+									console.log(reader.result);
+									document.querySelector("#set_img").src=reader.result;
+									}
+								}
+							</script>
+
 						<table id="setting_table">
 							<tr>
 								<th>用户名称</th>
 								<td>
-									Username
+									{{ current_user.username }}
 									<div id="usernameedit">
 										<p id="user_name_edit">
-											<input type="text"value="username" style="width:7em;">
+											<input type="text" name = "newname" value="{{ current_user.username }}" style="width:7em;">
 											&nbsp
-											<input id="user_name_button" type="submit" class="button is-info" value="提交">
+											<input name="submit_name" type="submit" class="button is-info" value="更改名称">
 										</p>
 									</div>
 								</td>
@@ -120,9 +148,9 @@
 									*******
 									<div id="usernameedit">
 										<p id="user_name_password">
-											<input type="text" value="*******" style="width:7em;">
+											<input type="text" name="newpw" value="*******" style="width:7em;">
 											&nbsp
-											<input id="user_name_button" type="submit" class="button is-info" value="提交">
+											<input name="submit_name" type="submit" class="button is-info" value="更改密码">
 										</p>
 									</div>
 								</td>
@@ -146,12 +174,12 @@
 							<tr>
 								<th>用户学号</th>
 								<td>
-									未填写
+									{{ current_user.stu_id }}
 									<div id="usernameedit">
 										<p id="user_name_id">
-											<input type="text" value="未填写" style="width:7em;">
+											<input type="text" name="newstuid" value="{{ current_user.stu_id }}" style="width:7em;">
 											&nbsp
-											<input id="user_name_button" type="submit" class="button is-info" value="提交">
+											<input name="submit_name" type="submit" class="button is-info" value="更改学号">
 										</p>
 									</div>
 								</td>
@@ -175,12 +203,12 @@
 							<tr>
 								<th>用户年级</th>
 								<td>
-									未填写
+									{{ current_user.ingrade }}
 									<div id="usernameedit">
 										<p id="user_name_year">
-											<input type="text" value="未填写" style="width:7em;">
+											<input type="text" name="newgrade" value="{{ current_user.ingrade }}" style="width:7em;">
 											&nbsp
-											<input id="user_name_button" type="submit" class="button is-info" value="提交">
+											<input name="submit_name" type="submit" class="button is-info" value="更改年级">
 										</p>
 									</div>
 								</td>
@@ -204,12 +232,12 @@
 							<tr>
 								<th>用户班级</th>
 								<td>
-									未填写
+									{{ current_user.inclass }}
 									<div id="usernameedit">
 										<p id="user_name_class">
-											<input type="text" value="未填写" style="width:7em;">
+											<input type="text" name="newclass" value="{{ current_user.inclass }}" style="width:7em;">
 											&nbsp
-											<input id="user_name_button" type="submit" class="button is-info" value="提交">
+											<input name="submit_name" type="submit" class="button is-info" value="更改班级">
 										</p>
 									</div>
 								</td>

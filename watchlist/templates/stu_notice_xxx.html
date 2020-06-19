@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>notice_xxx</title>
-	<link rel="stylesheet" href="/static/style.css" />
+	<title>Settings</title>
+	<link rel="stylesheet" href="/static/style_student.css" />
 </head>
 <body>
 	{% for message in get_flashed_messages() %}
@@ -22,7 +22,7 @@
 				<form form method="POST" action="/logout/">
 					<a id="login_out" href="/logout/" class="button">退出登录</a>
 					<div id="user_img">
-						<img src="/static/pic/1.jpg" alt="image">
+						<img src="{{ current_user.pic_path }}" alt="image">
 					</div>
 					<div id="user_name">
 						<span>{{ current_user.username }}</span>
@@ -74,8 +74,22 @@
 			<div id="content">
 				<form method="POST" action="/">
 					<div id="notice_xxx">
-						<p>{{ message['course_name'] }}通知</p>
-						<p style="font-size:18px;margin:3px;">{{ message['title'] }}</p>
+						{% for c in courses %}
+						{% if c['name'] == message['course_name'] %}
+						<a href="/my_courses/all_courses/{{ c['id'] }}/" class="button">
+							返回课程页面
+							<div class="asidepic" style="margin:5px 2px;">
+								<img src="/static/pic/back.png" alt="">
+							</div>
+						</a>
+						{% endif %}
+						{% endfor %}
+						<p>
+							{{ message['course_name'] }}通知
+						</p>
+						<p style="font-size:20px;margin:3px;">
+							标题：{{ message['title'] }}
+						</p>
 						<div id="notice_xxx_xxx">
 							{{ message['info'] }}
 						</div>

@@ -4,6 +4,7 @@ from flask_login import login_user, login_required, logout_user, current_user
 import click
 from watchlist import app, db
 from watchlist.models import *
+import os
 
 # -------------------------------- 教师端 --------------------------------------------#
 
@@ -140,6 +141,53 @@ def submit():
 @app.route('/settings/', methods=['GET', 'POST'])
 @login_required
 def settings():
+    if request.method == 'POST':
+        button_name = request.form['submit_name']
+        if button_name == "确定":
+            img = request.files.get('upload_img')
+            basepath = os.path.dirname(__file__)
+            file_path = os.path.join(basepath, 'static/photo', img.filename)
+            #path = "/static/photo/"
+            #file_path = path + img.filename
+            img.save(file_path)
+            pic_path = os.path.join('/static/photo', img.filename)
+            current_user.pic_path = pic_path
+            db.session.add(current_user)
+            db.session.commit()  # 提交数据库会话
+
+        if button_name == "取消":
+            return redirect(url_for('settings'))
+
+        if button_name == "更改名称":
+            new_name = request.form['newname']
+            current_user.username = new_name
+            db.session.add(current_user)
+            db.session.commit()  # 提交数据库会话
+
+        if button_name == "更改密码":
+            new_password = request.form['newpw']
+            current_user.set_password(new_password)  # 设置密码
+            db.session.add(current_user)
+            db.session.commit()  # 提交数据库会话
+
+        if button_name == "更改学号":
+            newstuid = request.form['newstuid']
+            current_user.stu_id = newstuid
+            db.session.add(current_user)
+            db.session.commit()  # 提交数据库会话
+
+        if button_name == "更改年级":
+            newgrade = request.form['newgrade']
+            current_user.ingrade = newgrade
+            db.session.add(current_user)
+            db.session.commit()  # 提交数据库会话
+
+        if button_name == "更改班级":
+            newclass = request.form['newclass']
+            current_user.inclass = newclass
+            db.session.add(current_user)
+            db.session.commit()  # 提交数据库会话
+
     return render_template('settings.html')
 
 # my_courses
@@ -192,7 +240,8 @@ def stu_notice():
 @login_required
 def stu_notice_xxx(id):
     message = Message.query.filter_by(id=id).first()
-    return render_template('stu_notice_xxx.html', message=message)
+    courses = Course.query.all()
+    return render_template('stu_notice_xxx.html', message=message, courses=courses)
 
 
 
