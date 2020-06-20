@@ -4,20 +4,20 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from watchlist import db
 
-
+# 用户table
 class User(db.Model, UserMixin):
     __tablename__ = 'User'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)                        # id（主键）
 
-    username = db.Column(db.String(20))
-    password_hash = db.Column(db.String(128))
-    identity = db.Column(db.String(128))
+    username = db.Column(db.String(20))                                 # 用户名
+    password_hash = db.Column(db.String(128))                           # 用户密码
+    identity = db.Column(db.String(128))                                # 身份：学生or老师
 
-    pic_path = db.Column(db.String(128), default="/static/pic/1.jpg")
-    stu_id = db.Column(db.String(20), default="未填写")
-    ingrade = db.Column(db.String(20), default="未填写")
-    inclass = db.Column(db.String(20), default="未填写")
+    pic_path = db.Column(db.String(128), default="/static/pic/1.jpg")  # 用户头像地址
+    stu_id = db.Column(db.String(20), default="未填写")                 # 学生学号
+    ingrade = db.Column(db.String(20), default="未填写")                # 学生年级
+    inclass = db.Column(db.String(20), default="未填写")                # 学生年班级
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -29,54 +29,56 @@ class User(db.Model, UserMixin):
         return identity == self.identity
 
 
+# 课程表table
 class Course(db.Model):
     __tablename__ = 'Course'
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50))
-    teacher = db.Column(db.String(50))
-    time = db.Column(db.String(50))
-    info = db.Column(db.String(300))
-    message = db.Column(db.String(300))
-    # istaken = db.Column(db.Boolean, default=False)  # 是否有上这门课
+    id = db.Column(db.Integer, primary_key=True)  # id（主键）
+    name = db.Column(db.String(50))               # 课程名称
+    teacher = db.Column(db.String(50))            # 任课老师
+    time = db.Column(db.String(50))               # 授课时间（学年、学期）
+    info = db.Column(db.String(300))              # 课程其他信息
 
 
+# 用户-课程关系table
 class Relation(db.Model):
     __tablename__ = 'Relation'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)                          # id（主键）
     user_name = db.Column(db.String(50), db.ForeignKey('User.username'))  # 存储用户名（记得包括老师本人）
     course_name = db.Column(db.String(50), db.ForeignKey('Course.name'))  # 用户对应的课程
 
 
+# 程序table
 class Process(db.Model):
     __tablename__ = 'Process'
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50))  # 程序的名称
-    info = db.Column(db.String(300))  # 程序的信息
-    state = db.Column(db.String(50)) # 是否运行完成
-    result = db.Column(db.String(1000))  # 程序的结果
-    code = db.Column(db.String(10000))  # 存储代码，方便以后编辑代码
+    id = db.Column(db.Integer, primary_key=True)                    # id（主键）
+    name = db.Column(db.String(50))                                 # 程序的名称
+    info = db.Column(db.String(300))                                # 程序的信息
+    state = db.Column(db.String(50))                                # 是否运行完成
+    result = db.Column(db.String(1000))                             # 程序的结果
+    code = db.Column(db.String(10000))                              # 存储代码，方便以后编辑代码
     gpu_name = db.Column(db.String(50), db.ForeignKey('GPU.name'))  # 程序在哪个gpu上跑的
 
-
+# 消息table
 class Message(db.Model):
     __tablename__ = 'Message'
 
-    id = db.Column(db.Integer, primary_key=True)
-    course_name = db.Column(db.String(50), db.ForeignKey('Course.name'))  # 消息对应的课程
-    title = db.Column(db.String(50))  # 消息的标题
-    info = db.Column(db.String(1000))  # 消息的内容
+    id = db.Column(db.Integer, primary_key=True)                           # id（主键）
+    course_name = db.Column(db.String(50), db.ForeignKey('Course.name'))   # 消息对应的课程
+    title = db.Column(db.String(50))                                       # 消息的标题
+    info = db.Column(db.String(1000))                                      # 消息的内容
 
 
+# GPU table
 class GPU(db.Model):
     __tablename__ = 'GPU'
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50))  # gpu的名称
-    info = db.Column(db.String(1000))  # gpu是否空闲
-    course_name = db.Column(db.String(50), db.ForeignKey('Course.name'))  # gpu对应的课程
+    id = db.Column(db.Integer, primary_key=True)                            # id（主键）
+    name = db.Column(db.String(50))                                         # gpu的名称
+    info = db.Column(db.String(1000))                                       # gpu是否空闲
+    course_name = db.Column(db.String(50), db.ForeignKey('Course.name'))    # gpu对应的课程
 
 
 """
