@@ -14,7 +14,7 @@
 	<div id="container">
 		<div id="header" >
 			<div id="logo">
-	            <img src="../static/pic/logo.png" alt="">
+	            <img src="/static/pic/logo.png" alt="">
 	            <span>GPU管理系统</span>
 	        </div>
 
@@ -72,15 +72,20 @@
 			</div>
 
 			<div id="content">
+				{% for c in courses %}
+				{% if c['name'] == gpu['course_name'] %}
 				<div id="couresename">
-					<a href="/" class="button">
+					<a href="/my_courses/all_courses/{{ c['id'] }}/" class="button">
 						返回课程页面
 						<div class="asidepic" style="margin:5px 2px;">
 							<img src="/static/pic/back.png" alt="">
 						</div>
 					</a>
-					<p>xxx课程</p>
+					<p>{{ c['name'] }}课程</p>
 				</div>
+				{% endif %}
+				{% endfor %}
+
 				<form method="POST" action="/">
 					<div id="ssh">
 						<p>

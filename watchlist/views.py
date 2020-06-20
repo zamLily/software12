@@ -67,10 +67,7 @@ def login():
             if user.validate_password(password):
                 login_user(user)
                 flash('登录成功！')
-                #print(current_user.username)
-                #print(select)
-                if select == "teacher":
-                    return redirect(url_for('index_teacher'))
+                print(current_user.username)
                 return redirect(url_for('index'))
             else:
                 flash('密码错误！')
@@ -132,16 +129,19 @@ def visitor():
 @app.route('/index/', methods=['GET', 'POST'])
 @login_required
 def index():
-    courses = Course.query.filter_by(istaken=True).all()
+    courses = Course.query.all()
+    relations = Relation.query.filter_by(user_name=current_user.username).all()
     processes = Process.query.all()
     messages = Message.query.all()
-    return render_template('index.html', courses=courses, processes=processes, messages=messages)
+    return render_template('index.html', courses=courses, processes=processes, messages=messages, relations=relations)
 
 # submit
-@app.route('/submit/', methods=['GET', 'POST'])
+@app.route('/submit/<int:id>/', methods=['GET', 'POST'])
 @login_required
-def submit():
-    return render_template('submit.html')
+def submit(id):
+    courses = Course.query.all()
+    gpu = GPU.query.filter_by(id=id).first()
+    return render_template('submit.html', courses=courses, gpu=gpu)
 
 # settings
 @app.route('/settings/', methods=['GET', 'POST'])
@@ -166,9 +166,15 @@ def settings():
 
         if button_name == "更改名称":
             new_name = request.form['newname']
-            current_user.username = new_name
-            db.session.add(current_user)
-            db.session.commit()  # 提交数据库会话
+            user = User.query.filter_by(username=new_name).first()  # 找有没有注册过
+            # user = User.query.first()
+
+            if user is not None:  # 该用户注册过
+                flash('该用户名已被占用！')
+            else:
+                current_user.username = new_name
+                db.session.add(current_user)
+                db.session.commit()  # 提交数据库会话
 
         if button_name == "更改密码":
             new_password = request.form['newpw']
@@ -200,8 +206,9 @@ def settings():
 @app.route('/my_courses/', methods=['GET', 'POST'])
 @login_required
 def my_courses():
-    courses = Course.query.filter_by(istaken=True).all()
-    return render_template('my_courses.html', courses=courses)
+    courses = Course.query.all()
+    relations = Relation.query.filter_by(user_name=current_user.username).all()
+    return render_template('my_courses.html', courses=courses, relations=relations)
 
 # all_courses
 @app.route('/my_courses/all_courses/', methods=['GET', 'POST'])
@@ -233,6 +240,14 @@ def process_xxx(id):
     process = Process.query.filter_by(id=id).first()
     return render_template('process_xxx.html', process=process)
 
+# process_edit
+@app.route('/process_edit/<int:id>/', methods=['GET', 'POST'])
+@login_required
+def process_edit(id):
+    process = Process.query.filter_by(id=id).first()
+    return render_template('process_edit.html', process=process)
+
+
 # stu_notice
 @app.route('/message/', methods=['GET', 'POST'])
 @login_required
@@ -252,21 +267,85 @@ def stu_notice_xxx(id):
 
 
 @app.cli.command()
-def forgec():
+def forge():
      # Generate fake data.
      #db.create_all()
 
+     # 创建课程
      courses = [
-         {'name': '程序设计基础', 'teacher': '谭光', 'time': '2017-2018学年 第1学期', 'info': 'xxx', 'istaken': True},
-         {'name': '人工智能原理', 'teacher': '梁小丹', 'time': '2017-2018学年 第1学期', 'info': 'xxx', 'istaken': True},
-         {'name': 'xxx实验室', 'teacher': 'xxx', 'time': 'xxx学年 第xx学期', 'info': 'xxx', 'istaken': False}
+         {'name': '程序设计基础', 'teacher': '谭光', 'time': '2017-2018学年 第1学期', 'info': 'xxx'},
+         {'name': '人工智能原理', 'teacher': '梁小丹', 'time': '2017-2018学年 第1学期', 'info': 'xxx'},
+         {'name': 'xxx实验室', 'teacher': 'xxx', 'time': 'xxx学年 第xx学期', 'info': 'xxx'}
      ]
      for c in courses:
-         course = Course(name=c['name'], teacher=c['teacher'], time=c['time'], info=c['info'], istaken=c['istaken'])
+         course = Course(name=c['name'], teacher=c['teacher'], time=c['time'], info=c['info'])
          db.session.add(course)
      db.session.commit()
 
 
+    # 创建进程
+     processes = [
+         {'name': 'Process 1', 'info': 'xxx', 'result': 'xxxxxxx', 'gpu_name': "GPU_1", 'code': 'print(1)', 'state': '正在运行'},
+         {'name': 'Process 2', 'info': 'xxx', 'result': 'xxxxxxx', 'gpu_name': "GPU_1", 'code': 'print(2)', 'state': '运行完成'},
+         {'name': 'Process 3', 'info': 'xxx', 'result': 'xxxxxxx', 'gpu_name': "GPU_2", 'code': 'print(3)', 'state': '运行完成'},
+         {'name': 'Process 4', 'info': 'xxx', 'result': 'xxxxxxx', 'gpu_name': "GPU_3", 'code': 'print(4)', 'state': '正在运行'},
+         {'name': 'Process 5', 'info': 'xxx', 'result': 'xxxxxxx', 'gpu_name': "GPU_4", 'code': 'print(5)', 'state': '运行完成'},
+         {'name': 'Process 6', 'info': 'xxx', 'result': 'xxxxxxx', 'gpu_name': "GPU_4", 'code': 'print(6)', 'state': '正在运行'},
+         {'name': 'Process 7', 'info': 'xxx', 'result': 'xxxxxxx', 'gpu_name': "GPU_5", 'code': 'print(7)', 'state': '运行完成'}
+     ]
+     for p in processes:
+         process = Process(name=p['name'], info=p['info'], result=p['result'], gpu_name=p['gpu_name'], code=p['code'] , state=p['state']  )
+         db.session.add(process)
+     db.session.commit()
+
+    # 创建消息
+     messages = [
+         {'course_name': '程序设计基础', 'title': '作业提交情况', 'info': '甲乙丙丁四个同学没有交作业'},
+         {'course_name': '程序设计基础', 'title': '报告上交日期', 'info': '请于5.20前上交报告'},
+         {'course_name': '程序设计基础', 'title': 'GPU可使用时间', 'info': '6月的前两周皆可使用'},
+
+         {'course_name': '人工智能原理', 'title': '作业提交情况', 'info': '甲乙丙丁四个同学没有交作业'},
+         {'course_name': '人工智能原理', 'title': '报告上交日期', 'info': '请于5.20前上交报告'},
+         {'course_name': '人工智能原理', 'title': 'GPU可使用时间', 'info': '6月的前两周皆可使用'},
+
+         {'course_name': 'xxx实验室', 'title': '作业提交情况', 'info': '甲乙丙丁四个同学没有交作业'},
+         {'course_name': 'xxx实验室', 'title': '报告上交日期', 'info': '请于5.20前上交报告'},
+         {'course_name': 'xxx实验室', 'title': 'GPU可使用时间', 'info': '6月的前两周皆可使用'},
+     ]
+     for m in messages:
+         message = Message(course_name=m['course_name'], title=m['title'], info=m['info'])
+         db.session.add(message)
+     db.session.commit()
+
+    # 创建gpu
+     gpus = [
+         {'name': 'GPU_1', 'info': '空闲', 'course_name': '程序设计基础'},
+         {'name': 'GPU_2', 'info': '占满', 'course_name': '人工智能原理'},
+         {'name': 'GPU_3', 'info': '占满', 'course_name': '程序设计基础'},
+         {'name': 'GPU_4', 'info': '空闲', 'course_name': '人工智能原理'},
+         {'name': 'GPU_5', 'info': '空闲', 'course_name': 'xxx实验室'}
+     ]
+     for g in gpus:
+         gpu = GPU(name=g['name'], info=g['info'], course_name=g['course_name'])
+         db.session.add(gpu)
+     db.session.commit()
+
+    # 创建关系
+     relations = [
+         {'user_name': '1', 'course_name': '程序设计基础'},
+         {'user_name': '1', 'course_name': '人工智能原理'},
+         {'user_name': '1', 'course_name': 'xxx实验室'},
+         {'user_name': '2', 'course_name': '程序设计基础'},
+         {'user_name': '2', 'course_name': '人工智能原理'},
+         {'user_name': '3', 'course_name': '程序设计基础'}
+     ]
+     for r in relations:
+         relation = Relation(user_name=r['user_name'], course_name=r['course_name'])
+         db.session.add(relation)
+     db.session.commit()
+
+
+"""
 @app.cli.command()
 def forgep():
      # Generate fake data.
@@ -285,6 +364,8 @@ def forgep():
          process = Process(name=p['name'], info=p['info'], result=p['result'], gpu_name=p['gpu_name'] )
          db.session.add(process)
      db.session.commit()
+
+
 
 
 @app.cli.command()
@@ -327,3 +408,23 @@ def forgeg():
          gpu = GPU(name=g['name'], info=g['info'], course_name=g['course_name'])
          db.session.add(gpu)
      db.session.commit()
+
+
+@app.cli.command()
+def forger():
+     # Generate fake data.
+     #db.create_all()
+
+     relations = [
+         {'user_name': '1', 'course_name': '程序设计基础'},
+         {'user_name': '1', 'course_name': '人工智能原理'},
+         {'user_name': '1', 'course_name': 'xxx实验室'},
+         {'user_name': '2', 'course_name': '程序设计基础'},
+         {'user_name': '2', 'course_name': '人工智能原理'},
+         {'user_name': '3', 'course_name': '程序设计基础'}
+     ]
+     for r in relations:
+         relation = Relation(user_name=r['user_name'], course_name=r['course_name'])
+         db.session.add(relation)
+     db.session.commit()
+"""

@@ -72,7 +72,9 @@
 			</div>
 
 			<div id="content">
+				{% for r in relations %}
 				{% for c in courses %}
+				{% if c['name'] == r['course_name'] %}
 				<div id="程序设计" class="index_box">
 					<a href="/my_courses/all_courses/{{ c['id'] }}/">
 						<div class="index_img">
@@ -92,6 +94,8 @@
 						
 					</div>
 				</div>
+				{% endif %}
+				{% endfor %}
 				{% endfor %}
 
 				<div id="add" class="index_box">

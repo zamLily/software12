@@ -80,7 +80,9 @@
 						</div>
 						我的课程
 					</a>
+					{% for r in relations %}
 					{% for c in courses %}
+					{% if c['name'] == r['course_name'] %}
 					<div class="index_coursebox">
 						<a href="/my_courses/all_courses/{{ c['id'] }}/">
 							<div class="index_img">
@@ -89,6 +91,8 @@
 							{{ c['name'] }}
 						</a>
 					</div>
+					{% endif %}
+					{% endfor %}
 					{% endfor %}
 					<p class="index_box_no">--没有更多课程--</p>
 				</div>

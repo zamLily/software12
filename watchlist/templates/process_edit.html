@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Programm1-Result</title>
-	<link rel="stylesheet" href="../static/style_student.css" />
+	<link rel="stylesheet" href="/static/style_student.css" />
 </head>
 <body>
 	{% for message in get_flashed_messages() %}
@@ -14,7 +14,7 @@
 	<div id="container">
 		<div id="header" >
 			<div id="logo">
-	            <img src="../static/pic/logo.png" alt="">
+	            <img src="/static/pic/logo.png" alt="">
 	            <span>GPU管理系统</span>
 	        </div>
 
@@ -79,7 +79,7 @@
 						</p>
 						<div id="box1" >
 							<p>
-								运行完成 / 正在运行
+								{{ process.state }}
 							</p>
 						</div>
 					</div>
@@ -100,7 +100,7 @@
 							重新编辑
 						</p>
 					</div>			
-					<textarea id="re_edit_text" name="edit" cols="80" rows="25">以前的代码</textarea>
+					<textarea id="re_edit_text" name="edit" cols="80" rows="25">{{ process.code }}</textarea>
 					<input id="re_edit_button" type="submit" class="#" value="重新运行">
 				</div>
 				

@@ -14,7 +14,7 @@
 	<div id="container">
 		<div id="header" >
 			<div id="logo">
-	            <img src="../static/pic/logo.png" alt="">
+	            <img src="/static/pic/logo.png" alt="">
 	            <span>GPU管理系统</span>
 	        </div>
 
@@ -78,13 +78,13 @@
 					</p>
 					<div id="box1" >
 						<p>
-							运行完成 / 正在运行
+							{{ process.state }}
 						</p>
 					</div>
 				</div>
 
 				<div id="result2">
-					<a id="re_edit" href="" class="button">
+					<a id="re_edit" href="/process_edit/{{ process.id }}/" class="button">
 						修改代码
 					</a>
 					<p style="font-weight:bold;margin-bottom:5px;">

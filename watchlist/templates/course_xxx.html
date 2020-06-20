@@ -14,7 +14,7 @@
 	<div id="container">
 		<div id="header" >
 			<div id="logo">
-	            <img src="../static/pic/logo.png" alt="">
+	            <img src="/static/pic/logo.png" alt="">
 	            <span>GPU管理系统</span>
 	        </div>
 
@@ -102,9 +102,6 @@
 				
 				<div id="course_below">
 					<div id="courseinfo">
-						<a id="choice_button" href="" class="button">
-							取消选课
-						</a>
 						<p href="xxx.html" style="font-size: 22px;font-weight: bold;">{{ course.name }}</p>
 						<div id="info" class="information">
 							<div id="teacherpic" class="teacherpic">
@@ -126,7 +123,7 @@
 						{% for g in gpus %}
 						{% if g['course_name'] == course['name'] %}
 						<div class="coursegpubox">
-							<a href="/submit/">
+							<a href="/submit/{{ g['id'] }}/">
 								<div class="index_img">
 									<img src="/static/pic/gpu.png" alt="">
 								</div>
