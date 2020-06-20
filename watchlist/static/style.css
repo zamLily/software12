@@ -415,9 +415,9 @@ html {
 	margin:3px;
 	overflow: auto;
 	background: rgba(255, 255, 255, 0.65);
-	padding: 3px;
 	border: 1px solid rgba(255, 255, 255, 0.6);
 	border-radius: 10px;
+	padding:5px;
 }
 
 #result1 {
@@ -693,13 +693,15 @@ html {
 	border-radius: 5px;
 }
 #notice_button{
-	float: right;
+	float: left;
 	padding:2px 5px;
-	margin:1px 46%;
-	font-size:15px;
-	background: rgba(255, 255, 255,0.9);
+	margin:1px;
+	font-size:16px;
+	background: rgba(255, 255, 255,0.4);
 	color:black;
 	border-radius: 3px;
+	text-decoration: none;
+	border:1px solid white;
 }
 #new_notice_button{
 	float: right;
