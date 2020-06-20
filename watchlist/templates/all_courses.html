@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Progress</title>
-	<link rel="stylesheet" href="/static/style.css" />
+	<link rel="stylesheet" href="/static/style_student.css" />
 </head>
 <body>
 	{% for message in get_flashed_messages() %}
@@ -14,7 +14,7 @@
 	<div id="container">
 		<div id="header" >
 			<div id="logo">
-	            <img src="../static/pic/logo.png" alt="">
+	            <img src="/static/pic/logo.png" alt="">
 	            <span>GPU管理系统</span>
 	        </div>
 
@@ -73,14 +73,17 @@
 
 			<div id="content">
 				{% for c in courses %}
-					<div id="程序设计" class="index_box">
-						<a href="/my_courses/all_courses/{{ c['id'] }}/">{{ c['name'] }}</a>
-						<div id="程序设计info" class="information">
+					<div id="课程盒子" class="index_box">
+						<a id="choice_button" href="" class="button">已选课程/申请选课</a>
+						<p href="/my_courses/all_courses/{{ c['id'] }}/" style="font-size: 25px;font-weight: bold;">
+							{{ c['name'] }}
+						</p>
+						<div id="info" class="information">
 							<div id="teacherpic" class="teacherpic">
 								<img src="/static/pic/teacher.png" alt="">
 							</div>
-							<strong id="程序设计teacher">{{ c['teacher'] }}&nbsp</strong>
-							<span id="程序设计term">{{ c['time'] }}</span>
+							<strong id="teacher">{{ c['teacher'] }}&nbsp</strong>
+							<span id="term">{{ c['time'] }}</span>
 							<p>课程简介：{{ c['info'] }}</p>
 						</div>
 					</div>
