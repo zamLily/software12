@@ -22,7 +22,7 @@
 				<div id="userinfo">
 					<select name="user" id="user">
 						<option selected="selected" value="0" class="userselect">
-							<span>Username</span>
+							<span>{{ current_user.username }}</span>
 						</option>
 						<option value="1" class="userselect">通知</option>
 						<option value="2" class="userselect">退出登录</option>
@@ -42,7 +42,7 @@
 						<img src="/static/pic/home.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/index/">主页</a>
+						<a href="/index_teacher/">主页</a>
 					</div>
 				</div>
 
@@ -51,7 +51,7 @@
 						<img src="/static/pic/courses.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/my_courses/">我的课程</a>
+						<a href="/my_courses_teacher/">我的课程</a>
 					</div>
 				</div>
 
@@ -76,7 +76,7 @@
 
 			<div id="content">
 				<div id="程序设计" class="index_box">
-					<a href="/my_courses/xxx/">
+					<a href="/my_courses_teacher/1/">
 						<div class="index_img">
 							<img src="/static/pic/courses.png" alt="">
 						</div>
@@ -96,7 +96,7 @@
 				</div>
 
 				<div id="人工智能原理" class="index_box">
-					<a href="/my_courses/xxx/">
+					<a href="/my_courses_teacher/2/">
 						<div class="index_img">
 							<img src="/static/pic/courses.png" alt="">
 						</div>
@@ -115,7 +115,7 @@
 				</div>
 
 				<div id="xxx" class="index_box">
-					<a href="/my_courses/xxx/">
+					<a href="/my_courses_teacher/3/">
 						<div class="index_img">
 							<img src="/static/pic/courses.png" alt="">
 						</div>

@@ -14,11 +14,14 @@ import os
 def index_teacher():
     return render_template('index_teacher.html')
 
-# courses_xxx_teacher
-@app.route('/courses_xxx_teacher/', methods=['GET', 'POST'])
-# @login_required
-def courses_xxx_teacher():
-    return render_template('courses_xxx_teacher.html')
+# course_xxx_teacher
+@app.route('/my_courses_teacher/<int:id>/', methods=['GET', 'POST'])
+@login_required
+def course_xxx_teacher(id):
+    course = Course.query.filter_by(id=id).first()
+    messages = Message.query.all()
+    gpus = GPU.query.all()
+    return render_template('course_xxx_teacher.html', course=course, messages=messages, gpus=gpus)
 
 
 # my_courses_teacher
@@ -64,7 +67,10 @@ def login():
             if user.validate_password(password):
                 login_user(user)
                 flash('登录成功！')
-                print(current_user.username)
+                #print(current_user.username)
+                #print(select)
+                if select == "teacher":
+                    return redirect(url_for('index_teacher'))
                 return redirect(url_for('index'))
             else:
                 flash('密码错误！')

@@ -30,19 +30,23 @@ html {
 	z-index: 1000;left: 0; top: 0; 
 }
 
-#userimg {
-	height: 88%;
-	width: 5%;
+#user_img{
+	margin-top: 5px;
+	margin-right: -40px
+	padding-top: -50px;
 	float: right;
-	line-height: 100%;
-	margin: 5px;
+	margin: 10px;
+	height: 30px;
+	width: 30px;
+	/*border: 1px solid;*/
 }
-
-#userimg img {
-	margin: 5px auto;
+#user_img img{
+	margin-top:-15px;
+	width: 95%;
+	height:95%;
 	border: 1px solid white;
+	border-radius: 5px;
 }
-
 #user {
 	float: right;
 	font-size: 15px;
