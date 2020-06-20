@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Programm1-Result</title>
-	<link rel="stylesheet" href="/static/style.css" />
+	<link rel="stylesheet" href="/static/style_student.css" />
 </head>
 <body>
 	{% for message in get_flashed_messages() %}
@@ -73,16 +73,21 @@
 
 			<div id="content">
 				<div id="result1">
-					<p>{{ process.name }} - {{ process.info }}</p>
+					<p style="font-weight:bold;margin-bottom:5px;">
+						{{ process.name }} - {{ process.info }} - 运行情况
+					</p>
 					<div id="box1" >
 						<p>
-							finished
+							运行完成 / 正在运行
 						</p>
 					</div>
 				</div>
 
 				<div id="result2">
-					<p>
+					<a id="re_edit" href="" class="button">
+						修改代码
+					</a>
+					<p style="font-weight:bold;margin-bottom:5px;">
 						运行结果
 					</p>
 					<p id="box2" >

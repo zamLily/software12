@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Settings</title>
-	<link rel="stylesheet" href="/static/style_student.css" />
+	<title>Programm1-Result</title>
+	<link rel="stylesheet" href="../static/style_student.css" />
 </head>
 <body>
 	{% for message in get_flashed_messages() %}
@@ -72,46 +72,43 @@
 			</div>
 
 			<div id="content">
-				<div id="couresename">
-					<a href="/" class="button">
-						返回课程页面
-						<div class="asidepic" style="margin:5px 2px;">
-							<img src="/static/pic/back.png" alt="">
-						</div>
-					</a>
-					<p>xxx课程</p>
-				</div>
-				<form method="POST" action="/">
-					<div id="ssh">
-						<p>
-							<strong>SSH方式</strong>
-							<input id="ssh_button" type="submit" class="#" value="提交">
-						</p>						
-						<input id="ssh_text" type="text" name="SSH方式" required style="height:2em;width:100%;margin-top:3px;background:rgba(255,255,255,0.7);border-radius:5px;border:1px solid white;">
-					</div>
-				</form>
-				
-				<form method="POST" action="/">
-					<div id="submit">
-						<p><strong>直接上传文件</strong></p>
-						<input id="submit_button_file" type="file" class="#">
-						<input id="submit_button" type="submit" class="#" value="提交">
-					</div>
-				</form>
-				
-				<form method="POST" action="/">
-					<div id="edit">
-						<p>
-							<strong>代码编辑器</strong>
+				<div id="left">
+					<div id="result1_1">
+						<p style="font-weight:bold;margin-bottom:5px;">
+							{{ process.name }} - {{ process.info }} - 运行情况
 						</p>
-						<textarea id="edit_text" name="edit" cols="140" rows="18">请输入代码</textarea>
-						<input id="edit_button" type="submit" class="#" value="运行">
+						<div id="box1" >
+							<p>
+								运行完成 / 正在运行
+							</p>
+						</div>
 					</div>
-				</form>
+
+					<div id="result2_2">
+						<p style="font-weight:bold;margin-bottom:5px;">
+							运行结果
+						</p>
+						<p id="box2" >
+							{{ process.result }}
+						</p>
+					</div>
+				</div>
+
+				<div id="right">
+					<div id="re_edit_title">
+						<p style="font-weight:bold;margin-bottom:5px;">
+							重新编辑
+						</p>
+					</div>			
+					<textarea id="re_edit_text" name="edit" cols="80" rows="25">以前的代码</textarea>
+					<input id="re_edit_button" type="submit" class="#" value="重新运行">
+				</div>
+				
+
+
 			</div>
 
 		</div>
 
-	</div>
 </body>
 </html>
