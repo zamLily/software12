@@ -99,7 +99,7 @@ def signup():
             flash("请选择 学生or老师")
 
         else:
-            user = User.query.filter_by(username=username, identity=select).first()  # 找有没有注册过
+            user = User.query.filter_by(username=username).first()  # 找有没有注册过
             # user = User.query.first()
 
             if user is not None:  # 该用户注册过
