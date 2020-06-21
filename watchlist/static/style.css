@@ -19,7 +19,7 @@ html {
 	border:1px solid;
 	width:50px;
 }
-
+ 
 #container {
 	margin: 0;
 	height: 100%;
@@ -721,6 +721,8 @@ html {
 	background: rgba(255, 255, 255,0.9);
 	color:black;
 	border-radius: 3px;
+	text-decoration: none;
+	border:1px solid grey
 }
 #new_notice_edit {
 	height: 390px;

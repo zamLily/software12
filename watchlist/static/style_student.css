@@ -755,6 +755,7 @@ html {
 	background: rgba(255, 255, 255,0.9);
 	color:black;
 	border-radius: 3px;
+	text-decoration: none;
 }
 #new_notice_edit {
 	height: 390px;
@@ -973,7 +974,6 @@ html {
 	height: 25px;
 	/*width: 100px;*/
 	float:right;
-	margin-right: 82%;
 	border:1px solid white;
 	font-size: 15px;
 	font-weight: normal;

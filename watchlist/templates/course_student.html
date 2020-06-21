@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
-	<title>My courses</title>
-	<link rel="stylesheet" href="/static/style_teacher.css" />
+	<title>学生选课情况</title>
+	<link rel="stylesheet" href="/static/style.css" />
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
+
 <body>
-{% for message in get_flashed_messages() %}
-
-    <div class="alert">{{ message }}</div>
-
-{% endfor %}
+	{% for message in get_flashed_messages() %}
+	<div class="alert"
+		style="float:left;margin-left:45%;margin-top:8px;text-align:center;font-size:18px;color:black;width:20%;font-weight:bold;">
+		{{ message }}
+	</div>
+	{% endfor %}
 	<div id="container">
-		<div id="header" >
+		<div id="header">
 			<div id="logo">
-	            <img src="/static/pic/logo.png" alt="">
-	            <span>GPU管理系统</span>
-	        </div>
+				<img src="/static/pic/logo.png" alt="">
+				<span>GPU管理系统</span>
+			</div>
 
 			<div id="other">
-				<div id="userinfo">
-					<select name="user" id="user" onchange="window.location=this.value;">
-						<option selected="selected" value="0" class="userselect">
-							<span>{{ current_user.username }}</span>
-						</option>
-						<option value="/teacher_notice/" class="userselect">通知</option>
-						<option value="/logout/" class="userselect">退出登录</option>
-					</select>
-				</div>
-				<div id="user_img">
-					<img src="{{ current_user.pic_path }}" alt="image">
-				</div>				
+				<form form method="POST" action="/logout/">
+					<a id="login_out" href="/logout/" class="button">退出登录</a>
+					<div id="user_img">
+						<img src="{{ current_user.pic_path }}" alt="image">
+					</div>
+					<div id="user_name">
+						<span>{{ current_user.username }}</span>
+					</div>
+				</form>
 			</div>
 		</div>
 
@@ -60,7 +61,7 @@
 						<img src="/static/pic/process.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/GPUs/">GPU列表</a>
+						<a href="/process_teacher/">GPU列表</a>
 					</div>
 				</div>
 
@@ -75,28 +76,42 @@
 			</div>
 
 			<div id="content">
-				{% for p in processes %}
-				<div id="program1" class="program">
-					<a href="/process/{{ p['id'] }}/">
-						<div class="index_img">
-							<img src="/static/pic/process_.png" alt="">
-						</div>
-						{{ p['name'] }} - in {{ p['gpu_name'] }}
-					</a>
-					<div class="programsum">
-						<p>{{ p['info'] }}</p>
+				<div id="notice_xxx">
+					<p>选课情况</p>
+					  请注意导入学生列表的文件必须是csv文件，只有一列，并且第一行需为行名（如“学号”等），数据需为真实学号！导入后刷新页面即可看到完整的学生名单~
+					<div id="notice_xxx_xxx">
+						{% for r in relations %}
+						&nbsp;{{ r['user_name'] }}&nbsp; 
+						{% endfor %}
 					</div>
+					<form method="POST" action="/course_student/{{course['id']}}/" enctype="multipart/form-data">
+						<input id="file" type="file" name='stu_file' accept=".csv" style="display: none; width: 220px;"
+							onchange="editType();" />
+						<a id="notice_button" class="button" style="margin-left:45%;"
+							onclick="$('#file').trigger('click');">导入学生列表</a>
+						<input type="submit" id="submit" style="display: none;">
+					</form>
 				</div>
-				{% endfor %}
-
-				<p class="index_box_no">--没有更多学生--</p>
-                
-                <label class="ui_button ui_button_primary" for="xFile">导入学生列表</label>
-                <form><input type="file" id="xFile" style="position:absolute;clip:rect(0 0 0 0);"></form>
-                
 			</div>
 		</div>
 
 	</div>
+	<script>
+		function editType() {
+			let file = $("#file").val();
+			if (!file) {
+				let filename = file.substr(file.lastIndexOf("."));
+				if (filename != '.csv') {
+					alert("请上传csv格式的文件");
+				}
+
+			}
+			else {
+				$('#submit').trigger('click');
+			}
+		}
+
+	</script>
 </body>
+
 </html>

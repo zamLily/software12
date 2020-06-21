@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Notice</title>
-	<link rel="stylesheet" href="/static/style_teacher.css" />
+	<title>notice</title>
+	<link rel="stylesheet" href="/static/style.css" />
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
 </head>
 <body>
 	{% for message in get_flashed_messages() %}
@@ -19,18 +21,15 @@
 	        </div>
 
 			<div id="other">
-				<div id="userinfo">
-					<select name="user" id="user" onchange="window.location=this.value;">
-						<option selected="selected" value="0" class="userselect">
-							<span>{{ current_user.username }}</span>
-						</option>
-						<option value="/teacher_notice/" class="userselect">通知</option>
-						<option value="/logout/" class="userselect">退出登录</option>
-					</select>
-				</div>
-				<div id="user_img">
-					<img src="{{ current_user.pic_path }}" alt="image">
-				</div>				
+				<form form method="POST" action="/logout/">
+					<a id="login_out" href="/logout/" class="button">退出登录</a>
+					<div id="user_img">
+						<img src="{{ current_user.pic_path }}" alt="image">
+					</div>
+					<div id="user_name">
+						<span>{{ current_user.username }}</span>
+					</div>
+				</form>			
 			</div>
 		</div>
 
@@ -60,7 +59,7 @@
 						<img src="/static/pic/process.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/GPUs/">GPU列表</a>
+						<a href="/process_teacher/">GPU列表</a>
 					</div>
 				</div>
 
@@ -75,35 +74,20 @@
 			</div>
 
 			<div id="content">
-				<form method="POST" action="/">
 					<div id="notice_xxx">
-						<p>xxx课程通知</p>
-						<p style="font-weight:normal;font-size:18px;">xxxx年xx月xx日</p>
+						<p>{{message['course_name']}}-{{message['title']}}</p>
 						<div id="notice_xxx_xxx">
-							xxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
-							<br>xxxxxxxxxxxxxxxxxxxxxx
+							{{message['info']}}
 						</div>
-						<a id="notice_button" href="/teacher_notice_edit/" class="button" style="margin-left:40%;">修改</a>
-						<a id="notice_button" href="/teacher_notice/" class="button" style="margin-left:12%;">删除</a>
+						<a id="notice_button" href="/teacher_notice_edit/{{message['id']}}/" class="button" style="margin-left:38%;">修改</a>
+						<form method="post" action="/teacher_notice/">
+							<input id="delete" value="{{ message.id }}" name="delete" style="display: none;">
+							 <input type="submit" id="submit" style="display: none;">
+							 <a id="notice_button" class="button" style="margin-left:15%;"
+							 onclick="$('#submit').trigger('click');">删除</a>
+							
+						</form>
 					</div>
-				</form>
 			</div>
 		</div>
 

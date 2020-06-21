@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Notice</title>
-	<link rel="stylesheet" href="/static/style_teacher.css" />
+	<title>new notice</title>
+	<link rel="stylesheet" href="/static/style.css" />
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
 </head>
 <body>
 	{% for message in get_flashed_messages() %}
@@ -19,18 +21,15 @@
 	        </div>
 
 			<div id="other">
-				<div id="userinfo">
-					<select name="user" id="user" onchange="window.location=this.value;">
-						<option selected="selected" value="0" class="userselect">
-							<span>{{ current_user.username }}</span>
-						</option>
-						<option value="/teacher_notice/" class="userselect">通知</option>
-						<option value="/logout/" class="userselect">退出登录</option>
-					</select>
-				</div>
-				<div id="user_img">
-					<img src="{{ current_user.pic_path }}" alt="image">
-				</div>				
+				<form form method="POST" action="/logout/">
+					<a id="login_out" href="/logout/" class="button">退出登录</a>
+					<div id="user_img">
+						<img src="{{ current_user.pic_path }}" alt="image">
+					</div>
+					<div id="user_name">
+						<span>{{ current_user.username }}</span>
+					</div>
+				</form>			
 			</div>
 		</div>
 
@@ -60,7 +59,7 @@
 						<img src="/static/pic/process.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/GPUs/">GPU列表</a>
+						<a href="/process_teacher/">GPU列表</a>
 					</div>
 				</div>
 
@@ -75,20 +74,26 @@
 			</div>
 
 			<div id="content">
-				<form method="POST" action="/teacher_notice/">
 					<div id="notice_xxx">
-						<p>xxx课程通知</p>
-						<p style="font-weight:normal;font-size:18px;">xxxx年xx月xx日</p>			
+						<!--<p>xxx课程通知</p>
+						<p style="font-weight:normal;font-size:18px;">xxxx年xx月xx日</p>-->		
 						<div id="new_notice_edit">
-							<span style="margin-left:10%;">
-								<strong>通知标题</strong>
-								<input type="text" name="SSH方式" required style="height:2em;width:70%;margin:3px;border-radius:5px;padding-left:2px;">
-							</span>	
-							<textarea id="edit_text" name="edit" cols="145" rows="18"></textarea>
-							<input id="new_notice_submit" type="submit" class="button is-info" value="发布">
+							
+							<form method="POST" action="/teacher_notice/">
+								
+								<span style="margin-left:10%;">
+									<strong>通知标题</strong>
+									<input type="text" name="title" required style="height:2em;width:70%;margin:3px;border-radius:5px;padding-left:2px;">
+								</span>	
+								<textarea id="edit_text" name="edit" cols="145" rows="18"></textarea>
+							<a id="new_notice_submit"  class="button" 
+								style="margin-left:15%;" onclick="$('#submit').trigger('click');">发布</a>
+								<input value="{{course['name']}}" style="display: none;" name="course">
+								<input type="submit" id="submit" style="display: none;">
+							</form>
+						
 						</div>
 					</div>
-				</form>
 			</div>
 		</div>
 
