@@ -666,3 +666,179 @@ html {
     background-color: #f7f7f7;
     opacity: 0.8;
 }
+#settings{
+	height: 400px;
+	width: 96%;
+	padding: 10px;
+	margin: 10px;
+	float: auto;
+	clear: both;
+	background: rgba(255, 255, 255, 0.3);
+	border: 1px solid white;
+	/*border-radius: 10px;*/
+	overflow: auto;
+}
+#settings p{
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	margin:5px;
+}
+#setting_table{
+	width: 68%;
+	font-size: 20px;
+	color: black;
+	float: left;
+	margin: 10px 15px;
+}
+#setting_table tr td{
+	height: 45px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	/*border: 1px solid;*/
+	text-align: justify;
+	width: 50%;
+	padding: 5px 20px 0 20px;
+	font-size: 18px;
+}
+#setting_table tr th{
+	font-size: 20px;
+	height: 45px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	/*border: 1px solid;*/
+	text-align: justify;
+	width: 30%;
+	padding: 5px 20px 0 20px;
+}
+#setting_img{
+	float: left;
+	margin: 10px;
+	height: 250px;
+	width: 250px;
+	/*border:1px solid;*/
+}
+#setting_img img{
+	width: 100%;
+	height:100%;
+	margin-bottom: 5px;
+	border-radius: 5px;
+}
+#setting_img span{
+	text-align: center;
+/*	margin-left: 85px;
+	margin-top: -55px;*/
+	text-decoration: none;
+	/*border: 1px solid white;*/
+	background: rgba(0,0,0,0.2);
+	position:absolute;
+	top:285px;
+	left:22.45%;
+	width:250px;
+    height:80px;
+    z-index: 1;
+    line-height: 500%;
+    color: (255,255,255,0.2);
+    font-size: 18px;
+    color: white;
+    /*border:1px solid;*/
+    border-radius: 0 0 5px 5px;
+}
+#setting_img a{
+	text-decoration: none;
+}
+
+#upload_img {
+	position:absolute;
+	top:265px;
+	left:22.5%;
+	width:250px;
+    height:100px;
+    z-index: 1;
+    /*border:1px solid;*/
+    opacity: 0;
+}
+#upload_img:hover{
+    cursor: pointer;
+}
+
+
+.setting_button{
+	height: 30px;
+	padding: 1px 5px;
+	float: left;
+	/*margin-left: 2%;*/
+	font-size:15px;
+	line-height: 30px;
+	background: rgba(255, 255, 255, 0.2);
+	color:black;
+	text-decoration: none;
+	border:1px solid white;
+	border-radius: 3px;
+}
+.setting_button:hover{cursor: pointer;}
+#usernameedit{
+	margin:0;
+	padding:0;
+}
+#usernameedit p{
+	color:white;
+	overflow:hidden;
+	height:0;
+	display:block;
+	float:right;
+	margin-top:-22px;
+	/*margin-left:2%;*/
+	font-size:15px;
+	line-height: 30px;
+	color:black;
+	/*border:1px solid;*/
+	/*border-radius: 3px;
+	background: rgba(255, 255, 255, 0.2);*/
+}
+#usernameedit p[open]{height:auto;}
+
+#user_name_button{
+	margin:5px 0 0 0 ;
+	padding:0 5px;
+	font-size:13px;
+	float:right;
+	background: rgba(255, 255, 255, 0.2);
+	color:black;
+	border:1px solid white;
+	border-radius: 2px;
+}
+
+#userimgedit{
+	position:absolute;
+	top:360px;
+	left:22.5%;
+	width:250px;
+    z-index: 1;
+    height: 30px;
+    /*border:1px solid;*/
+}
+#userimgedit p{
+	color:white;
+	overflow:hidden;
+	height:0;
+	width: 64%;
+	display:block;
+	float: left;
+	margin-left:18%;
+	padding: 2px 8px;
+	line-height: 30px;
+	color:black;
+	/*border:1px solid;*/
+	text-align: justify;
+}
+#userimgedit p[open]{height:auto;}
+#userimgedit input{
+	margin: 0; 
+	height:30px;
+	font-size: 15px;
+	line-height: 100%;
+	padding:2px 5px;
+	background: rgba(255, 255, 255, 0.2);
+	color:black;
+	border:1px solid white;
+	border-radius: 3px;
+}

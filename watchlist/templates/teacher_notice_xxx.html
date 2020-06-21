@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>notice</title>
-	<link rel="stylesheet" href="../static/style.css" />
+	<title>Notice</title>
+	<link rel="stylesheet" href="/static/style_teacher.css" />
 </head>
 <body>
 	{% for message in get_flashed_messages() %}
@@ -19,15 +19,18 @@
 	        </div>
 
 			<div id="other">
-				<form form method="POST" action="/logout/">
-					<a id="login_out" href="/logout/" class="button">退出登录</a>
-					<div id="user_img">
-						<img src="{{ current_user.pic_path }}" alt="image">
-					</div>
-					<div id="user_name">
-						<span>{{ current_user.username }}</span>
-					</div>
-				</form>			
+				<div id="userinfo">
+					<select name="user" id="user" onchange="window.location=this.value;">
+						<option selected="selected" value="0" class="userselect">
+							<span>{{ current_user.username }}</span>
+						</option>
+						<option value="/teacher_notice/" class="userselect">通知</option>
+						<option value="/logout/" class="userselect">退出登录</option>
+					</select>
+				</div>
+				<div id="user_img">
+					<img src="{{ current_user.pic_path }}" alt="image">
+				</div>				
 			</div>
 		</div>
 
@@ -36,25 +39,25 @@
 				<br>
 				<div id="Home Page">
 					<div class="asidepic">
-						<img src="../static/pic/home.png" alt="">
+						<img src="/static/pic/home.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/index/">主页</a>
+						<a href="/index_teacher/">主页</a>
 					</div>
 				</div>
 
 				<div id="My courses">
 					<div class="asidepic">
-						<img src="../static/pic/courses.png" alt="">
+						<img src="/static/pic/courses.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/my_courses/">我的课程</a>
+						<a href="/my_courses_teacher/">我的课程</a>
 					</div>
 				</div>
 
 				<div id="Process">
 					<div class="asidepic">
-						<img src="../static/pic/process.png" alt="">
+						<img src="/static/pic/process.png" alt="">
 					</div>
 					<div class="asidechoices">
 						<a href="/GPUs/">GPU列表</a>
@@ -63,7 +66,7 @@
 
 				<div id="Settings">
 					<div class="asidepic">
-						<img src="../static/pic/settings.png" alt="">
+						<img src="/static/pic/settings.png" alt="">
 					</div>
 					<div class="asidechoices">
 						<a href="/settings_teacher/">设置</a>
@@ -97,8 +100,8 @@
 							<br>xxxxxxxxxxxxxxxxxxxxxx
 							<br>xxxxxxxxxxxxxxxxxxxxxx
 						</div>
-						<a id="notice_button" href="" class="button" style="margin-left:40%;">修改</a>
-						<a id="notice_button" href="" class="button" style="margin-left:12%;">删除</a>
+						<a id="notice_button" href="/teacher_notice_edit/" class="button" style="margin-left:40%;">修改</a>
+						<a id="notice_button" href="/teacher_notice/" class="button" style="margin-left:12%;">删除</a>
 					</div>
 				</form>
 			</div>

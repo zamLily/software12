@@ -2,10 +2,15 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Settings</title>
+	<title>GPUs</title>
 	<link rel="stylesheet" href="/static/style_teacher.css" />
 </head>
 <body>
+	{% for message in get_flashed_messages() %}
+	    <div class="alert" style="float:left;margin-left:45%;margin-top:8px;text-align:center;font-size:18px;color:black;width:20%;font-weight:bold;">
+	    	{{ message }}
+	    </div>
+	{% endfor %}
 	<div id="container">
 		<div id="header" >
 			<div id="logo">
@@ -15,15 +20,15 @@
 
 			<div id="other">
 				<div id="userinfo">
-					<select name="user" id="user">
+					<select name="user" id="user" onchange="window.location=this.value;">
 						<option selected="selected" value="0" class="userselect">
-							<span>Username</span>
+							<span>{{ current_user.username }}</span>
 						</option>
-						<option value="1" class="userselect">通知</option>
-						<option value="2" class="userselect">退出登录</option>
+						<option value="/teacher_notice/" class="userselect">通知</option>
+						<option value="/logout/" class="userselect">退出登录</option>
 					</select>
 				</div>
-				<div id="userimg">
+				<div id="user_img">
 					<img src="{{ current_user.pic_path }}" alt="image">
 				</div>				
 			</div>
@@ -32,8 +37,6 @@
 		<div id="main">
 			<div id="aside">
 				<br>
-                <br>
-                <br>
 				<div id="Home Page">
 					<div class="asidepic">
 						<img src="/static/pic/home.png" alt="">
@@ -71,9 +74,6 @@
 				</div>
 			</div>
 
-			<div id="background_card">
-                
-			</div>
 
 		</div>
 

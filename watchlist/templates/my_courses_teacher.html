@@ -20,15 +20,15 @@
 
 			<div id="other">
 				<div id="userinfo">
-					<select name="user" id="user">
+					<select name="user" id="user" onchange="window.location=this.value;">
 						<option selected="selected" value="0" class="userselect">
 							<span>{{ current_user.username }}</span>
 						</option>
-						<option value="1" class="userselect">通知</option>
-						<option value="2" class="userselect">退出登录</option>
+						<option value="/teacher_notice/" class="userselect">通知</option>
+						<option value="/logout/" class="userselect">退出登录</option>
 					</select>
 				</div>
-				<div id="userimg">
+				<div id="user_img">
 					<img src="{{ current_user.pic_path }}" alt="image">
 				</div>				
 			</div>
@@ -106,7 +106,7 @@
 						<div id="teacherpic" class="teacherpic">
 							<img src="/static/pic/teacher.png" alt="">
 						</div>
-						<strong id="人工智能原理teacher">课人数 - 104</strong> 
+						<strong id="人工智能原理teacher">选课人数 - 104</strong> 
 						<span id="人工智能原理term">2017-2018学年&nbsp第1学期</span>
 						<div class="courseintro">
 							<p>课程简介：xxx</p>
@@ -134,7 +134,7 @@
 				</div>
 				
 				<div id="add" class="index_box">
-					<a href="/my_courses/all_courses/">
+					<a href="/new_courses/">
 						<div class="index_img">
 							<img src="/static/pic/add.png" alt="">
 						</div>

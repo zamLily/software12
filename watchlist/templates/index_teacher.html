@@ -15,12 +15,12 @@
 
 			<div id="other">
 				<div id="userinfo">
-					<select name="user" id="user">
+					<select name="user" id="user" onchange="window.location=this.value;">
 						<option selected="selected" value="0" class="userselect">
 							<span>{{ current_user.username }}</span>
 						</option>
-						<option value="1" class="userselect">通知</option>
-						<option value="2" class="userselect">退出登录</option>
+						<option value="/teacher_notice/" class="userselect">通知</option>
+						<option value="/logout/" class="userselect">退出登录</option>
 					</select>
 				</div>
 				<div id="user_img">
@@ -78,7 +78,7 @@
 						我的课程
 					</a>
 					<div class="index_coursebox">
-						<a href="">
+						<a href="/my_courses_teacher/1/">
 							<div class="index_img">
 								<img src="/static/pic/course_.png" alt="">
 							</div>
@@ -86,7 +86,7 @@
 						</a>
 					</div>
 					<div class="index_coursebox">
-						<a href="">
+						<a href="/my_courses_teacher/2/">
 							<div class="index_img">
 								<img src="/static/pic/course_.png" alt="">
 							</div>
@@ -94,7 +94,7 @@
 						</a>
 					</div>
 					<div class="index_coursebox">
-						<a href="">
+						<a href="/my_courses_teacher/3/">
 							<div class="index_img">
 								<img src="/static/pic/course_.png" alt="">
 							</div>
@@ -105,14 +105,14 @@
 				</div>
 
 				<div id="my_process" class="index_box">
-					<a href="/process/">
+					<a href="/GPUs/">
 						<div class="index_img">
 							<img src="/static/pic/process.png" alt="">
 						</div>
 						&nbsp我的GPU
 					</a>
 					<div class="index_coursebox">
-						<a href="">
+						<a href="/GPUs/1/">
 							<div class="index_img">
 								<img src="/static/pic/process_.png" alt="">
 							</div>
@@ -120,7 +120,7 @@
 						</a>
 					</div>
 					<div class="index_coursebox">
-						<a href="">
+						<a href="/GPUs/2/">
 							<div class="index_img">
 								<img src="/static/pic/process_.png" alt="">
 							</div>
@@ -128,7 +128,7 @@
 						</a>
 					</div>
 					<div class="index_coursebox">
-						<a href="">
+						<a href="/GPUs/3/">
 							<div class="index_img">
 								<img src="/static/pic/process_.png" alt="">
 							</div>
@@ -139,14 +139,14 @@
 				</div>
 
 				<div id="my_message" class="index_box">
-					<a href="/message/">
+					<a href="/teacher_notice/">
 						<div class="index_img">
 							<img src="/static/pic/message.png" alt="">
 						</div>
 						&nbsp通知
 					</a>
 					<div class="index_coursebox">
-						<a href="">
+						<a href="/teacher_notice/1/">
 							<div class="index_img">
 								<img src="/static/pic/process_.png" alt="">
 							</div>
@@ -154,7 +154,7 @@
 						</a>
 					</div>
 					<div class="index_coursebox">
-						<a href="">
+						<a href="/teacher_notice/2/">
 							<div class="index_img">
 								<img src="/static/pic/process_.png" alt="">
 							</div>
@@ -166,6 +166,5 @@
 				
 			</div>
 		</div>
-
 </body>
 </html>

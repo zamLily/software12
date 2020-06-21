@@ -23,18 +23,108 @@ def course_xxx_teacher(id):
     gpus = GPU.query.all()
     return render_template('course_xxx_teacher.html', course=course, messages=messages, gpus=gpus)
 
-
 # my_courses_teacher
 @app.route('/my_courses_teacher/', methods=['GET', 'POST'])
 # @login_required
 def my_courses_teacher():
     return render_template('my_courses_teacher.html')
 
-# gpu_xxx_teacher
-@app.route('/gpu_xxx_teacher/', methods=['GET', 'POST'])
+# new_courses
+@app.route('/new_courses/', methods=['GET', 'POST'])
 # @login_required
-def gpu_xxx_teacher():
-    return render_template('gpu_xxx_teacher.html')
+def new_courses():
+    return render_template('new_courses.html')
+
+# GPUs
+@app.route('/GPUs/', methods=['GET', 'POST'])
+# @login_required
+def GPUs():
+    return render_template('GPUs.html')
+
+# gpu_xxx_teacher
+@app.route('/GPUs/<int:id>/', methods=['GET', 'POST'])
+@login_required
+def gpu_xxx_teacher(id):
+    gpus = GPU.query.filter_by(id=id).first()
+    return render_template('gpu_xxx_teacher.html',gpus=gpus)
+
+# xxx_teacher
+@app.route('/process/<int:id>/', methods=['GET', 'POST'])
+# @login_required
+def xxx_teacher(id):
+    return render_template('xxx_teacher.html')
+
+# settings_teacher
+@app.route('/settings_teacher/', methods=['GET', 'POST'])
+@login_required
+def settings_teacher():
+    if request.method == 'POST':
+        button_name = request.form['submit_name']
+        if button_name == "确定":
+            img = request.files.get('upload_img')
+            basepath = os.path.dirname(__file__)
+            file_path = os.path.join(basepath, 'static/photo', img.filename)
+            #path = "/static/photo/"
+            #file_path = path + img.filename
+            img.save(file_path)
+            pic_path = os.path.join('/static/photo', img.filename)
+            current_user.pic_path = pic_path
+            db.session.add(current_user)
+            db.session.commit()  # 提交数据库会话
+
+        if button_name == "取消":
+            return redirect(url_for('settings_teacher'))
+
+        if button_name == "更改名称":
+            new_name = request.form['newname']
+            user = User.query.filter_by(username=new_name).first()  # 找有没有注册过
+            # user = User.query.first()
+
+            if user is not None:  # 该用户注册过
+                flash('该用户名已被占用！')
+            else:
+                current_user.username = new_name
+                db.session.add(current_user)
+                db.session.commit()  # 提交数据库会话
+
+        if button_name == "更改密码":
+            new_password = request.form['newpw']
+            current_user.set_password(new_password)  # 设置密码
+            db.session.add(current_user)
+            db.session.commit()  # 提交数据库会话
+
+
+    return render_template('settings_teacher.html')
+
+#teacher_notice
+@app.route('/teacher_notice/', methods=['GET', 'POST'])
+# @login_required
+def teacher_notice():
+    return render_template('teacher_notice.html')
+
+#teacher_notice_xxx
+@app.route('/teacher_notice/<int:id>/', methods=['GET', 'POST'])
+# @login_required
+def teacher_notice_xxx(id):
+    return render_template('teacher_notice_xxx.html')
+
+#teacher_notice_new
+@app.route('/teacher_notice_new/', methods=['GET', 'POST'])
+# @login_required
+def teacher_notice_new():
+    return render_template('teacher_notice_new.html')
+
+#teacher_notice_edit
+@app.route('/teacher_notice_edit/', methods=['GET', 'POST'])
+# @login_required
+def teacher_notice_edit():
+    return render_template('teacher_notice_edit.html')
+
+#course_student
+@app.route('/course_student/', methods=['GET', 'POST'])
+# @login_required
+def course_student():
+    return render_template('course_student.html')
 
 # -------------------------------- 学生端 --------------------------------------------#
 
@@ -67,7 +157,8 @@ def login():
             if user.validate_password(password):
                 login_user(user)
                 flash('登录成功！')
-                print(current_user.username)
+                if select == "teacher":
+                    return redirect(url_for('index_teacher'))
                 return redirect(url_for('index'))
             else:
                 flash('密码错误！')
