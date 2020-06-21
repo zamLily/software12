@@ -49,7 +49,7 @@ def gpu_xxx_teacher(id):
     return render_template('gpu_xxx_teacher.html',gpus=gpus)
 
 # xxx_teacher
-@app.route('/process/<int:id>/', methods=['GET', 'POST'])
+@app.route('/xxx_teacher/<int:id>/', methods=['GET', 'POST'])
 # @login_required
 def xxx_teacher(id):
     return render_template('xxx_teacher.html')
