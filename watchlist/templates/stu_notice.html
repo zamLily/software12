@@ -72,7 +72,9 @@
 			</div>
 
 			<div id="content">
+				{% for r in relations %}
 				{% for c in courses %}
+				{% if c['name'] == r['course_name'] %}
 				<div id="coure_notice" class="index_box">
 					<a href="/my_courses/">
 						<div class="index_img">
@@ -93,6 +95,8 @@
 					</div>
 					{% endif %}
 					{% endfor %}
+				{% endif %}
+				{% endfor %}
 
 				<p style="clear:both;text-align:center;margin:10px;">--没有更多消息--</p>
 				</div>

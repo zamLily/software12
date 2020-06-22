@@ -125,6 +125,12 @@
 						&nbsp通知
 					</a>
 					{% for m in messages %}
+					{% for r in relations %}
+					{% for c in courses %}
+					{% if c['name'] == r['course_name'] %}
+
+
+					{% if m['course_name'] == c['name'] %}
 					<div class="index_coursebox">
 						<a href="/message/{{ m['id'] }}/">
 							<div class="index_img">
@@ -133,10 +139,17 @@
 							{{ m['course_name'] }} - {{ m['title'] }}
 						</a>
 					</div>
+					{% endif %}
+					{% endif %}
+					{% endfor %}
+
+					{% endfor %}
 					{% endfor %}
 					<p class="index_box_no">--没有更多通知--</p>
+
 				</div>
-				
+
+
 			</div>
 		</div>
 

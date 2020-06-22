@@ -98,7 +98,6 @@
 						{% endfor %}
 						<p class="index_box_no">--没有更多通知--</p>
 					</div>
-
 				</div>
 				
 				<div id="course_below">
@@ -121,8 +120,9 @@
 						<span>
 							GPUs
 						</span>
+						{% for gc in gpuc %}
 						{% for g in gpus %}
-						{% if g['course_name'] == course['name'] %}
+						{% if g['name'] == gc['gpu_name'] %}
 						<div class="coursegpubox">
 							<a href="/submit/{{ g['id'] }}/">
 								<div class="index_img">
@@ -132,6 +132,7 @@
 							</a>
 						</div>
 						{% endif %}
+						{% endfor %}
 						{% endfor %}
 						<p class="index_box_no">--没有更多gpu--</p>
 					</div>

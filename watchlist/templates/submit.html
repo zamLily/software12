@@ -72,8 +72,9 @@
 			</div>
 
 			<div id="content">
+				{% for gc in gpuc %}
 				{% for c in courses %}
-				{% if c['name'] == gpu['course_name'] %}
+				{% if c['name'] == gc['course_name'] %}
 				<div id="couresename">
 					<a href="/my_courses/all_courses/{{ c['id'] }}/" class="button">
 						返回课程页面
@@ -85,7 +86,7 @@
 				</div>
 				{% endif %}
 				{% endfor %}
-
+				{% endfor %}
 				<form method="POST" action="/">
 					<div id="ssh">
 						<p>

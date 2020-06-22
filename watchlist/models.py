@@ -48,6 +48,13 @@ class Relation(db.Model):
     user_name = db.Column(db.String(50), db.ForeignKey('User.username'))  # 存储用户名（记得包括老师本人）
     course_name = db.Column(db.String(50), db.ForeignKey('Course.name'))  # 用户对应的课程
 
+class GPU_course(db.Model):
+    __tablename__ = 'GPU_course'
+
+    id = db.Column(db.Integer, primary_key=True)  # id（主键）
+    gpu_name = db.Column(db.String(50), db.ForeignKey('GPU.name'))  # 存储用户名（记得包括老师本人）
+    course_name = db.Column(db.String(50), db.ForeignKey('Course.name'))  # 用户对应的课程
+
 
 # 程序table
 class Process(db.Model):
@@ -75,12 +82,15 @@ class Message(db.Model):
 class GPU(db.Model):
     __tablename__ = 'GPU'
 
-    id = db.Column(db.Integer, primary_key=True)                            # id（主键）
-    name = db.Column(db.String(50))                                         # gpu的名称
-    info = db.Column(db.String(1000))                                       # gpu是否空闲
-    course_name = db.Column(db.String(50), db.ForeignKey('Course.name'))    # gpu对应的课程
+    id = db.Column(db.Integer, primary_key=True)    # id（主键）
+    name = db.Column(db.String(50))                 # gpu的名称
+    info = db.Column(db.String(1000))               # gpu是否空闲
 
-
+    # 配置和操作需要使用的参数
+    ip = db.Column(db.String(100))                  # ip
+    port = db.Column(db.String(50))                 # port
+    username = db.Column(db.String(50))             # username
+    password = db.Column(db.String(50))             # password
 """
 class Student(db.Model, UserMixin):
     __tablename__ = 'origin'
