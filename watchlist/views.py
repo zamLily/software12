@@ -4,6 +4,7 @@ from flask_login import login_user, login_required, logout_user, current_user
 import click
 from watchlist import app, db
 from watchlist.models import *
+from watchlist.ssh_1 import *
 import os
 
 # -------------------------------- 教师端 --------------------------------------------#
@@ -330,6 +331,24 @@ def process():
 def process_xxx(id):
     process = Process.query.filter_by(id=id).first()
     return render_template('process_xxx.html', process=process)
+
+# process_xxx_run
+# http://127.0.0.1:5000/process/1/run/misaka/test.py/120.78.13.73/22/1314ILYmm/
+@app.route('/process/<int:id>/run/<string:user>/<string:file_name>/<string:ip>/<int:port>/<string:password>/', methods=['GET', 'POST'])
+@login_required
+def process_xxx_run(id,user,file_name,ip,port,password):
+    #user = 'misaka'
+    #file_name = 'test.py'
+    res = docker_test(user,file_name,ip,port,password)
+    # 本地存储用户代码输出的文件名
+    filename = 'test_tst.txt'
+    with open(filename, 'w') as file_object:
+        file_object.write(res)
+
+    processes = Process.query.all()
+    return render_template('process.html', processes=processes)
+
+
 
 # process_edit
 @app.route('/process_edit/<int:id>/', methods=['GET', 'POST'])
