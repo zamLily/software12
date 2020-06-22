@@ -642,7 +642,7 @@ html {
 }
 #courseinfo{
 	height: 250px;
-	width: 25%;
+	width: 25.5%;
 	float: left;
 	margin: 0 10px;
 	border: 1px solid white;
@@ -1025,7 +1025,7 @@ html {
 	background: rgba(255, 255, 255, 0.2);
 }
 #box1 {
-	width: 95%;
+	width: 98%;
 	height: 100%;
 	font-size: 20px;
 	padding: 8px;
@@ -1034,7 +1034,7 @@ html {
 	font-size: 15px;
 }
 #box2 {
-	width: 95%;
+	width: 98%;
 	height: 68%;
 	font-size: 20px;
 	padding: 8px;
