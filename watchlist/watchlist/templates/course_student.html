@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>学生选课情况</title>
+	<link rel="stylesheet" href="/static/style.css" />
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+	{% for message in get_flashed_messages() %}
+	<div class="alert"
+		style="float:left;margin-left:45%;margin-top:8px;text-align:center;font-size:18px;color:black;width:20%;font-weight:bold;">
+		{{ message }}
+	</div>
+	{% endfor %}
+	<div id="container">
+		<div id="header">
+			<div id="logo">
+				<img src="/static/pic/logo.png" alt="">
+				<span>GPU管理系统</span>
+			</div>
+
+			<div id="other">
+				<form form method="POST" action="/logout/">
+					<a id="login_out" href="/logout/" class="button">退出登录</a>
+					<div id="user_img">
+						<img src="{{ current_user.pic_path }}" alt="image">
+					</div>
+					<div id="user_name">
+						<span>{{ current_user.username }}</span>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div id="main">
+			<div id="aside">
+				<br>
+				<div id="Home Page">
+					<div class="asidepic">
+						<img src="/static/pic/home.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/index_teacher/">主页</a>
+					</div>
+				</div>
+
+				<div id="My courses">
+					<div class="asidepic">
+						<img src="/static/pic/courses.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/my_courses_teacher/">我的课程</a>
+					</div>
+				</div>
+
+				<div id="Process">
+					<div class="asidepic">
+						<img src="/static/pic/process.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/process_teacher/">GPU列表</a>
+					</div>
+				</div>
+
+				<div id="Settings">
+					<div class="asidepic">
+						<img src="/static/pic/settings.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/settings_teacher/">设置</a>
+					</div>
+				</div>
+			</div>
+
+			<div id="content">
+				<div id="notice_xxx">
+					<p>选课情况</p>
+					  <p style="font-size:16px; text-align:left;text-indent:2em;font-weight:normal;">
+					  	请注意导入学生列表的文件必须是csv文件，只有一列，并且第一行需为行名（如“学号”等），数据需为真实学号！导入后刷新页面即可看到完整的学生名单~
+					  </p>
+					<div id="notice_xxx_xxx">
+						{% for r in relations %}
+						&nbsp;{{ r['user_name'] }}&nbsp; 
+						{% endfor %}
+					</div>
+					<form method="POST" action="/course_student/{{course['id']}}/" enctype="multipart/form-data">
+						<input id="file" type="file" name='stu_file' accept=".csv" style="display: none; width: 220px;"
+							onchange="editType();" />
+						<a id="notice_button" class="button" style="margin-left:45%;"
+							onclick="$('#file').trigger('click');">导入学生列表</a>
+						<input type="submit" id="submit" style="display: none;">
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<script>
+		function editType() {
+			let file = $("#file").val();
+			if (!file) {
+				let filename = file.substr(file.lastIndexOf("."));
+				if (filename != '.csv') {
+					alert("请上传csv格式的文件");
+				}
+
+			}
+			else {
+				$('#submit').trigger('click');
+			}
+		}
+
+	</script>
+</body>
+
+</html>

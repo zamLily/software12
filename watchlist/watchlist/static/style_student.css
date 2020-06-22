@@ -1,0 +1,1088 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "阿里巴巴普惠体", "微软雅黑";
+	color: black;
+}
+
+html {
+	height: 100%;
+	background:url("pic/bg.gif") repeat-y;
+	background-size: cover;
+}
+#flask_message{
+	float: left;
+	left:50%;
+	text-align: center; 
+	font-size:15px;
+	color:black;
+	border:1px solid;
+	width:50px;
+}
+
+#container {
+	margin: 0;
+	height: 100%;
+	/*background: linear-gradient(to top right,#2069F9,#48E9B2);*/
+	/* background:url("/static/pic/bg.gif"); */
+}
+
+#header {
+	height: 40px;
+	width: 100%;
+	position: fixed;
+	z-index: 1000;left: 0; top: 0; 
+}
+
+#login_out{
+	height: 30px;
+	padding: 0 5px;
+	margin:5px 15px 6px 2px;
+	font-size:15px;
+	line-height: 30px;
+	float:right;
+	background: rgba(255, 255, 255, 0.2);
+	color:black;
+	text-decoration: none;
+	border:1px solid white;
+	border-radius: 5px;
+}
+#user_img{
+	margin-top: 5px;
+	margin-right: -40px
+	padding-top: -50px;
+	float: right;
+	margin: 10px;
+	height: 30px;
+	width: 30px;
+	/*border: 1px solid;*/
+}
+#user_img img{
+	margin-top:-15px;
+	width: 95%;
+	height:95%;
+	border: 1px solid white;
+	border-radius: 5px;
+}
+
+#user_name {
+	/*border: 1px solid;*/
+	width: 80px;
+	height: 88%;
+	float: right;
+	margin:1px -23px 1px 0;
+	padding: 1px;
+	color: black;
+	text-align: right;
+	/*border:1px solid;*/
+}
+#user_name span{
+	font-size: 15px;
+	font-weight: bold;
+	/*text-align: right;*/
+}
+
+#logo {
+	height: 100%;
+	width: 20%;
+	float: left;
+	background: rgba(255, 255, 255, 0.2);
+}
+
+#logo img {
+	float: left;
+	margin-left: 40px;
+	height: 85%;
+	margin-top: 3px;
+	/*border:1px solid black;*/
+}
+
+#logo span {
+	float: left;
+	margin-left: 5px;
+	margin-top: 8px;
+	font-weight: bold;
+	font-size: 23px;
+}
+
+#other {
+	height: 100%;
+	width: 80%;
+	float: left;
+	background: rgba(255, 255, 255, 0.2);
+	text-align: right;
+	line-height: 40px;
+	font-size: 20px;
+	color: black;
+}
+#other span{
+	height: 80%;
+	width: 20%;
+	color: black;
+	margin-right:20px;
+}
+
+
+#main {
+	height: auto;
+}
+
+#aside {
+	margin-top: 40px;
+	float: left;
+	width: 20%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.2);
+	position: fixed;
+}
+
+#aside div {
+	height: 60px;
+	margin: auto;
+	text-align: left;
+	margin-left: 5px;
+	padding: 10px;
+}
+
+#aside a {
+	text-decoration: none;
+	text-align: center;
+	font-size: 20px;
+	line-height: 50px;
+	height: 60px;
+	color: black;
+	margin: 5px;
+	padding: 2px;
+	font-weight: bold;
+}
+
+.asidepic {
+	height: 80%;
+	width: 25px;
+	float: left;
+	line-height: 100%;
+}
+
+.asidepic img {
+	height: 70%;
+	margin: 2px;
+}
+
+.asidechoices {
+	height: 80%;
+	float: left;
+	margin:2px;
+	padding: 2px;
+	/*border: 1px solid;*/
+}
+
+#content {
+	float: right;
+	width: 80%;
+	height: 100%;
+	overflow: auto;
+	margin-top:40px; 
+}
+
+#login {
+	width: 100%;
+	height: 100%;
+}
+
+.login-box {
+	line-height: 180%;
+	font-size: 20px;
+	height: 33%;
+	width: 27%;
+	padding: 5px 5px 5px 5px;
+	margin-top: 15%;
+	margin-left: 35%;
+	background: rgba(255, 255, 255, 0.2);
+	border: 1px solid white;
+	border-radius: 8px;
+}
+
+#login span {
+	font-size: 15px;
+	line-height: 15px;
+	margin-left: -15px;
+	color:black;
+}
+
+#login form {
+	margin-left: 25px;
+}
+
+#login p {
+	font-weight: bold;
+	text-align: center;
+	color: black;
+	font-size:21px;
+}
+#visitor_regit{
+	 padding:0 8px;
+	 margin:2px 45% 2px 5px;
+	 font-size:13px;
+	 float:right;
+	 background: rgba(255, 255, 255, 0.2);
+	 color:black;
+	 border:1px solid white;
+}
+#visitor_login{
+	padding:0 8px;
+	margin:2px 5px;
+	font-size:13px;
+	float:right;
+	background: rgba(255, 255, 255, 0.2);
+	color:black;
+	border:1px solid white;
+}
+#login_login{
+	padding:0 8px;
+	margin:2px -1px 2px 5px;
+	font-size:13px;
+	float:right;
+	background: rgba(255, 255, 255, 0.2);
+	color:black;
+	border:1px solid white;
+}
+#login_regit{
+	padding:0 8px;
+	margin:2px -80% 2px 5px;
+	font-size:13px;
+	float:right;
+	background: rgba(255, 255, 255, 0.2);
+	color:black;
+	border:1px solid white;
+}
+.select_button {
+	font-size: 15px;
+	margin-top: 8px;
+	margin-left: 2px;
+	padding: 2px;
+	background: rgba(255, 255, 255, 0.2);
+	border: 1px solid white;
+	border-radius: 5px;
+}
+
+.login_button {
+	float: right;
+	font-size: 15px;
+	margin-right: 10px;
+	margin-top: 8px;
+	padding: 4px;
+	background: rgba(255, 255, 255, 0.2);
+	border: 1px solid white;
+	border-radius: 5px;
+}
+
+.index_box {
+	height: 150px;
+	width: 40%;
+	float: left;
+	margin: 25px;
+	border: 1px solid white;
+	background: rgba(255, 255, 255, 0.2);
+	padding: 20px;
+	font-size: 20px;
+	border-radius: 8px;
+	overflow: auto;
+}
+
+.index_box a {
+	font-size: 25px;
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+}
+.index_img {
+	height: 1.5em;
+	float: left;
+	line-height: 100%;
+}
+
+.index_img img {
+	height: 70%;
+	margin: 5px;
+}
+.index_box_no{
+	font-size: 18px;
+	margin: 10px;
+	text-align: center
+}
+.index_coursebox{
+	font-size: 22px;
+	border: 1px solid white;
+	height: 50px;
+	width: 100%;
+	border-radius: 5px;
+	margin-top: 8px;
+	padding: 5px;
+}
+.index_coursebox a{
+	font-size: 22px;
+	color: black;
+	font-weight: normal;
+}
+
+.teacherpic {
+	height: 10%;
+	float: left;
+	line-height: 100%;
+	margin-right: 5px;
+}
+
+.teacherpic img {
+	height: 20px;
+	margin: 2px;
+}
+#choice_button {
+	height: 25px;
+	/*width: 100px;*/
+	float:right;
+	border:1px solid white;
+	font-size: 15px;
+	font-weight: normal;
+	padding: 2px 5px;
+	border-radius: 5px;
+	line-height: 25px;
+	background: rgba(255,255,255,0.2);
+}
+#loginbutton {
+	float: right;
+	font-size: 15px;
+	margin-top: 8px;
+	padding: 1px;
+}
+#programs{
+	height: 80%;
+	overflow: auto;
+	float: right;
+	width: 80%;
+}
+.program {
+	height: 100px;
+	border: 1px solid white;
+	background: rgba(255, 255, 255, 0.2);
+	padding: 20px;
+	margin: 10px;
+	font-size: 20px;
+	border-radius: 30px;
+	color: black;
+}
+.program a {
+	text-decoration: none;
+	font-size: 20px;
+	height: 60px;
+	color: black;
+	font-weight: bold;
+}
+.programsum{
+	height: 90%;
+	width: 100%;
+	overflow: auto;
+	/*border: 1px solid;*/
+	margin: 3px;
+}
+
+#ssh {
+	float: left;
+	height: 60px;
+	width: 50%;
+	border: 1px solid white;
+	background: rgba(255, 255, 255, 0.3);
+	padding: 10px;
+	margin: 10px;
+	font-size: 20px;
+	border-radius: 10px;
+}
+
+#submit {
+	float: right;
+	height: 60px;
+	width: 40%;
+	padding: 10px;
+	margin: 10px;
+	font-size: 20px;
+	border: 1px solid white;
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 10px;
+}
+
+#edit {
+	height: 345px;
+	padding: 10px;
+	margin: 10px;
+	font-size: 20px;
+	float: auto;
+	clear: both;
+	border: 1px solid white;
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 10px;
+}
+#edit_text{
+	height:80%;
+	width:99%;
+	margin:3px;
+	overflow: auto;
+	background: rgba(255, 255, 255, 0.65);
+	padding: 5px;
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	border-radius: 10px;
+}
+
+#result1 {
+	width: 96%;
+	height: 30%;
+	border: 1px solid white;
+	padding: 10px;
+	margin: 10px;
+	font-size: 20px;
+	text-align: left;
+	border-radius: 8px;
+	background: rgba(255, 255, 255, 0.2);
+}
+#result2 {
+	width: 96%;
+	height: 70%;
+	border: 1px solid white;
+	padding: 10px;
+	margin: 10px;
+	font-size: 20px;
+	text-align: left;
+	border-radius: 8px;
+	background: rgba(255, 255, 255, 0.2);
+}
+#box1 {
+	width: 99%;
+	height: 100%;
+	font-size: 20px;
+	padding: 8px;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 5px;
+	font-size: 15px;
+}
+#box2 {
+	width: 99%;
+	height: 68%;
+	font-size: 20px;
+	padding: 8px;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 5px;
+	font-size: 15px;
+	overflow: auto;
+}
+
+
+#result-xxx {
+	height: 300px;
+	width: 100%;
+	border: 1px solid white;
+	font-size: 20px;
+	text-indent: 40em;
+	background: rgba(255, 255, 255, 0.2);
+}
+
+
+.title {
+	width: 90%;
+	height: 1em;
+
+	padding: 10px;
+	margin: 10px;
+	font-size: 20px;
+	text-align: left;
+	clear: both;
+}
+
+.gpu-box {
+	width: 95%;
+	height: 32%;
+	border: 1px #fafafa;
+	border-radius: 30px;
+	padding: 5px;
+	margin: 10px;
+	font-size: 20px;
+	text-align: left;
+	clear: both;
+	overflow: auto;
+}
+
+.gpu-box-each {
+	float: left;
+	width: 30%;
+	height: 80%;
+	/*    border:1px solid white;*/
+	border-radius: 6px;
+	padding: 5px;
+	margin: 10px;
+	font-size: 20px;
+	text-align: left;
+	/*	color: white;
+	background: rgba(0, 0, 0, 0.5);*/
+	background: rgba(255, 255, 255, 0.2);
+}
+
+.gpu-box-each a {
+	text-decoration: none;
+	/*color: white;*/
+}
+
+.information {
+	margin-top: 5px;
+	font-size: 15px;
+	padding: 3px;
+	line-height: 24px;
+	overflow: auto;
+}
+.courseintro{
+	height: 80%;
+	width: 92.5%;
+	float: right;
+	overflow: auto;
+}
+#ssh_button{
+	padding:1px 5px;
+	margin:1px;
+	margin-left: 5px;
+	font-size:15px;
+	background: rgba(255, 255, 255,0.9);
+	color:black;
+	border-radius: 3px;
+}
+#submit_button{
+	padding:1px 5px;
+	margin-top:8px;
+	font-size:15px;
+	background: rgba(255, 255, 255,0.9);
+	color:black;
+	border-radius: 3px;
+}
+#submit_button_file{
+	width:45%;
+	/*border:1px solid;*/
+	padding:1px 5px;
+	margin-top:8px;
+	font-size:15px;
+	/*background: rgba(255, 255, 255,0.9);*/
+	color:black;
+	border-radius: 3px;
+}
+#edit_button{
+	float: right;
+	padding:1px 5px;
+	margin:1px;
+	margin-top:-3px;
+	font-size:15px;
+	background: rgba(255, 255, 255,0.9);
+	color:black;
+	border-radius: 3px;
+}
+
+#course_above{
+	margin:5px;
+	height: 220px;
+	width: 99%;
+	/*border:1px solid;*/
+	clear:both;
+}
+#course_below{
+	margin:5px;
+	height: 295px;
+	width: 99%;
+	/*border:1px solid white;*/
+	clear:both;
+}
+#course_photo {
+	height: 80%;
+	width: 27%;
+	float: left;
+	margin: 10px;
+	padding: 10px;
+	border: 1px solid white;
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 5px;
+	text-align: center;
+}
+#course_photo img{
+	height: 90%;
+	width: 65%;
+}
+#course_notice {
+	height: 165px;
+	width: 60%;
+	float: right;
+	margin: 10px;
+	border: 1px solid white;
+	background: rgba(255, 255, 255, 0.3);
+	padding: 20px;
+	font-size: 20px;
+	border-radius: 5px;
+	overflow: auto;
+}
+#course_notice a{
+	color: black;
+	text-decoration: none;
+	font-size: 18px;
+}
+#course_notice span{
+	color: black;
+	font-size: 25px;
+	font-weight: bold;
+	text-align: 100%;
+}
+.coursegpubox{
+	font-size: 18px;
+	border: 1px solid white;
+	height: 50px;
+	width: 100%;
+	border-radius: 5px;
+	margin-top: 8px;
+	padding: 5px;
+}
+#courseinfo{
+	height: 250px;
+	width: 25.5%;
+	float: left;
+	margin: 0 10px;
+	border: 1px solid white;
+	background: rgba(255, 255, 255, 0.3);
+	padding: 20px;
+	font-size: 20px;
+	border-radius: 5px;
+	overflow: auto;
+}
+#courseinfo a{
+	color: black;
+	text-decoration: none;
+	font-size: 15px;
+}
+
+#coursegpu {
+	height: 250px;
+	width: 60%;
+	float: right;
+	margin: 0px 10px;
+	border: 1px solid white;
+	background: rgba(255, 255, 255, 0.3);
+	padding: 20px;
+	font-size: 20px;
+	border-radius: 5px;
+	overflow: auto;
+}
+#coursegpu a{
+	color: black;
+	text-decoration: none;
+	font-size: 18px;
+}
+#coursegpu span{
+	color: black;
+	font-size: 25px;
+	font-weight: bold;
+	text-align: 100%;
+}
+#notice_xxx{
+	height: 80%;
+	padding: 10px;
+	margin: 10px;
+	font-size: 20px;
+	float: auto;
+	clear: both;
+	border: 1px solid white;
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 5px;
+	overflow: auto;
+}
+#notice_xxx p{
+	text-indent: -156px;
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+}
+#notice_xxx span{
+	text-align: center;
+	font-size: 20px;
+}
+#notice_xxx a{
+	float:left;
+	text-decoration: none;
+	height: 30px;
+	padding: 0 5px;
+	margin:5px 15px 6px 2px;
+	font-size:15px;
+	line-height: 30px;
+	background: rgba(255, 255, 255, 0.2);
+	color:black;
+	text-decoration: none;
+	border:1px solid white;
+	border-radius: 5px;
+}
+#notice_xxx_xxx{
+	height: 360px;
+	padding: 10px 20px;
+	margin: 10px;
+	font-size: 20px;
+	overflow: auto;
+	clear: both;
+	border: 1px solid white;
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 5px;
+}
+#notice_button{
+	float: right;
+	padding:2px 5px;
+	margin:1px 46%;
+	font-size:15px;
+	background: rgba(255, 255, 255,0.9);
+	color:black;
+	border-radius: 3px;
+}
+#new_notice_button{
+	float: right;
+	padding:2px 5px;
+	margin:-30px -5px;
+	font-size:15px;
+	background: rgba(255, 255, 255,0.9);
+	color:black;
+	border-radius: 3px;
+	display: inline;
+}
+#new_notice_submit{
+	float: right;
+	padding:2px 5px;
+	margin:1px;
+	font-size:15px;
+	background: rgba(255, 255, 255,0.9);
+	color:black;
+	border-radius: 3px;
+	text-decoration: none;
+}
+#new_notice_edit {
+	height: 390px;
+	padding: 0 10px;
+	font-size: 20px;
+	float: auto;
+	clear: both;
+	border-radius: 10px;
+}
+#settings{
+	height: 400px;
+	width: 96%;
+	padding: 10px;
+	margin: 10px;
+	float: auto;
+	clear: both;
+	background: rgba(255, 255, 255, 0.3);
+	border: 1px solid white;
+	/*border-radius: 10px;*/
+	overflow: auto;
+}
+#settings p{
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	margin:5px;
+}
+#setting_table{
+	width: 68%;
+	font-size: 20px;
+	color: black;
+	float: left;
+	margin: 10px 15px;
+}
+#setting_table tr td{
+	height: 45px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	/*border: 1px solid;*/
+	text-align: justify;
+	width: 50%;
+	padding: 5px 20px 0 20px;
+	font-size: 18px;
+}
+#setting_table tr th{
+	font-size: 20px;
+	height: 45px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	/*border: 1px solid;*/
+	text-align: justify;
+	width: 30%;
+	padding: 5px 20px 0 20px;
+}
+#setting_img{
+	float: left;
+	margin: 10px;
+	height: 250px;
+	width: 250px;
+	/*border:1px solid;*/
+}
+#setting_img img{
+	width: 100%;
+	height:100%;
+	margin-bottom: 5px;
+	border-radius: 5px;
+}
+#setting_img span{
+	text-align: center;
+/*	margin-left: 85px;
+	margin-top: -55px;*/
+	text-decoration: none;
+	/*border: 1px solid white;*/
+	background: rgba(0,0,0,0.2);
+	position:absolute;
+	top:285px;
+	left:22.45%;
+	width:250px;
+    height:80px;
+    z-index: 1;
+    line-height: 500%;
+    color: (255,255,255,0.2);
+    font-size: 18px;
+    color: white;
+    /*border:1px solid;*/
+    border-radius: 0 0 5px 5px;
+}
+#setting_img a{
+	text-decoration: none;
+}
+
+#upload_img {
+	position:absolute;
+	top:265px;
+	left:22.5%;
+	width:250px;
+    height:100px;
+    z-index: 1;
+    /*border:1px solid;*/
+    opacity: 0;
+}
+#upload_img:hover{
+    cursor: pointer;
+}
+
+
+.setting_button{
+	height: 30px;
+	padding: 1px 5px;
+	float: left;
+	/*margin-left: 2%;*/
+	font-size:15px;
+	line-height: 30px;
+	background: rgba(255, 255, 255, 0.2);
+	color:black;
+	text-decoration: none;
+	border:1px solid white;
+	border-radius: 3px;
+}
+.setting_button:hover{cursor: pointer;}
+#usernameedit{
+	margin:0;
+	padding:0;
+}
+#usernameedit p{
+	color:white;
+	overflow:hidden;
+	height:0;
+	display:block;
+	float:right;
+	margin-top:-22px;
+	/*margin-left:2%;*/
+	font-size:15px;
+	line-height: 30px;
+	color:black;
+	/*border:1px solid;*/
+	/*border-radius: 3px;
+	background: rgba(255, 255, 255, 0.2);*/
+}
+#usernameedit p[open]{height:auto;}
+
+#user_name_button{
+	margin:5px 0 0 0 ;
+	padding:0 5px;
+	font-size:13px;
+	float:right;
+	background: rgba(255, 255, 255, 0.2);
+	color:black;
+	border:1px solid white;
+	border-radius: 2px;
+}
+
+#userimgedit{
+	position:absolute;
+	top:360px;
+	left:22.5%;
+	width:250px;
+    z-index: 1;
+    height: 30px;
+    /*border:1px solid;*/
+}
+#userimgedit p{
+	color:white;
+	overflow:hidden;
+	height:0;
+	width: 64%;
+	display:block;
+	float: left;
+	margin-left:18%;
+	padding: 2px 8px;
+	line-height: 30px;
+	color:black;
+	/*border:1px solid;*/
+	text-align: justify;
+}
+#userimgedit p[open]{height:auto;}
+#userimgedit input{
+	margin: 0; 
+	height:30px;
+	font-size: 15px;
+	line-height: 100%;
+	padding:2px 5px;
+	background: rgba(255, 255, 255, 0.2);
+	color:black;
+	border:1px solid white;
+	border-radius: 3px;
+}
+#couresename{
+	width:95%;
+	height:40px;
+	text-align: center;
+	line-height: 40px;
+	/*border:1px solid;*/
+	margin:3px;
+	clear:both;
+}
+#couresename p{
+	font-size: 25px;
+	font-weight: bold;
+	text-indent: -156px;
+}
+#couresename a{
+	float:left;
+	text-decoration: none;
+	height: 30px;
+	padding: 0 5px;
+	margin:5px;
+	margin-left:8px;
+	font-size:15px;
+	line-height: 30px;
+	background: rgba(255, 255, 255, 0.2);
+	color:black;
+	text-decoration: none;
+	border:1px solid white;
+	border-radius: 5px;
+}
+#re_edit {
+	height: 25px;
+	/*width: 100px;*/
+	float:right;
+	border:1px solid white;
+	font-size: 15px;
+	font-weight: normal;
+	padding: 0 5px;
+	border-radius: 5px;
+	line-height: 25px;
+	background: rgba(255,255,255,0.2);
+	text-decoration:none;
+}
+#left{
+	width: 48%;
+	float: left;
+	height: 100%;
+	/*border:1px solid;*/
+	margin:5px;
+	padding: 5px;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 5px;
+}
+#right{
+	width: 48%;
+	float: left;
+	height: 100%;
+	/*border:1px solid;*/
+	background: rgba(255,255,255,0.2);
+	border-radius: 5px;
+	margin:5px;
+}
+#result1_1 {
+	width: 92%;
+	height: 30%;
+	border: 1px solid white;
+	padding: 10px;
+	margin: 5px;
+	font-size: 20px;
+	text-align: left;
+	border-radius: 5px;
+	background: rgba(255, 255, 255, 0.2);
+}
+#result2_2 {
+	width: 92%;
+	height: 70%;
+	border: 1px solid white;
+	padding: 10px;
+	margin: 5px;
+	font-size: 20px;
+	text-align: left;
+	border-radius: 5px;
+	background: rgba(255, 255, 255, 0.2);
+}
+#box1 {
+	width: 98%;
+	height: 100%;
+	font-size: 20px;
+	padding: 8px;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 5px;
+	font-size: 15px;
+}
+#box2 {
+	width: 98%;
+	height: 68%;
+	font-size: 20px;
+	padding: 8px;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 5px;
+	font-size: 15px;
+	overflow: auto;
+}
+
+
+#result-xxx {
+	height: 300px;
+	width: 100%;
+	border: 1px solid white;
+	font-size: 20px;
+	text-indent: 40em;
+	background: rgba(255, 255, 255, 0.2);
+}
+#re_edit_text{
+	height:90%;
+	width:95%;
+	margin:8px;
+	overflow: auto;
+	background: rgba(255, 255, 255, 0.65);
+	padding: 5px;
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	border-radius: 5px;
+	text-align: left;
+}
+#re_edit_title{
+	width:95%;
+	height:25px;
+	text-align: center;
+	line-height: 25px;
+	/*border:1px solid;*/
+	margin:3px;
+	margin-top: 8px;
+	clear:both;
+	font-size:25px;
+}
+#re_edit_button{
+	float: right;
+	padding:1px 5px;
+	margin:2px;
+	margin-top:-5px;
+	margin-left: 8px;
+	font-size:15px;
+	background: rgba(255, 255, 255,0.9);
+	color:black;
+	border-radius: 3px;
+}

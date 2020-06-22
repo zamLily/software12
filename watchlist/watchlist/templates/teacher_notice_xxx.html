@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>notice</title>
+	<link rel="stylesheet" href="/static/style.css" />
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+</head>
+<body>
+	{% for message in get_flashed_messages() %}
+	    <div class="alert" style="float:left;margin-left:45%;margin-top:8px;text-align:center;font-size:18px;color:black;width:20%;font-weight:bold;">
+	    	{{ message }}
+	    </div>
+	{% endfor %}
+	<div id="container">
+		<div id="header" >
+			<div id="logo">
+	            <img src="/static/pic/logo.png" alt="">
+	            <span>GPU管理系统</span>
+	        </div>
+
+			<div id="other">
+				<form form method="POST" action="/logout/">
+					<a id="login_out" href="/logout/" class="button">退出登录</a>
+					<div id="user_img">
+						<img src="{{ current_user.pic_path }}" alt="image">
+					</div>
+					<div id="user_name">
+						<span>{{ current_user.username }}</span>
+					</div>
+				</form>			
+			</div>
+		</div>
+
+		<div id="main">
+			<div id="aside">
+				<br>
+				<div id="Home Page">
+					<div class="asidepic">
+						<img src="/static/pic/home.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/index_teacher/">主页</a>
+					</div>
+				</div>
+
+				<div id="My courses">
+					<div class="asidepic">
+						<img src="/static/pic/courses.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/my_courses_teacher/">我的课程</a>
+					</div>
+				</div>
+
+				<div id="Process">
+					<div class="asidepic">
+						<img src="/static/pic/process.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/process_teacher/">GPU列表</a>
+					</div>
+				</div>
+
+				<div id="Settings">
+					<div class="asidepic">
+						<img src="/static/pic/settings.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/settings_teacher/">设置</a>
+					</div>
+				</div>
+			</div>
+
+			<div id="content">
+					<div id="notice_xxx">
+						<p>{{message['course_name']}}-{{message['title']}}</p>
+						<div id="notice_xxx_xxx">
+							{{message['info']}}
+						</div>
+						<a id="notice_button" href="/teacher_notice_edit/{{message['id']}}/" class="button" style="margin-left:38%;">修改</a>
+						<form method="post" action="/teacher_notice/">
+							<input id="delete" value="{{ message.id }}" name="delete" style="display: none;">
+							 <input type="submit" id="submit" style="display: none;">
+							 <a id="notice_button" class="button" style="margin-left:15%;"
+							 onclick="$('#submit').trigger('click');">删除</a>
+							
+						</form>
+					</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
