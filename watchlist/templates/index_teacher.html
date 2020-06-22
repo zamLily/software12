@@ -2,10 +2,15 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>home page</title>
-	<link rel="stylesheet" href="/static/style_teacher.css" />
+	<title>Home Page</title>
+	<link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
+	{% for message in get_flashed_messages() %}
+	    <div class="alert" style="float:left;margin-left:45%;margin-top:8px;text-align:center;font-size:18px;color:black;width:20%;font-weight:bold;">
+	    	{{ message }}
+	    </div>
+	{% endfor %}
 	<div id="container">
 		<div id="header" >
 			<div id="logo">
@@ -14,18 +19,15 @@
 	        </div>
 
 			<div id="other">
-				<div id="userinfo">
-					<select name="user" id="user" onchange="window.location=this.value;">
-						<option selected="selected" value="0" class="userselect">
-							<span>{{ current_user.username }}</span>
-						</option>
-						<option value="/teacher_notice/" class="userselect">通知</option>
-						<option value="/logout/" class="userselect">退出登录</option>
-					</select>
-				</div>
-				<div id="user_img">
-					<img src="{{ current_user.pic_path }}" alt="image">
-				</div>				
+				<form form method="POST" action="/logout/">
+					<a id="login_out" href="/logout/" class="button">退出登录</a>
+					<div id="user_img">
+						<img src="{{ current_user.pic_path }}" alt="image">
+					</div>
+					<div id="user_name">
+						<span>{{ current_user.username }}</span>
+					</div>
+				</form>			
 			</div>
 		</div>
 
@@ -55,7 +57,7 @@
 						<img src="/static/pic/process.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/GPUs/">GPU列表</a>
+						<a href="/process_teacher/">GPU列表</a>
 					</div>
 				</div>
 
@@ -67,7 +69,7 @@
 						<a href="/settings_teacher/">设置</a>
 					</div>
 				</div>
-			</div>
+			</div> 
 
 			<div id="content">
 				<div id="my_courses" class="index_box">
@@ -77,65 +79,50 @@
 						</div>
 						我的课程
 					</a>
+					{% for r in relations %}
+					{% for c in courses %}
+					{% if c['name'] == r['course_name'] %}
 					<div class="index_coursebox">
-						<a href="/my_courses_teacher/1/">
+						<a href="/my_courses_teacher/{{ c['id'] }}/">
 							<div class="index_img">
 								<img src="/static/pic/course_.png" alt="">
 							</div>
-							课程1
+							{{ c['name'] }}
 						</a>
 					</div>
-					<div class="index_coursebox">
-						<a href="/my_courses_teacher/2/">
-							<div class="index_img">
-								<img src="/static/pic/course_.png" alt="">
-							</div>
-							课程2
-						</a>
-					</div>
-					<div class="index_coursebox">
-						<a href="/my_courses_teacher/3/">
-							<div class="index_img">
-								<img src="/static/pic/course_.png" alt="">
-							</div>
-							课程3
-						</a>
-					</div>
+					{% endif %}
+					{% endfor %}
+					{% endfor %}
 					<p class="index_box_no">--没有更多课程--</p>
 				</div>
 
 				<div id="my_process" class="index_box">
-					<a href="/GPUs/">
+					<a href="/process_teacher/">
 						<div class="index_img">
 							<img src="/static/pic/process.png" alt="">
 						</div>
 						&nbsp我的GPU
 					</a>
+					{% for r in relations %}
+					{% for g in gpus %}
+					{% for c in courses %}
+					{% if c['name'] == g['course_name'] %}
+					{% if r['course_name']==c['name'] %}
 					<div class="index_coursebox">
-						<a href="/GPUs/1/">
+						<a href="/GPUs/{{ g['id'] }}/">
 							<div class="index_img">
 								<img src="/static/pic/process_.png" alt="">
 							</div>
-							GTX 1080Ti
+							{{g['name']}}
 						</a>
 					</div>
-					<div class="index_coursebox">
-						<a href="/GPUs/2/">
-							<div class="index_img">
-								<img src="/static/pic/process_.png" alt="">
-							</div>
-							RTX 2080Ti
-						</a>
-					</div>
-					<div class="index_coursebox">
-						<a href="/GPUs/3/">
-							<div class="index_img">
-								<img src="/static/pic/process_.png" alt="">
-							</div>
-							Titan RTX
-						</a>
-					</div>
-					<p class="index_box_no">--没有更多进程--</p>
+					{% endif %}
+					{% endif %}
+					{% endfor %}
+					{% endfor %}
+					{% endfor %}
+					
+					<p class="index_box_no">--没有更多GPU--</p>
 				</div>
 
 				<div id="my_message" class="index_box">
@@ -145,22 +132,16 @@
 						</div>
 						&nbsp通知
 					</a>
+					{% for m in messages %}
 					<div class="index_coursebox">
-						<a href="/teacher_notice/1/">
+						<a href="/teacher_notice/{{ m['id'] }}/">
 							<div class="index_img">
 								<img src="/static/pic/process_.png" alt="">
 							</div>
-							message1
+							{{ m['course_name'] }} - {{ m['title'] }}
 						</a>
 					</div>
-					<div class="index_coursebox">
-						<a href="/teacher_notice/2/">
-							<div class="index_img">
-								<img src="/static/pic/process_.png" alt="">
-							</div>
-							message2
-						</a>
-					</div>
+					{% endfor %}
 					<p class="index_box_no">--没有更多通知--</p>
 				</div>
 				

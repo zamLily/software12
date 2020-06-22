@@ -13,47 +13,76 @@ import os
 @app.route('/index_teacher/', methods=['GET', 'POST'])
 # @login_required
 def index_teacher():
-    return render_template('index_teacher.html')
+    courses = Course.query.all()
+    relations = Relation.query.filter_by(user_name=current_user.username).all()
+    processes = Process.query.all()
+    messages = Message.query.all()
+    gpus = GPU.query.all()
+    return render_template('index_teacher.html', gpus=gpus,courses=courses, processes=processes, messages=messages, relations=relations)
 
 # course_xxx_teacher
 @app.route('/my_courses_teacher/<int:id>/', methods=['GET', 'POST'])
 @login_required
 def course_xxx_teacher(id):
     course = Course.query.filter_by(id=id).first()
-    messages = Message.query.all()
-    gpus = GPU.query.all()
-    return render_template('course_xxx_teacher.html', course=course, messages=messages, gpus=gpus)
+    gpus = GPU.query.filter_by(course_name=course.name).first()
+    return render_template('course_xxx_teacher.html', course=course,  gpus=gpus)
 
 # my_courses_teacher
 @app.route('/my_courses_teacher/', methods=['GET', 'POST'])
 # @login_required
 def my_courses_teacher():
-    return render_template('my_courses_teacher.html')
+    courses = Course.query.all()
+    relations = Relation.query.filter_by(user_name=current_user.username).all()
+    return render_template('my_courses_teacher.html', courses=courses, relations=relations)
 
 # new_courses
 @app.route('/new_courses/', methods=['GET', 'POST'])
 # @login_required
 def new_courses():
     return render_template('new_courses.html')
-
+'''
 # GPUs
 @app.route('/GPUs/', methods=['GET', 'POST'])
 # @login_required
 def GPUs():
-    return render_template('GPUs.html')
+    return render_template('GPUs.html')'''
 
 # gpu_xxx_teacher
 @app.route('/GPUs/<int:id>/', methods=['GET', 'POST'])
 @login_required
 def gpu_xxx_teacher(id):
     gpus = GPU.query.filter_by(id=id).first()
-    return render_template('gpu_xxx_teacher.html',gpus=gpus)
+    processes = Process.query.filter_by(gpu_name=gpus.name).all()
+    return render_template('gpu_xxx_teacher.html',gpus=gpus,processes=processes) 
 
-# xxx_teacher
+# process_xxx_teacher
 @app.route('/process_teacher/<int:id>/', methods=['GET', 'POST'])
 # @login_required
-def xxx_teacher(id):
-    return render_template('xxx_teacher.html')
+def process_xxx_teacher(id):
+    process = Process.query.filter_by(id=id).first()
+    return render_template('process_xxx_teacher.html',process=process)
+
+# process_teacher
+@app.route('/process_teacher/', methods=['GET', 'POST'])
+# @login_required
+def process_teacher():
+    relations = Relation.query.filter_by(user_name=current_user.username).all()
+    gpus = GPU.query.all()
+    processes = Process.query.all()
+    courses = Course.query.all()
+    if request.method == 'POST':
+        delete_process_id=request.form['delete_process']
+        process = Process.query.filter_by(id=delete_process_id).first()
+        db.session.delete(process)
+        db.session.commit()
+        relations = Relation.query.filter_by(user_name=current_user.username).all()
+        gpus = GPU.query.all()
+        processes = Process.query.all()
+        courses = Course.query.all()
+        return render_template('process_teacher.html',relations=relations,gpus=gpus,processes=processes,courses=courses)
+
+    return render_template('process_teacher.html',relations=relations,gpus=gpus,processes=processes,courses=courses)
 
 # settings_teacher
 @app.route('/settings_teacher/', methods=['GET', 'POST'])
@@ -101,31 +130,95 @@ def settings_teacher():
 @app.route('/teacher_notice/', methods=['GET', 'POST'])
 # @login_required
 def teacher_notice():
-    return render_template('teacher_notice.html')
+    relations = Relation.query.filter_by(user_name=current_user.username).all()
+    courses = Course.query.all()
+    messages = Message.query.all()
+    if request.method == 'POST':
+        if 'delete' in request.form.keys():
+            delete_id=request.form['delete']
+            message = Message.query.filter_by(id=delete_id).first()
+            db.session.delete(message)
+            db.session.commit()
+            relations = Relation.query.filter_by(user_name=current_user.username).all()
+            courses = Course.query.all()
+            messages = Message.query.all()
+            return render_template('teacher_notice.html', relations=relations,courses=courses, messages=messages)
+        elif "title" in request.form.keys():
+            title=request.form['title']
+            edit=request.form['edit']
+            course_name=request.form['course']
+            message_new = Message(course_name=course_name, title=title, info=edit)
+            db.session.add(message_new)
+            db.session.commit()
+            relations = Relation.query.filter_by(user_name=current_user.username).all()
+            courses = Course.query.all()
+            messages = Message.query.all()
+            return render_template('teacher_notice.html', relations=relations,courses=courses, messages=messages)
+
+    return render_template('teacher_notice.html', relations=relations,courses=courses, messages=messages)
 
 #teacher_notice_xxx
 @app.route('/teacher_notice/<int:id>/', methods=['GET', 'POST'])
 # @login_required
 def teacher_notice_xxx(id):
-    return render_template('teacher_notice_xxx.html')
+    message = Message.query.filter_by(id=id).first()
+    courses = Course.query.all()
+    if request.method == 'POST':
+        title=request.form['title']
+        edit=request.form['edit']
+        message.title=title
+        message.info=edit
+        db.session.add(message)
+        db.session.commit() 
+        message = Message.query.filter_by(id=id).first()
+        courses = Course.query.all()
+        return render_template('teacher_notice_xxx.html', message=message, courses=courses)
+    return render_template('teacher_notice_xxx.html', message=message, courses=courses)
 
 #teacher_notice_new
-@app.route('/teacher_notice_new/', methods=['GET', 'POST'])
+@app.route('/teacher_notice_new/<int:id>/', methods=['GET', 'POST'])
 # @login_required
-def teacher_notice_new():
-    return render_template('teacher_notice_new.html')
+def teacher_notice_new(id):
+    course = Course.query.filter_by(id=id).first()
+    return render_template('teacher_notice_new.html',course=course)
 
 #teacher_notice_edit
-@app.route('/teacher_notice_edit/', methods=['GET', 'POST'])
+@app.route('/teacher_notice_edit/<int:id>/', methods=['GET', 'POST'])
 # @login_required
-def teacher_notice_edit():
-    return render_template('teacher_notice_edit.html')
+def teacher_notice_edit(id):
+    message = Message.query.filter_by(id=id).first()
+    courses = Course.query.all()
+    return render_template('teacher_notice_edit.html', message=message, courses=courses)
 
 #course_student
-@app.route('/course_student/', methods=['GET', 'POST'])
+@app.route('/course_student/<int:id>/', methods=['GET', 'POST'])
 # @login_required
-def course_student():
-    return render_template('course_student.html')
+def course_student(id):
+    course = Course.query.filter_by(id=id).first()
+    relations = Relation.query.filter_by(course_name=course.name).all()
+    relations_stu=[]
+    stu_list=[]
+    for i in relations:
+        if User.query.filter_by(username=i.user_name).first().identity != "teacher":
+            relations_stu.append(i)
+            stu_list.append(i.user_name)
+
+    if request.method == 'POST':
+        import pandas as pd
+        import numpy as np
+        csv_data = pd.read_csv(request.files['stu_file'])
+        print(1)
+        csv_list=list(np.array(csv_data))
+        for i in range(len(csv_list)):
+            if str(csv_list[i][0]) not in stu_list:
+                relation = Relation(user_name=str(csv_list[i][0]), course_name=course.name)
+                db.session.add(relation)
+        db.session.commit()
+        course = Course.query.filter_by(id=id).first()
+        relations = Relation.query.filter_by(course_name=course.name).all()
+        return render_template('course_student.html', course=course, relations=relations_stu)
+
+    return render_template('course_student.html', course=course, relations=relations_stu)
 
 # -------------------------------- 学生端 --------------------------------------------#
 
@@ -383,9 +476,12 @@ def forge():
 
      # 创建课程
      courses = [
-         {'name': '程序设计基础', 'teacher': '谭光', 'time': '2017-2018学年 第1学期', 'info': 'xxx'},
-         {'name': '人工智能原理', 'teacher': '梁小丹', 'time': '2017-2018学年 第1学期', 'info': 'xxx'},
-         {'name': 'xxx实验室', 'teacher': 'xxx', 'time': 'xxx学年 第xx学期', 'info': 'xxx'}
+         {'name': '深度学习', 'teacher': '梁小丹', 'time': '2017-2018学年 第1学期', 'info': '掌握神经网络框架'},
+         {'name': '人工智能原理', 'teacher': '梁小丹', 'time': '2017-2018学年 第1学期', 'info': '实践人工智能项目'},
+         {'name': '红楼实验室', 'teacher': '梁小丹', 'time': '2017-2018学年 第1学期', 'info': '学习医学影像分割'},
+         {'name': '人工神经网络原理', 'teacher': '姜善成', 'time': '2017-2018学年 第1学期', 'info': '实践人工神经网络项目'},
+         {'name': '机器学习', 'teacher': '马倩', 'time': '2017-2018学年 第1学期', 'info': '学习机器学习原理'},
+     
      ]
      for c in courses:
          course = Course(name=c['name'], teacher=c['teacher'], time=c['time'], info=c['info'])
@@ -395,13 +491,13 @@ def forge():
 
     # 创建进程
      processes = [
-         {'name': 'Process 1', 'info': 'xxx', 'result': 'xxxxxxx', 'gpu_name': "GPU_1", 'code': 'print(1)', 'state': '正在运行'},
-         {'name': 'Process 2', 'info': 'xxx', 'result': 'xxxxxxx', 'gpu_name': "GPU_1", 'code': 'print(2)', 'state': '运行完成'},
-         {'name': 'Process 3', 'info': 'xxx', 'result': 'xxxxxxx', 'gpu_name': "GPU_2", 'code': 'print(3)', 'state': '运行完成'},
-         {'name': 'Process 4', 'info': 'xxx', 'result': 'xxxxxxx', 'gpu_name': "GPU_3", 'code': 'print(4)', 'state': '正在运行'},
-         {'name': 'Process 5', 'info': 'xxx', 'result': 'xxxxxxx', 'gpu_name': "GPU_4", 'code': 'print(5)', 'state': '运行完成'},
-         {'name': 'Process 6', 'info': 'xxx', 'result': 'xxxxxxx', 'gpu_name': "GPU_4", 'code': 'print(6)', 'state': '正在运行'},
-         {'name': 'Process 7', 'info': 'xxx', 'result': 'xxxxxxx', 'gpu_name': "GPU_5", 'code': 'print(7)', 'state': '运行完成'}
+         {'name': 'Process 1', 'info': 'simple_1', 'result': '您的计算结果是：1', 'gpu_name': "GPU_1", 'code': 'print(1)', 'state': '正在运行'},
+         {'name': 'Process 2', 'info': 'simple_2', 'result': '您的计算结果是：2', 'gpu_name': "GPU_1", 'code': 'print(2)', 'state': '运行完成'},
+         {'name': 'Process 3', 'info': 'simple_3', 'result': '您的计算结果是：3', 'gpu_name': "GPU_2", 'code': 'print(3)', 'state': '运行完成'},
+         {'name': 'Process 4', 'info': 'simple_4', 'result': '您的计算结果是：4', 'gpu_name': "GPU_3", 'code': 'print(4)', 'state': '正在运行'},
+         {'name': 'Process 5', 'info': 'simple_5', 'result': '您的计算结果是：5', 'gpu_name': "GPU_4", 'code': 'print(5)', 'state': '运行完成'},
+         {'name': 'Process 6', 'info': 'simple_6', 'result': '您的计算结果是：6', 'gpu_name': "GPU_4", 'code': 'print(6)', 'state': '正在运行'},
+         {'name': 'Process 7', 'info': 'simple_7', 'result': '您的计算结果是：7', 'gpu_name': "GPU_5", 'code': 'print(7)', 'state': '运行完成'}
      ]
      for p in processes:
          process = Process(name=p['name'], info=p['info'], result=p['result'], gpu_name=p['gpu_name'], code=p['code'] , state=p['state']  )
@@ -410,17 +506,17 @@ def forge():
 
     # 创建消息
      messages = [
-         {'course_name': '程序设计基础', 'title': '作业提交情况', 'info': '甲乙丙丁四个同学没有交作业'},
-         {'course_name': '程序设计基础', 'title': '报告上交日期', 'info': '请于5.20前上交报告'},
-         {'course_name': '程序设计基础', 'title': 'GPU可使用时间', 'info': '6月的前两周皆可使用'},
+         {'course_name': '深度学习', 'title': '作业提交情况', 'info': '甲乙丙丁四个同学没有交作业'},
+         {'course_name': '深度学习', 'title': '报告上交日期', 'info': '请于5.20前上交报告'},
+         {'course_name': '深度学习', 'title': 'GPU可使用时间', 'info': '6月的前两周皆可使用'},
 
-         {'course_name': '人工智能原理', 'title': '作业提交情况', 'info': '甲乙丙丁四个同学没有交作业'},
-         {'course_name': '人工智能原理', 'title': '报告上交日期', 'info': '请于5.20前上交报告'},
-         {'course_name': '人工智能原理', 'title': 'GPU可使用时间', 'info': '6月的前两周皆可使用'},
+         {'course_name': '人工智能原理', 'title': '作业提交情况', 'info': '甲乙丙三个同学没有交作业'},
+         {'course_name': '人工智能原理', 'title': '报告上交日期', 'info': '请于5.21前上交报告'},
+         {'course_name': '人工智能原理', 'title': 'GPU可使用时间', 'info': '7月的前两周皆可使用'},
 
-         {'course_name': 'xxx实验室', 'title': '作业提交情况', 'info': '甲乙丙丁四个同学没有交作业'},
-         {'course_name': 'xxx实验室', 'title': '报告上交日期', 'info': '请于5.20前上交报告'},
-         {'course_name': 'xxx实验室', 'title': 'GPU可使用时间', 'info': '6月的前两周皆可使用'},
+         {'course_name': '红楼实验室', 'title': '作业提交情况', 'info': '甲乙两人没有交作业'},
+         {'course_name': '红楼实验室', 'title': '报告上交日期', 'info': '请于5.22前上交报告'},
+         {'course_name': '红楼实验室', 'title': 'GPU可使用时间', 'info': '8月的前两周皆可使用'},
      ]
      for m in messages:
          message = Message(course_name=m['course_name'], title=m['title'], info=m['info'])
@@ -429,11 +525,11 @@ def forge():
 
     # 创建gpu
      gpus = [
-         {'name': 'GPU_1', 'info': '空闲', 'course_name': '程序设计基础'},
-         {'name': 'GPU_2', 'info': '占满', 'course_name': '人工智能原理'},
-         {'name': 'GPU_3', 'info': '占满', 'course_name': '程序设计基础'},
+         {'name': 'GPU_1', 'info': '空闲', 'course_name': '深度学习'},
+         {'name': 'GPU_2', 'info': '占满', 'course_name': '人工神经网络原理'},
+         {'name': 'GPU_3', 'info': '占满', 'course_name': '机器学习'},
          {'name': 'GPU_4', 'info': '空闲', 'course_name': '人工智能原理'},
-         {'name': 'GPU_5', 'info': '空闲', 'course_name': 'xxx实验室'}
+         {'name': 'GPU_5', 'info': '空闲', 'course_name': '红楼实验室'}
      ]
      for g in gpus:
          gpu = GPU(name=g['name'], info=g['info'], course_name=g['course_name'])
@@ -442,12 +538,15 @@ def forge():
 
     # 创建关系
      relations = [
-         {'user_name': '1', 'course_name': '程序设计基础'},
-         {'user_name': '1', 'course_name': '人工智能原理'},
-         {'user_name': '1', 'course_name': 'xxx实验室'},
-         {'user_name': '2', 'course_name': '程序设计基础'},
-         {'user_name': '2', 'course_name': '人工智能原理'},
-         {'user_name': '3', 'course_name': '程序设计基础'}
+         {'user_name': '17363029', 'course_name': '深度学习'},
+         {'user_name': '17363029', 'course_name': '人工智能原理'},
+         {'user_name': '17363027', 'course_name': '红楼实验室'},
+         {'user_name': '17363027', 'course_name': '机器学习'},
+         {'user_name': '梁小丹', 'course_name': '深度学习'},
+         {'user_name': '梁小丹', 'course_name': '人工智能原理'},
+         {'user_name': '梁小丹', 'course_name': '红楼实验室'},
+         {'user_name': '姜善成', 'course_name': '人工神经网络原理'},
+         {'user_name': '马倩', 'course_name': '机器学习'},
      ]
      for r in relations:
          relation = Relation(user_name=r['user_name'], course_name=r['course_name'])

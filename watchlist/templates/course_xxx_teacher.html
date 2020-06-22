@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>My Course</title>
-	<link rel="stylesheet" href="/static/style_teacher.css" />
+	<title>课程介绍</title>
+	<link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
 	{% for message in get_flashed_messages() %}
@@ -19,18 +19,15 @@
 	        </div>
 
 			<div id="other">
-				<div id="userinfo">
-					<select name="user" id="user" onchange="window.location=this.value;">
-						<option selected="selected" value="0" class="userselect">
-							<span>{{ current_user.username }}</span>
-						</option>
-						<option value="/teacher_notice/" class="userselect">通知</option>
-						<option value="/logout/" class="userselect">退出登录</option>
-					</select>
-				</div>
-				<div id="user_img">
-					<img src="{{ current_user.pic_path }}" alt="image">
-				</div>				
+				<form form method="POST" action="/logout/">
+					<a id="login_out" href="/logout/" class="button">退出登录</a>
+					<div id="user_img">
+						<img src="{{ current_user.pic_path }}" alt="image">
+					</div>
+					<div id="user_name">
+						<span>{{ current_user.username }}</span>
+					</div>
+				</form>			
 			</div>
 		</div>
 
@@ -60,7 +57,7 @@
 						<img src="/static/pic/process.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/GPUs/">GPU列表</a>
+						<a href="/process_teacher/">GPU列表</a>
 					</div>
 				</div>
 
@@ -73,14 +70,22 @@
 					</div>
 				</div>
 			</div>
+
 			<div id="content">
-			<form method="POST" action="/course_student/">
-				<input id="course_student_button" type="submit" class="button is-info" value="选课学生情况">
-			</form>
+				<form method="POST" action="/">
+					<div id="notice_xxx">
+						<p>课程介绍</p>
+						<div id="notice_xxx_xxx">
+							{{course['info']}}
+						</div>
+						<a id="notice_button" href="/course_student/{{course['id']}}/" class="button" style="margin-left:20%;">选课学生情况</a>
+						<a id="notice_button" href="/GPUs/{{gpus['id']}}/" class="button" style="margin-left:35%;">使用的GPU</a>
+					</div>
+				</form>
 			</div>
-
-
 		</div>
 
+	</div>
 </body>
 </html>
+				

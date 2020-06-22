@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>GPUs</title>
-	<link rel="stylesheet" href="/static/style_teacher.css" />
+	<title>GPU</title>
+	<link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
 	{% for message in get_flashed_messages() %}
@@ -19,18 +19,15 @@
 	        </div>
 
 			<div id="other">
-				<div id="userinfo">
-					<select name="user" id="user" onchange="window.location=this.value;">
-						<option selected="selected" value="0" class="userselect">
-							<span>{{ current_user.username }}</span>
-						</option>
-						<option value="/teacher_notice/" class="userselect">通知</option>
-						<option value="/logout/" class="userselect">退出登录</option>
-					</select>
-				</div>
-				<div id="user_img">
-					<img src="{{ current_user.pic_path }}" alt="image">
-				</div>				
+				<form form method="POST" action="/logout/">
+					<a id="login_out" href="/logout/" class="button">退出登录</a>
+					<div id="user_img">
+						<img src="{{ current_user.pic_path }}" alt="image">
+					</div>
+					<div id="user_name">
+						<span>{{ current_user.username }}</span>
+					</div>
+				</form>			
 			</div>
 		</div>
 
@@ -60,7 +57,7 @@
 						<img src="/static/pic/process.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/GPUs/">GPU列表</a>
+						<a href="/process_teacher/">GPU列表</a>
 					</div>
 				</div>
 
@@ -73,9 +70,28 @@
 					</div>
 				</div>
 			</div>
+			<div id="content">
+				{% for p in processes %}
+				<div id="program1" class="program">
+					<a href="/process_teacher/{{ p['id'] }}/">
+						<div class="index_img">
+							<img src="/static/pic/process_.png" alt="">
+						</div>
+						{{ p['name'] }} - in {{ p['gpu_name'] }}
+					</a>
+					<div class="programsum">
+						<p>{{ p['info'] }}</p>
+					</div>
+				</div>
+				{% endfor %}
 
+				<p class="index_box_no">--没有更多进程--</p>
+			</div>
 
+			
 		</div>
 
+	</div>
 </body>
 </html>
+				

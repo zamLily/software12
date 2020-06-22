@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
-	<title>添加课程</title>
-	<link rel="stylesheet" href="/static/style.css" />
+	<title>Process</title>
+	<link rel="stylesheet" href="/static/style_student.css" />
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
 </head>
+
 <body>
 	{% for message in get_flashed_messages() %}
-	    <div class="alert" style="float:left;margin-left:45%;margin-top:8px;text-align:center;font-size:18px;color:black;width:20%;font-weight:bold;">
-	    	{{ message }}
-	    </div>
+	<div class="alert"
+		style="float:left;margin-left:45%;margin-top:8px;text-align:center;font-size:18px;color:black;width:20%;font-weight:bold;">
+		{{ message }}
+	</div>
 	{% endfor %}
 	<div id="container">
-		<div id="header" >
+		<div id="header">
 			<div id="logo">
-	            <img src="/static/pic/logo.png" alt="">
-	            <span>GPU管理系统</span>
-	        </div>
+				<img src="/static/pic/logo.png" alt="">
+				<span>GPU管理系统</span>
+			</div>
 
 			<div id="other">
 				<form form method="POST" action="/logout/">
@@ -27,7 +32,7 @@
 					<div id="user_name">
 						<span>{{ current_user.username }}</span>
 					</div>
-				</form>			
+				</form>
 			</div>
 		</div>
 
@@ -71,10 +76,45 @@
 				</div>
 			</div>
 
-			
+			<div id="content">
+				<div id="result1">
+
+					<p style="font-weight:bold;margin-bottom:5px;">
+						{{ process.name }} - {{ process.info }} - 运行情况
+					</p>
+					<div id="box1">
+						<p>
+							{{ process.state }}
+						</p>
+					</div>
+				</div>
+
+				<div id="result2">
+					<form method="post" action="/process_teacher/">
+						<input id="delete_process" value="{{ process.id }}" name="delete_process" style="display: none;">
+ 						<input type="submit" id="submit" style="display: none;">
+						<a id="re_edit" class="button" style="margin-right:82%;"
+							onclick="$('#submit').trigger('click');">
+							删除进程
+						</a>
+						
+					</form>
+					<!-- <a id="re_edit" href="/process_edit/{{ process.id }}/" class="button" style="margin-right:20px;">
+						修改代码
+					</a> -->
+					<p style="font-weight:bold;margin-bottom:5px;">
+						运行结果
+					</p>
+					<p id="box2">
+						{{ process.result }}
+					</p>
+				</div>
+
+
+			</div>
+
 		</div>
 
-	</div>
 </body>
+
 </html>
-				
