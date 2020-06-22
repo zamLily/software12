@@ -48,12 +48,14 @@ class Relation(db.Model):
     user_name = db.Column(db.String(50), db.ForeignKey('User.username'))  # 存储用户名（记得包括老师本人）
     course_name = db.Column(db.String(50), db.ForeignKey('Course.name'))  # 用户对应的课程
 
+
+# GPU和课程关系table
 class GPU_course(db.Model):
     __tablename__ = 'GPU_course'
 
-    id = db.Column(db.Integer, primary_key=True)  # id（主键）
-    gpu_name = db.Column(db.String(50), db.ForeignKey('GPU.name'))  # 存储用户名（记得包括老师本人）
-    course_name = db.Column(db.String(50), db.ForeignKey('Course.name'))  # 用户对应的课程
+    id = db.Column(db.Integer, primary_key=True)                            # id（主键）
+    gpu_name = db.Column(db.String(50), db.ForeignKey('GPU.name'))          # GPU的名称
+    course_name = db.Column(db.String(50), db.ForeignKey('Course.name'))    # GPU对应的课程
 
 
 # 程序table
