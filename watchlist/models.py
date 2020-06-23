@@ -67,6 +67,7 @@ class Process(db.Model):
     state = db.Column(db.String(50))                                # 是否运行完成
     result = db.Column(db.String(1000))                             # 程序的结果
     code = db.Column(db.String(10000))                              # 存储代码，方便以后编辑代码
+    course_name = db.Column(db.String(50), db.ForeignKey('Course.name'))  # 程序所属的课程
     gpu_name = db.Column(db.String(50), db.ForeignKey('GPU.name'))  # 程序在哪个gpu上跑的
 
 # 消息table

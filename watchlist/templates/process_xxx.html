@@ -73,12 +73,16 @@
 
 			<div id="content">
 				<div id="result1">
-					<a id="re_edit" href="/" class="button" style="margin-right:5px;margin-top:-2px;">
-						返回xxx课程页面
+					{% for c in courses %}
+					{% if c['name'] == process['course_name'] %}
+					<a id="re_edit" href="/my_courses/all_courses/{{ c['id'] }}/" class="button" style="margin-right:5px;margin-top:-2px;">
+						返回{{ process.course_name }}课程页面
 						<div class="asidepic" style="margin:3px -2px;">
 							<img src="/static/pic/back.png" alt="">
 						</div>
 					</a>
+					{% endif %}
+					{% endfor %}
 					<p style="font-weight:bold;margin-bottom:5px;">
 						{{ process.name }} - {{ process.info }} - 运行情况
 					</p>

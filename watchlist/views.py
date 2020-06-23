@@ -429,7 +429,8 @@ def index():
     courses = Course.query.all()
     relations = Relation.query.filter_by(user_name=current_user.username).all()
     processes = Process.query.all()
-    messages = Message.query.all()
+    messages = Message.query.order_by(Message.id.desc()).all()
+    print(messages)
     return render_template('index.html', courses=courses, processes=processes, messages=messages, relations=relations)
 
 # submit
@@ -527,7 +528,7 @@ def settings():
             current_user.inclass = newclass
             db.session.add(current_user)
             db.session.commit()  # 提交数据库会话
- 
+
     return render_template('settings.html')
 
 # my_courses
@@ -550,9 +551,11 @@ def all_courses():
 @login_required
 def course_xxx(id):
     course = Course.query.filter_by(id=id).first()
-    messages = Message.query.all()
+    messages = Message.query.order_by(Message.id.desc()).all()
+    gpuc = GPU_course.query.filter_by(course_name=course.name).all()
+
     gpus = GPU.query.all()
-    return render_template('course_xxx.html', course=course, messages=messages, gpus=gpus)
+    return render_template('course_xxx.html', course=course, messages=messages, gpuc=gpuc, gpus=gpus)
 
 # process
 @app.route('/process/', methods=['GET', 'POST'])
@@ -566,9 +569,10 @@ def process():
 @login_required
 def process_xxx(id):
     process = Process.query.filter_by(id=id).first()
-    return render_template('process_xxx.html', process=process)
+    courses = Course.query.all()
+    return render_template('process_xxx.html', process=process, courses=courses)
 
-'''
+"""
 # process_xxx_run
 # http://127.0.0.1:5000/process/1/run/misaka/test.py/120.78.13.73/22/1314ILYmm/
 @app.route('/process/<int:id>/run/<string:user>/<string:file_name>/<string:ip>/<int:port>/<string:password>/', methods=['GET', 'POST'])
@@ -584,7 +588,7 @@ def process_xxx_run(id,user,file_name,ip,port,password):
 
     processes = Process.query.all()
     return render_template('process.html', processes=processes)
-'''
+"""
 
 
 # process_edit
@@ -600,8 +604,9 @@ def process_edit(id):
 @login_required
 def stu_notice():
     courses = Course.query.all()
-    messages = Message.query.all()
-    return render_template('stu_notice.html', courses=courses, messages=messages)
+    messages = Message.query.order_by(Message.id.desc()).all()
+    relations = Relation.query.filter_by(user_name=current_user.username).all()
+    return render_template('stu_notice.html', courses=courses, messages=messages, relations=relations)
 
 # stu_notice_xxx
 @app.route('/message/<int:id>/', methods=['GET', 'POST'])
@@ -634,16 +639,16 @@ def forge():
 
     # 创建进程
      processes = [
-         {'name': 'Process 1', 'info': 'simple_1', 'result': '您的计算结果是：1', 'gpu_name': "NO.1-1080Ti", 'code': 'print(1)', 'state': '正在运行'},
-         {'name': 'Process 2', 'info': 'simple_2', 'result': '您的计算结果是：2', 'gpu_name': "NO.1-1080Ti", 'code': 'print(2)', 'state': '运行完成'},
-         {'name': 'Process 3', 'info': 'simple_3', 'result': '您的计算结果是：3', 'gpu_name': "NO.2-1070", 'code': 'print(3)', 'state': '运行完成'},
-         {'name': 'Process 4', 'info': 'simple_4', 'result': '您的计算结果是：4', 'gpu_name': "NO.3-P100", 'code': 'print(4)', 'state': '正在运行'},
-         {'name': 'Process 5', 'info': 'simple_5', 'result': '您的计算结果是：5', 'gpu_name': "NO.4-RTX2080Ti", 'code': 'print(5)', 'state': '运行完成'},
-         {'name': 'Process 6', 'info': 'simple_6', 'result': '您的计算结果是：6', 'gpu_name': "NO.4-RTX2080Ti", 'code': 'print(6)', 'state': '正在运行'},
-         {'name': 'Process 7', 'info': 'simple_7', 'result': '您的计算结果是：7', 'gpu_name': "NO.5-1080Ti", 'code': 'print(7)', 'state': '运行完成'}
+         {'name': 'Process 1', 'info': 'simple_1', 'result': '您的计算结果是：1', 'course_name': '深度学习', 'gpu_name': "NO.1-1080Ti", 'code': 'print(1)', 'state': '正在运行'},
+         {'name': 'Process 2', 'info': 'simple_2', 'result': '您的计算结果是：2', 'course_name': '深度学习', 'gpu_name': "NO.1-1080Ti", 'code': 'print(2)', 'state': '运行完成'},
+         {'name': 'Process 3', 'info': 'simple_3', 'result': '您的计算结果是：3', 'course_name': '人工智能原理', 'gpu_name': "NO.2-1070", 'code': 'print(3)', 'state': '运行完成'},
+         {'name': 'Process 4', 'info': 'simple_4', 'result': '您的计算结果是：4', 'course_name': '机器学习', 'gpu_name': "NO.3-P100", 'code': 'print(4)', 'state': '正在运行'},
+         {'name': 'Process 5', 'info': 'simple_5', 'result': '您的计算结果是：5', 'course_name': '人工智能原理', 'gpu_name': "NO.4-RTX2080Ti", 'code': 'print(5)', 'state': '运行完成'},
+         {'name': 'Process 6', 'info': 'simple_6', 'result': '您的计算结果是：6', 'course_name': '人工智能原理', 'gpu_name': "NO.4-RTX2080Ti", 'code': 'print(6)', 'state': '正在运行'},
+         {'name': 'Process 7', 'info': 'simple_7', 'result': '您的计算结果是：7', 'course_name': '红楼实验室', 'gpu_name': "NO.5-1080Ti", 'code': 'print(7)', 'state': '运行完成'}
      ]
      for p in processes:
-         process = Process(name=p['name'], info=p['info'], result=p['result'], gpu_name=p['gpu_name'], code=p['code'] , state=p['state']  )
+         process = Process(name=p['name'], info=p['info'], result=p['result'], course_name=p['course_name'], gpu_name=p['gpu_name'], code=p['code'] , state=p['state']  )
          db.session.add(process)
      db.session.commit()
 
