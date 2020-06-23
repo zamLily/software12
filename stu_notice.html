@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>GPU管理系统【进程修改】</title>
+	<title>GPU管理系统【通知】</title>
 	<link rel="stylesheet" href="/static/style_student.css" />
 </head>
 <body>
@@ -72,42 +72,36 @@
 			</div>
 
 			<div id="content">
-				<div id="left">
-					<div id="result1_1">
-						<p style="font-weight:bold;margin-bottom:5px;">
-							{{ process.name }} - {{ process.info }} - 运行情况
-						</p>
-						<div id="box1" >
-							<p>
-								{{ process.state }}
-							</p>
+				{% for r in relations %}
+				{% for c in courses %}
+				{% if c['name'] == r['course_name'] %}
+				<div id="coure_notice" class="index_box">
+					<a href="/my_courses/">
+						<div class="index_img">
+							<img src="/static/pic/courses.png" alt="">
 						</div>
+						<p>{{ c['name'] }}</p>
+					</a>
+
+					{% for m in messages %}
+					{% if m['course_name'] == c['name'] %}
+					<div class="index_coursebox">
+						<a href="/message/{{ m['id'] }}/">
+							<div class="index_img">
+								<img src="/static/pic/message_.png" alt="">
+							</div>
+							<span>{{ m['title'] }}</span>
+						</a>
 					</div>
+					{% endif %}
+					{% endfor %}
+				{% endif %}
+				{% endfor %}
 
-					<div id="result2_2">
-						<p style="font-weight:bold;margin-bottom:5px;">
-							运行结果
-						</p>
-						<p id="box2" >
-							{{ process.result }}
-						</p>
-					</div>
+				<p style="clear:both;text-align:center;margin:10px;">--没有更多消息--</p>
 				</div>
-
-				<div id="right">
-					<div id="re_edit_title">
-						<p style="font-weight:bold;margin-bottom:5px;">
-							重新编辑
-						</p>
-					</div>			
-					<textarea id="re_edit_text" name="edit" cols="80" rows="25">{{ process.code }}</textarea>
-					<input id="re_edit_button" type="submit" class="#" value="重新运行">
-				</div>
-				
-
-
+				{% endfor %}
 			</div>
-
 		</div>
 
 </body>

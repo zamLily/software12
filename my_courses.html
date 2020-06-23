@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>GPU管理系统【进程修改】</title>
+	<title>GPU管理系统【我的课程】</title>
 	<link rel="stylesheet" href="/static/style_student.css" />
 </head>
 <body>
@@ -72,40 +72,47 @@
 			</div>
 
 			<div id="content">
-				<div id="left">
-					<div id="result1_1">
-						<p style="font-weight:bold;margin-bottom:5px;">
-							{{ process.name }} - {{ process.info }} - 运行情况
-						</p>
-						<div id="box1" >
-							<p>
-								{{ process.state }}
-							</p>
+				{% for r in relations %}
+				{% for c in courses %}
+				{% if c['name'] == r['course_name'] %}
+				<div id="程序设计" class="index_box">
+					<a href="/my_courses/all_courses/{{ c['id'] }}/">
+						<div class="index_img">
+							<img src="/static/pic/courses.png" alt="">
 						</div>
-					</div>
-
-					<div id="result2_2">
-						<p style="font-weight:bold;margin-bottom:5px;">
-							运行结果
-						</p>
-						<p id="box2" >
-							{{ process.result }}
-						</p>
+						{{ c['name'] }}
+					</a>
+					<div id="程序设计info" class="information">
+						<div id="teacherpic" class="teacherpic">
+							<img src="/static/pic/teacher.png" alt="">
+						</div>
+						<strong id="程序设计teacher">{{ c['teacher'] }}&nbsp</strong>
+						<span id="程序设计term">{{ c['time'] }}</span>
+						<div class="courseintro">
+							<p>课程简介：{{ c['info'] }}</p>
+						</div>
+						
 					</div>
 				</div>
+				{% endif %}
+				{% endfor %}
+				{% endfor %}
 
-				<div id="right">
-					<div id="re_edit_title">
-						<p style="font-weight:bold;margin-bottom:5px;">
-							重新编辑
-						</p>
-					</div>			
-					<textarea id="re_edit_text" name="edit" cols="80" rows="25">{{ process.code }}</textarea>
-					<input id="re_edit_button" type="submit" class="#" value="重新运行">
+				<div id="add" class="index_box">
+					<a href="/my_courses/all_courses/">
+						<div class="index_img">
+							<img src="/static/pic/look.png" alt="">
+						</div>
+						<p>看看别的课程</p>
+					</a>
+					<div id="xxxinfo" class="information">
+						<div class="index_img" style="margin-top:-2px;">
+							<img src="/static/pic/look_.png" alt="">
+						</div>
+						<p>看看还有什么其他课程</p>
+					</div>
 				</div>
-				
-
-
+				<p style="clear:both;" class="index_box_no">--没有更多课程--</p>
 			</div>
 
 		</div>

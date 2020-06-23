@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>GPU管理系统【进程修改】</title>
+	<title>GPU管理系统【我的进程】</title>
 	<link rel="stylesheet" href="/static/style_student.css" />
 </head>
 <body>
@@ -72,43 +72,25 @@
 			</div>
 
 			<div id="content">
-				<div id="left">
-					<div id="result1_1">
-						<p style="font-weight:bold;margin-bottom:5px;">
-							{{ process.name }} - {{ process.info }} - 运行情况
-						</p>
-						<div id="box1" >
-							<p>
-								{{ process.state }}
-							</p>
+				{% for p in processes %}
+				<div id="program1" class="program">
+					<a href="/process/{{ p['id'] }}/">
+						<div class="index_img">
+							<img src="/static/pic/process_.png" alt="">
 						</div>
-					</div>
-
-					<div id="result2_2">
-						<p style="font-weight:bold;margin-bottom:5px;">
-							运行结果
-						</p>
-						<p id="box2" >
-							{{ process.result }}
-						</p>
+						{{ p['name'] }} - in {{ p['gpu_name'] }}
+						<span style="font-weight:normal;">(xxx课程)</span>
+					</a>
+					<div class="programsum">
+						<p>{{ p['info'] }}</p>
 					</div>
 				</div>
+				{% endfor %}
 
-				<div id="right">
-					<div id="re_edit_title">
-						<p style="font-weight:bold;margin-bottom:5px;">
-							重新编辑
-						</p>
-					</div>			
-					<textarea id="re_edit_text" name="edit" cols="80" rows="25">{{ process.code }}</textarea>
-					<input id="re_edit_button" type="submit" class="#" value="重新运行">
-				</div>
-				
-
-
+				<p class="index_box_no">--没有更多进程--</p>
 			</div>
-
 		</div>
 
+	</div>
 </body>
 </html>
