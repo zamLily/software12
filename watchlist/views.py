@@ -413,15 +413,20 @@ def index():
 #@login_required
 def submit(id):
     if request.method == 'POST':
-        #GPU服务器1信息(暂用，后面改数据库读取)
-        ip = '120.78.13.73'
-        port = 22
-        username = 'root'
-        password = '1314ILYmm'
+        # #GPU服务器1信息(暂用，后面改数据库读取)（下面已实现）
+        # ip = '120.78.13.73'
+        #port = 22
+        #username = 'root'
+        #password = '1314ILYmm'
+        gpu = GPU.query.filter_by(id=id).first()
+        ip = gpu.ip
+        port = gpu.port
+        username = gpu.username
+        password = gpu.password
         #下面需要用户提供（1.用户名 2.选择上传的代码文件路径）
         #1.用户名（直接读取）
         user = 'misaka'
-        # user = current_user.username (这个登录后测试)
+        # user = current_user.username (这个登录后测试，记得改)
         #2.需要上传代码文件的路径
         localfile = r'C:\Users\Administrator\ruangong\software12\watchlist\17364082徐海川.py'
         #测试结果：可以有中文，不能有空格
@@ -582,7 +587,6 @@ def stu_notice_xxx(id):
     return render_template('stu_notice_xxx.html', message=message, courses=courses)
 
 
-
 @app.cli.command()
 def forge():
      # Generate fake data.
@@ -639,8 +643,13 @@ def forge():
          db.session.add(message)
      db.session.commit()
 
+        # ip = '120.78.13.73'
+        # port = 22
+        # username = 'root'
+        # password = '1314ILYmm'
     # 创建gpu
      gpus = [
+<<<<<<< HEAD
          {'name': 'GPU_1', 'info': '空闲'},
          {'name': 'GPU_2', 'info': '占满'},
          {'name': 'GPU_3', 'info': '占满'},
@@ -649,6 +658,16 @@ def forge():
      ]
      for g in gpus:
          gpu = GPU(name=g['name'], info=g['info'])
+=======
+        {'name': 'GPU_1', 'info': '空闲','ip':'120.78.13.73', 'port':22, 'username':'root', 'password':'1314ILYmm'},
+        {'name': 'GPU_2', 'info': '空闲','ip':'120.78.13.73', 'port':22, 'username':'root', 'password':'1314ILYmm'},
+        {'name': 'GPU_3', 'info': '空闲','ip':'120.78.13.73', 'port':22, 'username':'root', 'password':'1314ILYmm'},
+        {'name': 'GPU_4', 'info': '空闲','ip':'120.78.13.73', 'port':22, 'username':'root', 'password':'1314ILYmm'},
+        {'name': 'GPU_5', 'info': '空闲','ip':'120.78.13.73', 'port':22, 'username':'root', 'password':'1314ILYmm'}
+     ]
+     for g in gpus:
+         gpu = GPU(name=g['name'], info=g['info'],ip=g['ip'],port=g['port'],username=g['username'],password=g['password'])
+>>>>>>> d2c60b1ab03789de150db7374cc0b8e1a095c538
          db.session.add(gpu)
      db.session.commit()
 

@@ -84,14 +84,14 @@ class GPU(db.Model):
     __tablename__ = 'GPU'
 
     id = db.Column(db.Integer, primary_key=True)    # id（主键）
-    name = db.Column(db.String(50))                 # gpu的名称
+    name = db.Column(db.String(30))                 # gpu的名称
     info = db.Column(db.String(1000))               # gpu是否空闲
 
     # 配置和操作需要使用的参数
-    ip = db.Column(db.String(100))                  # ip
-    port = db.Column(db.String(50))                 # port
-    username = db.Column(db.String(50))             # username
-    password = db.Column(db.String(50))             # password
+    ip = db.Column(db.String(20))                  # ip
+    port = db.Column(db.Integer)                 # port
+    username = db.Column(db.String(40))             # username
+    password = db.Column(db.String(40))             # password
 """
 class Student(db.Model, UserMixin):
     __tablename__ = 'origin'
