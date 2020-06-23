@@ -5,6 +5,7 @@ import click
 from watchlist import app, db
 from watchlist.models import *
 from watchlist.ssh_1 import *
+from watchlist.submit import *
 import os
 
 # -------------------------------- 教师端 --------------------------------------------#
@@ -317,18 +318,42 @@ def index():
     courses = Course.query.all()
     relations = Relation.query.filter_by(user_name=current_user.username).all()
     processes = Process.query.all()
-    messages = Message.query.order_by(Message.id.desc()).all()
-    print(messages)
+    messages = Message.query.all()
     return render_template('index.html', courses=courses, processes=processes, messages=messages, relations=relations)
 
 # submit
+# curl -X POST http://127.0.0.1:5000/submit/1/
 @app.route('/submit/<int:id>/', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def submit(id):
+    if request.method == 'POST':
+        #GPU服务器1信息(暂用，后面改数据库读取)
+        ip = '120.78.13.73'
+        port = 22
+        username = 'root'
+        password = '1314ILYmm'
+        #下面需要用户提供（1.用户名 2.选择上传的代码文件路径）
+        #1.用户名（直接读取）
+        user = 'misaka'
+        # user = current_user.username (这个登录后测试)
+        #2.需要上传代码文件的路径
+        localfile = r'C:\Users\Administrator\ruangong\software12\watchlist\17364082徐海川.py'
+        #测试结果：可以有中文，不能有空格
+        #提取文件名
+        (path_temp,file_name) = os.path.split(localfile)
+        #file_name = 'test.py'
+        remotefile = r'/root/code/'+file_name
+        submit_file(localfile,remotefile,ip,port,username,password)
+        res = docker_test(user,file_name,ip,port,username,password)
+        # 本地存储用户代码输出的文件名
+        filename = user + file_name + '.txt'
+        with open(filename, 'w') as file_object:
+            file_object.write(res)
+        #flash("success")
+
     courses = Course.query.all()
     gpu = GPU.query.filter_by(id=id).first()
-    gpuc = GPU_course.query.filter_by(gpu_name=gpu.name).all()
-    return render_template('submit.html', courses=courses, gpu=gpu, gpuc=gpuc)
+    return render_template('submit.html', courses=courses, gpu=gpu)
 
 # settings
 @app.route('/settings/', methods=['GET', 'POST'])
@@ -409,11 +434,9 @@ def all_courses():
 @login_required
 def course_xxx(id):
     course = Course.query.filter_by(id=id).first()
-    messages = Message.query.order_by(Message.id.desc()).all()
-    gpuc = GPU_course.query.filter_by(course_name=course.name).all()
-
+    messages = Message.query.all()
     gpus = GPU.query.all()
-    return render_template('course_xxx.html', course=course, messages=messages, gpuc=gpuc, gpus=gpus)
+    return render_template('course_xxx.html', course=course, messages=messages, gpus=gpus)
 
 # process
 @app.route('/process/', methods=['GET', 'POST'])
@@ -429,6 +452,7 @@ def process_xxx(id):
     process = Process.query.filter_by(id=id).first()
     return render_template('process_xxx.html', process=process)
 
+'''
 # process_xxx_run
 # http://127.0.0.1:5000/process/1/run/misaka/test.py/120.78.13.73/22/1314ILYmm/
 @app.route('/process/<int:id>/run/<string:user>/<string:file_name>/<string:ip>/<int:port>/<string:password>/', methods=['GET', 'POST'])
@@ -444,7 +468,7 @@ def process_xxx_run(id,user,file_name,ip,port,password):
 
     processes = Process.query.all()
     return render_template('process.html', processes=processes)
-
+'''
 
 
 # process_edit
@@ -460,9 +484,8 @@ def process_edit(id):
 @login_required
 def stu_notice():
     courses = Course.query.all()
-    messages = Message.query.order_by(Message.id.desc()).all()
-    relations = Relation.query.filter_by(user_name=current_user.username).all()
-    return render_template('stu_notice.html', courses=courses, messages=messages, relations=relations)
+    messages = Message.query.all()
+    return render_template('stu_notice.html', courses=courses, messages=messages)
 
 # stu_notice_xxx
 @app.route('/message/<int:id>/', methods=['GET', 'POST'])
@@ -512,17 +535,15 @@ def forge():
     # 创建消息
      messages = [
          {'course_name': '深度学习', 'title': '作业提交情况', 'info': '甲乙丙丁四个同学没有交作业'},
-         {'course_name': '人工智能原理', 'title': '作业提交情况', 'info': '甲乙丙三个同学没有交作业'}, \
-         {'course_name': '红楼实验室', 'title': '作业提交情况', 'info': '甲乙两人没有交作业'},
-
          {'course_name': '深度学习', 'title': '报告上交日期', 'info': '请于5.20前上交报告'},
-         {'course_name': '人工智能原理', 'title': '报告上交日期', 'info': '请于5.21前上交报告'},
          {'course_name': '深度学习', 'title': 'GPU可使用时间', 'info': '6月的前两周皆可使用'},
 
-         {'course_name': '红楼实验室', 'title': '报告上交日期', 'info': '请于5.22前上交报告'},
+         {'course_name': '人工智能原理', 'title': '作业提交情况', 'info': '甲乙丙三个同学没有交作业'},
+         {'course_name': '人工智能原理', 'title': '报告上交日期', 'info': '请于5.21前上交报告'},
          {'course_name': '人工智能原理', 'title': 'GPU可使用时间', 'info': '7月的前两周皆可使用'},
 
-
+         {'course_name': '红楼实验室', 'title': '作业提交情况', 'info': '甲乙两人没有交作业'},
+         {'course_name': '红楼实验室', 'title': '报告上交日期', 'info': '请于5.22前上交报告'},
          {'course_name': '红楼实验室', 'title': 'GPU可使用时间', 'info': '8月的前两周皆可使用'},
      ]
      for m in messages:
@@ -532,18 +553,18 @@ def forge():
 
     # 创建gpu
      gpus = [
-         {'name': 'GPU_1', 'info': '空闲'},
-         {'name': 'GPU_2', 'info': '占满'},
-         {'name': 'GPU_3', 'info': '占满'},
-         {'name': 'GPU_4', 'info': '空闲'},
-         {'name': 'GPU_5', 'info': '空闲'}
+         {'name': 'GPU_1', 'info': '空闲', 'course_name': '深度学习'},
+         {'name': 'GPU_2', 'info': '占满', 'course_name': '人工神经网络原理'},
+         {'name': 'GPU_3', 'info': '占满', 'course_name': '机器学习'},
+         {'name': 'GPU_4', 'info': '空闲', 'course_name': '人工智能原理'},
+         {'name': 'GPU_5', 'info': '空闲', 'course_name': '红楼实验室'}
      ]
      for g in gpus:
-         gpu = GPU(name=g['name'], info=g['info'])
+         gpu = GPU(name=g['name'], info=g['info'], course_name=g['course_name'])
          db.session.add(gpu)
      db.session.commit()
 
-    # 创建用户-课程关系
+    # 创建关系
      relations = [
          {'user_name': '17363029', 'course_name': '深度学习'},
          {'user_name': '17363029', 'course_name': '人工智能原理'},
@@ -560,19 +581,6 @@ def forge():
          db.session.add(relation)
      db.session.commit()
 
-
-     # 创建GPU-课程关系
-     GPU_courses = [
-         {'gpu_name': 'GPU_1', 'course_name': '深度学习'},
-         {'gpu_name': 'GPU_2', 'course_name': '人工智能原理'},
-         {'gpu_name': 'GPU_3', 'course_name': '机器学习'},
-         {'gpu_name': 'GPU_4', 'course_name': '人工智能原理'},
-         {'gpu_name': 'GPU_5', 'course_name': '红楼实验室'}
-     ]
-     for gc in GPU_courses:
-         gpu_course = GPU_course(gpu_name=gc['gpu_name'], course_name=gc['course_name'])
-         db.session.add(gpu_course)
-     db.session.commit()
 
 """
 @app.cli.command()
