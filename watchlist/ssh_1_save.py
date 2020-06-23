@@ -54,7 +54,7 @@ class DockerApi():
 
     def create_container(self, student_id, image_id):
         try:
-            command = 'sudo docker run -itd --rm --name={0} {1} /bin/bash'.format(student_id, image_id)
+            command = 'sudo docker run -itd --rm --gpus=all --name={0} {1} /bin/bash'.format(student_id, image_id)
             # print(command)
             self.container_id = self.ssh_client.ssh_exec_cmd(command)[:12]
         except Exception as e:
@@ -80,26 +80,9 @@ class DockerApi():
         self.ssh_client.ssh_exec_cmd(stop_cmd)
 
 
-# def docker_test(user,file_name):
-#     clinet = SSHManager('120.78.13.73', 22, 'root', '1314ILYmm')
-#     api = DockerApi(clinet)
-#     api.create_container(user, 'tensorflow/tensorflow')
-#     # 用户代码在服务器上的路径+代码文件名
-#     result = api.train_file('/root/code', file_name)
-#     api.stop_container()
-#     return result
-
-# user = 'misaka'
-# file_name = 'test.py'
-# res = docker_test(user,file_name)
-# # 本地存储用户代码输出的文件名
-# filename = 'test_tst.txt'
-# with open(filename, 'w') as file_object:
-#     file_object.write(res)
-
 def docker_test(user,file_name,ip,port,username,password):
-    # clinet = SSHManager('120.78.13.73', 22, 'root', '1314ILYmm')
-    clinet = SSHManager(ip, port, username, password)
+    clinet = SSHManager('120.78.13.73', 22, 'root', '1314ILYmm')
+    # clinet = SSHManager(ip, port, username, password)
     api = DockerApi(clinet)
     api.create_container(user, 'tensorflow/tensorflow')
     # 用户代码在服务器上的路径+代码文件名
@@ -108,14 +91,14 @@ def docker_test(user,file_name,ip,port,username,password):
     api.stop_container()
     return result
 
-# user = 'misaka'
-# file_name = 'test.py'
-# ip = '120.78.13.73'
-# port = 22
-# password = '1314ILYmm'
-# username = 'root'
-# res = docker_test(user,file_name,ip,port,username,password)
-# #本地存储用户代码输出的文件名
-# filename = 'test_tst.txt'
-# with open(filename, 'w') as file_object:
-#    file_object.write(res)
+user = 'misaka'
+file_name = 'test.py'
+ip = '120.78.13.73'
+port = 22
+password = '1314ILYmm'
+username = 'root'
+res = docker_test(user,file_name,ip,port,username,password)
+#本地存储用户代码输出的文件名
+filename = 'test_tst.txt'
+with open(filename, 'w') as file_object:
+   file_object.write(res)
