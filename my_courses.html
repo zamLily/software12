@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>GPU管理系统【我的课程】</title>
+	<link rel="stylesheet" href="/static/style_student.css" />
+</head>
+<body>
+	{% for message in get_flashed_messages() %}
+	    <div class="alert" style="float:left;margin-left:45%;margin-top:8px;text-align:center;font-size:18px;color:black;width:20%;font-weight:bold;">
+	    	{{ message }}
+	    </div>
+	{% endfor %}
+	<div id="container">
+		<div id="header" >
+			<div id="logo">
+	            <img src="/static/pic/logo.png" alt="">
+	            <span>GPU管理系统</span>
+	        </div>
+
+			<div id="other">
+				<form form method="POST" action="/logout/">
+					<a id="login_out" href="/logout/" class="button">退出登录</a>
+					<div id="user_img">
+						<img src="{{ current_user.pic_path }}" alt="image">
+					</div>
+					<div id="user_name">
+						<span>{{ current_user.username }}</span>
+					</div>
+				</form>			
+			</div>
+		</div>
+
+		<div id="main">
+			<div id="aside">
+				<br>
+				<div id="Home Page">
+					<div class="asidepic">
+						<img src="/static/pic/home.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/index/">主页</a>
+					</div>
+				</div>
+
+				<div id="My courses">
+					<div class="asidepic">
+						<img src="/static/pic/courses.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/my_courses/">我的课程</a>
+					</div>
+				</div>
+
+				<div id="Process">
+					<div class="asidepic">
+						<img src="/static/pic/process.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/process/">进程</a>
+					</div>
+				</div>
+
+				<div id="Settings">
+					<div class="asidepic">
+						<img src="/static/pic/settings.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/settings/">设置</a>
+					</div>
+				</div>
+			</div>
+
+			<div id="content">
+				{% for r in relations %}
+				{% for c in courses %}
+				{% if c['name'] == r['course_name'] %}
+				<div id="程序设计" class="index_box">
+					<a href="/my_courses/all_courses/{{ c['id'] }}/">
+						<div class="index_img">
+							<img src="/static/pic/courses.png" alt="">
+						</div>
+						{{ c['name'] }}
+					</a>
+					<div id="程序设计info" class="information">
+						<div id="teacherpic" class="teacherpic">
+							<img src="/static/pic/teacher.png" alt="">
+						</div>
+						<strong id="程序设计teacher">{{ c['teacher'] }}&nbsp</strong>
+						<span id="程序设计term">{{ c['time'] }}</span>
+						<div class="courseintro">
+							<p>课程简介：{{ c['info'] }}</p>
+						</div>
+						
+					</div>
+				</div>
+				{% endif %}
+				{% endfor %}
+				{% endfor %}
+
+				<div id="add" class="index_box">
+					<a href="/my_courses/all_courses/">
+						<div class="index_img">
+							<img src="/static/pic/look.png" alt="">
+						</div>
+						<p>看看别的课程</p>
+					</a>
+					<div id="xxxinfo" class="information">
+						<div class="index_img" style="margin-top:-2px;">
+							<img src="/static/pic/look_.png" alt="">
+						</div>
+						<p>看看还有什么其他课程</p>
+					</div>
+				</div>
+				<p style="clear:both;" class="index_box_no">--没有更多课程--</p>
+			</div>
+
+		</div>
+
+</body>
+</html>
