@@ -128,6 +128,15 @@ def process_teacher():
     gpus = GPU_course.query.all()
     processes = Process.query.all()
     courses = Course.query.all()
+    distinct_gpus=[]
+    for r in relations:
+        for c in courses:
+            if c.name==r.course_name:
+                for g in gpus:
+                    if g.course_name==c.name:
+                        distinct_gpus.append(g.gpu_name)
+    distinct_gpus=list(set(distinct_gpus))
+    
     if request.method == 'POST':
         button_name = request.form['submit_name']
         if button_name == "删除":
@@ -139,7 +148,15 @@ def process_teacher():
             gpus = GPU_course.query.all()
             processes = Process.query.all()
             courses = Course.query.all()
-            return render_template('process_teacher.html',relations=relations,gpus=gpus,processes=processes,courses=courses)
+            distinct_gpus=[]
+            for r in relations:
+                for c in courses:
+                    if c.name==r.course_name:
+                        for g in gpus:
+                            if g.course_name==c.name:
+                                distinct_gpus.append(g.gpu_name)
+            distinct_gpus=list(set(distinct_gpus))
+            return render_template('process_teacher.html',relations=relations,gpus=distinct_gpus,processes=processes,courses=courses)
         if button_name == " 创 建 ": 
             ip=request.form['ip']
             port=request.form['port']
@@ -161,8 +178,16 @@ def process_teacher():
             gpus = GPU_course.query.all()
             processes = Process.query.all()
             courses = Course.query.all()
-            return render_template('process_teacher.html',relations=relations,gpus=gpus,processes=processes,courses=courses)
-    return render_template('process_teacher.html',relations=relations,gpus=gpus,processes=processes,courses=courses)
+            distinct_gpus=[]
+            for r in relations:
+                for c in courses:
+                    if c.name==r.course_name:
+                        for g in gpus:
+                            if g.course_name==c.name:
+                                distinct_gpus.append(g.gpu_name)
+            distinct_gpus=list(set(distinct_gpus))
+            return render_template('process_teacher.html',relations=relations,gpus=distinct_gpus,processes=processes,courses=courses)
+    return render_template('process_teacher.html',relations=relations,gpus=distinct_gpus,processes=processes,courses=courses)
 
 # settings_teacher
 @app.route('/settings_teacher/', methods=['GET', 'POST'])
@@ -609,13 +634,13 @@ def forge():
 
     # 创建进程
      processes = [
-         {'name': 'Process 1', 'info': 'simple_1', 'result': '您的计算结果是：1', 'gpu_name': "GPU_1", 'code': 'print(1)', 'state': '正在运行'},
-         {'name': 'Process 2', 'info': 'simple_2', 'result': '您的计算结果是：2', 'gpu_name': "GPU_1", 'code': 'print(2)', 'state': '运行完成'},
-         {'name': 'Process 3', 'info': 'simple_3', 'result': '您的计算结果是：3', 'gpu_name': "GPU_2", 'code': 'print(3)', 'state': '运行完成'},
-         {'name': 'Process 4', 'info': 'simple_4', 'result': '您的计算结果是：4', 'gpu_name': "GPU_3", 'code': 'print(4)', 'state': '正在运行'},
-         {'name': 'Process 5', 'info': 'simple_5', 'result': '您的计算结果是：5', 'gpu_name': "GPU_4", 'code': 'print(5)', 'state': '运行完成'},
-         {'name': 'Process 6', 'info': 'simple_6', 'result': '您的计算结果是：6', 'gpu_name': "GPU_4", 'code': 'print(6)', 'state': '正在运行'},
-         {'name': 'Process 7', 'info': 'simple_7', 'result': '您的计算结果是：7', 'gpu_name': "GPU_5", 'code': 'print(7)', 'state': '运行完成'}
+         {'name': 'Process 1', 'info': 'simple_1', 'result': '您的计算结果是：1', 'gpu_name': "NO.1-1080Ti", 'code': 'print(1)', 'state': '正在运行'},
+         {'name': 'Process 2', 'info': 'simple_2', 'result': '您的计算结果是：2', 'gpu_name': "NO.1-1080Ti", 'code': 'print(2)', 'state': '运行完成'},
+         {'name': 'Process 3', 'info': 'simple_3', 'result': '您的计算结果是：3', 'gpu_name': "NO.2-1070", 'code': 'print(3)', 'state': '运行完成'},
+         {'name': 'Process 4', 'info': 'simple_4', 'result': '您的计算结果是：4', 'gpu_name': "NO.3-P100", 'code': 'print(4)', 'state': '正在运行'},
+         {'name': 'Process 5', 'info': 'simple_5', 'result': '您的计算结果是：5', 'gpu_name': "NO.4-RTX2080Ti", 'code': 'print(5)', 'state': '运行完成'},
+         {'name': 'Process 6', 'info': 'simple_6', 'result': '您的计算结果是：6', 'gpu_name': "NO.4-RTX2080Ti", 'code': 'print(6)', 'state': '正在运行'},
+         {'name': 'Process 7', 'info': 'simple_7', 'result': '您的计算结果是：7', 'gpu_name': "NO.5-1080Ti", 'code': 'print(7)', 'state': '运行完成'}
      ]
      for p in processes:
          process = Process(name=p['name'], info=p['info'], result=p['result'], gpu_name=p['gpu_name'], code=p['code'] , state=p['state']  )
@@ -649,25 +674,14 @@ def forge():
         # password = '1314ILYmm'
     # 创建gpu
      gpus = [
-<<<<<<< HEAD
-         {'name': 'GPU_1', 'info': '空闲'},
-         {'name': 'GPU_2', 'info': '占满'},
-         {'name': 'GPU_3', 'info': '占满'},
-         {'name': 'GPU_4', 'info': '空闲'},
-         {'name': 'GPU_5', 'info': '空闲'}
-     ]
-     for g in gpus:
-         gpu = GPU(name=g['name'], info=g['info'])
-=======
-        {'name': 'GPU_1', 'info': '空闲','ip':'120.78.13.73', 'port':22, 'username':'root', 'password':'1314ILYmm'},
-        {'name': 'GPU_2', 'info': '空闲','ip':'120.78.13.73', 'port':22, 'username':'root', 'password':'1314ILYmm'},
-        {'name': 'GPU_3', 'info': '空闲','ip':'120.78.13.73', 'port':22, 'username':'root', 'password':'1314ILYmm'},
-        {'name': 'GPU_4', 'info': '空闲','ip':'120.78.13.73', 'port':22, 'username':'root', 'password':'1314ILYmm'},
-        {'name': 'GPU_5', 'info': '空闲','ip':'120.78.13.73', 'port':22, 'username':'root', 'password':'1314ILYmm'}
+        {'name': 'NO.1-1080Ti', 'info': '空闲','ip':'120.78.13.73', 'port':22, 'username':'root', 'password':'1314ILYmm'},
+        {'name': 'NO.2-1070', 'info': '空闲','ip':'120.78.13.73', 'port':22, 'username':'root', 'password':'1314ILYmm'},
+        {'name': 'NO.3-P100', 'info': '空闲','ip':'120.78.13.73', 'port':22, 'username':'root', 'password':'1314ILYmm'},
+        {'name': 'NO.4-RTX2080Ti', 'info': '空闲','ip':'120.78.13.73', 'port':22, 'username':'root', 'password':'1314ILYmm'},
+        {'name': 'NO.5-1080Ti', 'info': '空闲','ip':'120.78.13.73', 'port':22, 'username':'root', 'password':'1314ILYmm'}
      ]
      for g in gpus:
          gpu = GPU(name=g['name'], info=g['info'],ip=g['ip'],port=g['port'],username=g['username'],password=g['password'])
->>>>>>> d2c60b1ab03789de150db7374cc0b8e1a095c538
          db.session.add(gpu)
      db.session.commit()
 
@@ -691,11 +705,11 @@ def forge():
 
      # 创建GPU-课程关系
      GPU_courses = [
-         {'gpu_name': 'GPU_1', 'course_name': '深度学习'},
-         {'gpu_name': 'GPU_2', 'course_name': '人工智能原理'},
-         {'gpu_name': 'GPU_3', 'course_name': '机器学习'},
-         {'gpu_name': 'GPU_4', 'course_name': '人工智能原理'},
-         {'gpu_name': 'GPU_5', 'course_name': '红楼实验室'}
+         {'gpu_name': 'NO.1-1080Ti', 'course_name': '深度学习'},
+         {'gpu_name': 'NO.2-1070', 'course_name': '人工智能原理'},
+         {'gpu_name': 'NO.3-P100', 'course_name': '机器学习'},
+         {'gpu_name': 'NO.4-RTX2080Ti', 'course_name': '人工智能原理'},
+         {'gpu_name': 'NO.5-1080Ti', 'course_name': '红楼实验室'}
      ]
      for gc in GPU_courses:
          gpu_course = GPU_course(gpu_name=gc['gpu_name'], course_name=gc['course_name'])

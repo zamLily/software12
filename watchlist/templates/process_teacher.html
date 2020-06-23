@@ -75,21 +75,16 @@
 			</div>
 
 			<div id="content">
-				{% for r in relations %}
-
-				{% for c in courses %}
-				{% if c['name']==r['course_name'] %}
 				{% for g in gpus %}
-				{% if g['course_name']==c['name'] %}
 				<div id="gpu_process" class="index_box">
-					<a href="/GPUs/{{g['id']}}/">
+					<a href="/GPUs/{{g[3:4]}}/">
 						<div class="index_img">
 							<img src="/static/pic/gpu.png" alt="">
 						</div>
-						{{g['gpu_name']}}
+						{{g}}
 					</a>
 					{% for p in processes %}
-					{% if p['gpu_name']==g['gpu_name'] %}
+					{% if p['gpu_name']==g %}
 					<div class="index_coursebox">
 						<a href="/process_teacher/{{p['id']}}/">
 							<div class="index_img">
@@ -102,10 +97,6 @@
 					{% endfor %}
 					<p class="index_box_no">--没有更多进程--</p>
 				</div>
-				{% endif %}
-				{% endfor %}
-				{% endif %}
-				{% endfor %}
 				{% endfor %}
 
 

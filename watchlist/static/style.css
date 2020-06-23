@@ -1026,12 +1026,8 @@ html {
 .new_course_button{
     height: 30px;
     padding: 1px 5px;
-<<<<<<< HEAD
-    margin: 0 auto;
-=======
     float: right;
     /*margin-left: 2%;*/
->>>>>>> d2c60b1ab03789de150db7374cc0b8e1a095c538
     font-size:15px;
     line-height: 30px;
     background: rgba(255, 255, 255, 0.2);
@@ -1042,15 +1038,9 @@ html {
 }
 
 #new_course_table{
-<<<<<<< HEAD
-    width: 90%;
-    height: 60%;
-    font-size: 16px;
-=======
     width: 50%;
     height: 70%;
     font-size: 20px;
->>>>>>> d2c60b1ab03789de150db7374cc0b8e1a095c538
     color: black;
     float: left;
     margin: 10px 15px;
@@ -1120,30 +1110,4 @@ html {
 }
 #course_upload_img:hover{
     cursor: pointer;
-<<<<<<< HEAD
 }
-
-.new_course_gpu_box {
-    height: 55%;
-    padding: 10px;
-    margin: 10px;
-    font-size: 20px;
-    float: auto;
-    clear: both;
-    border: 1px solid white;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-    overflow: auto;
-}
-
-#new_gpu_table{
-    width: 500px;
-    height: 200px;
-    font-size: 16px;
-    color: black;
-    margin: 10px 15px;
-}
-
-=======
-}
->>>>>>> d2c60b1ab03789de150db7374cc0b8e1a095c538
