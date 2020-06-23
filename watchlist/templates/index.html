@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>home page</title>
+	<title>GPU管理系统【主页】</title>
 	<link rel="stylesheet" href="/static/style.css"/>
 </head>
 <body>
@@ -104,13 +104,14 @@
 						</div>
 						&nbsp我的进程
 					</a>
+
 					{% for p in processes %}
 					<div class="index_coursebox">
 						<a href="/process/{{ p['id'] }}/">
 							<div class="index_img">
 								<img src="/static/pic/process_.png" alt="">
 							</div>
-							{{ p['name'] }} - in {{ p['gpu_name'] }}
+							xxx课程 - {{ p['name'] }} - in {{ p['gpu_name'] }}
 						</a>
 					</div>
 					{% endfor %}
