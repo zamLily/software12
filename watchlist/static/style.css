@@ -70,7 +70,7 @@ html {
 	width: 80px;
 	height: 88%;
 	float: right;
-	margin:1px -23px 1px 0;
+	margin:1px -10px 1px 0;
 	padding: 1px;
 	color: black;
 	text-align: right;
@@ -573,7 +573,7 @@ html {
 }
 #course_photo {
 	height: 80%;
-	width: 25%;
+	width: 27%;
 	float: left;
 	margin: 10px;
 	padding: 10px;
@@ -586,9 +586,29 @@ html {
 	height: 90%;
 	width: 70%;
 }
+#course_photo span{
+	text-align: center;
+/*	margin-left: 85px;
+	margin-top: -55px;*/
+	text-decoration: none;
+	/*border: 1px solid white;*/
+	background: rgba(0,0,0,0.2);
+	position:absolute;
+	top:173px;
+	left:21.3%;
+	width:23%;
+    height:80px;
+    z-index: 1;
+    line-height: 500%;
+    color: (255,255,255,0.2);
+    font-size: 18px;
+    color: white;
+    /*border:1px solid;*/
+    border-radius: 0 0 5px 5px;
+}
 #course_notice {
 	height: 165px;
-	width: 60%;
+	width: 27%;
 	float: right;
 	margin: 10px;
 	border: 1px solid white;
@@ -609,6 +629,29 @@ html {
 	font-weight: bold;
 	text-align: 100%;
 }
+#course_student_choice {
+	height: 165px;
+	width: 27%;
+	float: right;
+	margin: 10px;
+	border: 1px solid white;
+	background: rgba(255, 255, 255, 0.3);
+	padding: 20px;
+	font-size: 20px;
+	border-radius: 5px;
+	overflow: auto;
+}
+#course_student_choice a{
+	color: black;
+	text-decoration: none;
+	font-size: 18px;
+}
+#course_student_choice span{
+	color: black;
+	font-size: 25px;
+	font-weight: bold;
+	text-align: 100%;
+}
 .coursegpubox{
 	font-size: 18px;
 	border: 1px solid white;
@@ -620,7 +663,7 @@ html {
 }
 #courseinfo{
 	height: 250px;
-	width: 25%;
+	width: 25.5%;
 	float: left;
 	margin: 0 10px;
 	border: 1px solid white;
@@ -661,7 +704,7 @@ html {
 	text-align: 100%;
 }
 #notice_xxx{
-	height: 75%;
+	height: 80%;
 	padding: 10px;
 	margin: 10px;
 	font-size: 20px;
@@ -682,7 +725,7 @@ html {
 	font-size: 20px;
 }
 #notice_xxx_xxx{
-	height: 350px;
+	height: 360px;
 	padding: 10px 20px;
 	margin: 10px;
 	font-size: 20px;
@@ -907,3 +950,118 @@ html {
 	border:1px solid white;
 	border-radius: 3px;
 }
+
+.new_course_box {
+    height: 300px;
+    width: 40%;
+    float: left;
+    margin: 25px;
+    border: 1px solid white;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 8px;
+    overflow: auto;
+}
+
+.new_course_button{
+    height: 30px;
+    padding: 1px 5px;
+    margin: 0 auto;
+    font-size:15px;
+    line-height: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    color:black;
+    text-decoration: none;
+    border:1px solid white;
+    border-radius: 3px;
+}
+
+#new_course_table{
+    width: 90%;
+    height: 60%;
+    font-size: 16px;
+    color: black;
+    float: left;
+    margin: 10px 15px;
+}
+#course_above{
+	margin:5px;
+	height: 220px;
+	width: 99%;
+	/*border:1px solid;*/
+	clear:both;
+}
+#course_below{
+	margin:5px;
+	height: 295px;
+	width: 99%;
+	/*border:1px solid white;*/
+	clear:both;
+}
+#courseimgedit{
+	position:absolute;
+	top:360px;
+	left:22.5%;
+	width:250px;
+    z-index: 1;
+    height: 30px;
+    /*border:1px solid;*/
+}
+#courseimgedit p{
+	color:white;
+	overflow:hidden;
+	height:0;
+	width: 100%;
+	display:block;
+	float: right;
+	margin-left:22%;
+	margin-top:-307.3px;
+	padding: 2px 8px;
+	line-height: 30px;
+	color:black;
+	/*border:1px solid;*/
+	text-align: justify;
+}
+#courseimgedit p[open]{height:auto;}
+#courseimgedit input{
+	margin: 0; 
+	height:30px;
+	font-size: 15px;
+	line-height: 100%;
+	padding:2px 5px;
+	background: rgba(255, 255, 255, 0.2);
+	color:black;
+	border:1px solid white;
+	/*border-radius: 3px;*/
+}
+#courseimgedit input:hover{
+    cursor: pointer;
+}
+#course_upload_img {
+	position:absolute;
+	top:173px;
+	left:21.3%;
+	width:250px;
+    height:100px;
+    z-index: 1;
+    /*border:1px solid;*/
+    opacity: 0;
+}
+#course_upload_img:hover{
+    cursor: pointer;
+}
+
+.new_course_gpu_box {
+    height: 30%;
+    padding: 10px;
+    margin: 10px;
+    font-size: 20px;
+    float: auto;
+    clear: both;
+    border: 1px solid white;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    overflow: auto;
+}
+

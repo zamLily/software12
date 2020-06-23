@@ -86,10 +86,10 @@
 						<div class="index_img">
 							<img src="/static/pic/gpu.png" alt="">
 						</div>
-						{{g['name']}}
+						{{g['gpu_name']}}
 					</a>
 					{% for p in processes %}
-					{% if p['gpu_name']==g['name'] %}
+					{% if p['gpu_name']==g['gpu_name'] %}
 					<div class="index_coursebox">
 						<a href="/process_teacher/{{p['id']}}/">
 							<div class="index_img">

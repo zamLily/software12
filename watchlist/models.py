@@ -38,6 +38,7 @@ class Course(db.Model):
     teacher = db.Column(db.String(50))            # 任课老师
     time = db.Column(db.String(50))               # 授课时间（学年、学期）
     info = db.Column(db.String(300))              # 课程其他信息
+    pic_path = db.Column(db.String(128), default="/static/pic/course_logo.png") # 课程头像
 
 
 # 用户-课程关系table

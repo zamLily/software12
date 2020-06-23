@@ -17,7 +17,7 @@ def index_teacher():
     relations = Relation.query.filter_by(user_name=current_user.username).all()
     processes = Process.query.all()
     messages = Message.query.all()
-    gpus = GPU.query.all()
+    gpus = GPU_course.query.all()
     return render_template('index_teacher.html', gpus=gpus,courses=courses, processes=processes, messages=messages, relations=relations)
 
 # course_xxx_teacher
@@ -25,8 +25,31 @@ def index_teacher():
 @login_required
 def course_xxx_teacher(id):
     course = Course.query.filter_by(id=id).first()
-    gpus = GPU.query.filter_by(course_name=course.name).first()
-    return render_template('course_xxx_teacher.html', course=course,  gpus=gpus)
+    messages = Message.query.all()
+    relations = Relation.query.filter_by(course_name=course.name).all()
+    relations_stu=[]
+    for i in relations:
+        if User.query.filter_by(username=i.user_name).first().identity != "teacher":
+            relations_stu.append(i)
+    gpus = GPU_course.query.filter_by(course_name=course.name).first()
+    if request.method == 'POST':
+        button_name = request.form['submit_name']
+        if button_name == "确定":
+            img = request.files.get('course_upload_img')
+            basepath = os.path.dirname(__file__)
+            file_path = os.path.join(basepath, 'static/photo', img.filename)
+            #path = "/static/photo/"
+            #file_path = path + img.filename
+            img.save(file_path)
+            pic_path = os.path.join('/static/photo', img.filename)
+            course.pic_path = pic_path
+            db.session.add(course)
+            db.session.commit()  # 提交数据库会话
+
+        if button_name == "取消":
+            return render_template('course_xxx_teacher.html', relations=relations_stu,messages=messages,course=course,  gpus=gpus)
+
+    return render_template('course_xxx_teacher.html',relations=relations_stu, messages=messages,course=course,  gpus=gpus)
 
 # my_courses_teacher
 @app.route('/my_courses_teacher/', methods=['GET', 'POST'])
@@ -52,8 +75,8 @@ def GPUs():
 @app.route('/GPUs/<int:id>/', methods=['GET', 'POST'])
 @login_required
 def gpu_xxx_teacher(id):
-    gpus = GPU.query.filter_by(id=id).first()
-    processes = Process.query.filter_by(gpu_name=gpus.name).all()
+    gpus = GPU_course.query.filter_by(id=id).first()
+    processes = Process.query.filter_by(gpu_name=gpus.gpu_name).all()
     return render_template('gpu_xxx_teacher.html',gpus=gpus,processes=processes) 
 
 # process_xxx_teacher
@@ -68,7 +91,7 @@ def process_xxx_teacher(id):
 # @login_required
 def process_teacher():
     relations = Relation.query.filter_by(user_name=current_user.username).all()
-    gpus = GPU.query.all()
+    gpus = GPU_course.query.all()
     processes = Process.query.all()
     courses = Course.query.all()
     if request.method == 'POST':
@@ -77,7 +100,7 @@ def process_teacher():
         db.session.delete(process)
         db.session.commit()
         relations = Relation.query.filter_by(user_name=current_user.username).all()
-        gpus = GPU.query.all()
+        gpus = GPU_course.query.all()
         processes = Process.query.all()
         courses = Course.query.all()
         return render_template('process_teacher.html',relations=relations,gpus=gpus,processes=processes,courses=courses)
@@ -207,7 +230,6 @@ def course_student(id):
         import pandas as pd
         import numpy as np
         csv_data = pd.read_csv(request.files['stu_file'])
-        print(1)
         csv_list=list(np.array(csv_data))
         for i in range(len(csv_list)):
             if str(csv_list[i][0]) not in stu_list:

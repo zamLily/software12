@@ -70,6 +70,91 @@
 					</div>
 				</div>
 			</div>
+            
+            <div id="content">
+                <form method="POST" action="/">
+                    <div id="notice_xxx">
+                        <p>创建课程</p>
+                        
+                        <div id="课程信息" class="new_course_box">
+                            <h>课程信息</h>
+                            <table id="new_course_table">
+                                <br/>
+                                <br/>
+                                
+                                <tr></tr>
+                                <tr>
+                                  <th>课程名称</th>
+                                  <td>
+                                      <input type="text" name="course_name" value="课程名称" style="width:199px">
+                                  </td>
+                                  
+                                </tr>
+                                
+                                <tr>
+                                  <th>授课老师</th>
+                                  <td>
+                                     <input type="text" name="course_teacher" value="授课老师" style="width:199px">
+                                  </td>
+                                  
+                                </tr>
+                                
+                                <tr>
+                                  <th>课程时间</th>
+                                  <td>
+                                      <input type="text" name="time" value="课程时间" style="width:199px">
+                                  </td>
+                                  
+                                </tr>
+                                
+                                <tr>
+                                  <th>课程简介</th>
+                                  <td>
+                                      <textarea name="reworkmes"   style="OVERFLOW:   hidden;height:120px;width:200px"></textarea>
+                                  </td>
+                                  
+                                </tr>
+                                
+                            </table>
+                            
+                        </div>
+                        
+                        <div id="选择GPU" class="new_course_box">
+                            <h>选择GPU</h>
+                            <br/>
+                            <br/>
+                            
+                            <div id="添加GPU" class="new_course_gpu_box">
+                                <h>GPU</h>
+                                <br/>
+                                <font size="3"><input type="checkbox" name="category" value="1080 Ti"/>1080 Ti</font>
+                                <font size="3"><input type="checkbox" name="category" value="2080 Ti"/>2080 Ti</font>
+                            </div>
+
+                           
+                            <table id="new_course_table">
+            
+                                <tr>
+                                  <th>添加新的GPU</th>
+                                  <td>
+                                      <span class="new_course_button" onClick="spanClick1();">添加</span>
+                                  </td>
+                                  
+                                </tr>
+                                
+                            </table>
+                            
+                        </div>
+                        
+                        <div align="center">
+                        <span class="new_course_button" onClick="spanClick1();">确认</span>
+                        </div>
+                        
+                    </div>
+                </form>
+                
+                
+            </div>
 
 			
 		</div>

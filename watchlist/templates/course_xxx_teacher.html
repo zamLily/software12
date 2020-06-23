@@ -72,17 +72,141 @@
 			</div>
 
 			<div id="content">
-				<form method="POST" action="/">
-					<div id="notice_xxx">
-						<p>课程介绍</p>
-						<div id="notice_xxx_xxx">
-							{{course['info']}}
+				<form method="POST" action="/my_courses_teacher/{{course['id']}}/" enctype=multipart/form-data>
+				<div id="course_above">
+					<div id="course_photo">
+						<img id="course_img" src="{{ course['pic_path'] }}" alt="image">
+						<span>修改头像</span>
+						<input type="file" name="course_upload_img" id="course_upload_img" onchange="getFileContent();" onClick="spanClick0();">
+						<div id="courseimgedit">
+							<p id="course_img_edit">
+								<input type="submit" name="submit_name" value="确定">
+								<br>
+								<input type="submit" name="submit_name" value="取消" style="margin-top:5px;">
+							</p>
 						</div>
-						<a id="notice_button" href="/course_student/{{course['id']}}/" class="button" style="margin-left:20%;">选课学生情况</a>
-						<a id="notice_button" href="/GPUs/{{gpus['id']}}/" class="button" style="margin-left:35%;">使用的GPU</a>
+						<script>
+						function spanClick0(){
+						    var obj=document.getElementById("course_img_edit");
+						    var att=obj.getAttribute("open");
+						    if(att!="open"){
+						        obj.setAttribute("open","open");
+						        }
+						    else{
+						        obj.removeAttribute("open");
+						        }
+						    }
+						</script>
+						</div>
+						<script>
+							var div_img=document.querySelector("#course_photo");
+							function getFileContent(){
+								var reader=new FileReader();
+								var file=document.querySelector("#course_upload_img").files;
+								console.log(file)
+								reader.readAsDataURL(file[0]);
+								reader.onload=function(){
+								console.log(reader.result);
+								document.querySelector("#course_img").src=reader.result;
+								}
+							}
+						</script>
+					</form>
+					<!-- 通知 -->
+					<div id="course_notice">
+						<div class="index_img">
+							<img src="/static/pic/message.png" alt="">
+						</div>
+						<span>
+							通知
+						</span>
+						<form method="POST" action="/teacher_notice_new/{{ course['id'] }}/">
+							<input id="new_notice_button" type="submit" class="button is-info" value="发布新的通知">
+						</form>
+						{% for m in messages %}
+						{% if m['course_name'] == course['name'] %}
+						<div class="coursegpubox">
+							<a href="/message/{{ m['id'] }}/">
+								<div class="index_img">
+									<img src="/static/pic/message_.png" alt="">
+								</div>
+								{{ m['title'] }}
+							</a>
+						</div>
+						{% endif %}
+						{% endfor %}
+						<p class="index_box_no">--没有更多通知--</p>
 					</div>
-				</form>
+
+					<!-- 学生名单 -->
+					<div id="course_student_choice">
+						<div class="index_img">
+							<img src="/static/pic/message.png" alt="">
+						</div>
+						<span>
+							选课学生
+						</span>
+						<form method="POST" action="/course_student/{{course['id']}}/">
+							<input id="new_notice_button" type="submit" class="button is-info" value="修改选课名单">
+						</form>
+						{% for r in relations %}
+						<div class="coursegpubox">
+								<div class="index_img">
+									<img src="/static/pic/student.png" alt="">
+								</div>
+								{{ r['user_name'] }}
+						</div>
+						{% endfor %}
+						<p class="index_box_no">--没有更多学生--</p>
+					</div>
+				</div>
+				<div id="course_below">
+					<div id="courseinfo">
+						<p href="xxx.html" style="font-size: 22px;font-weight: bold;">{{ course.name }}</p>
+						<form method="POST" action="/course_student/{{course['id']}}/">
+							<input id="new_notice_button" type="submit" class="button is-info" value="修改简介">
+						</form>
+						<div id="info" class="information">
+							<div id="teacherpic" class="teacherpic">
+								<img src="/static/pic/teacher.png" alt="">
+							</div>
+							<strong id="teacher">{{ course.teacher }}&nbsp</strong>
+							<span id="term">{{ course.time }}</span>
+							<p>课程简介：{{ course.info }}</p>
+						</div>
+					</div>
+					<div id="coursegpu">
+						<div class="index_img">
+							<img src="/static/pic/gpu_big.png" alt="">
+						</div>
+						<span>
+							GPUs
+						</span>
+						<div class="coursegpubox">
+							<a href="/submit/{{ g['id'] }}/">
+								<div class="index_img">
+									<img src="/static/pic/gpu.png" alt="">
+								</div>
+								111
+							</a>
+						</div>
+						<p class="index_box_no">--没有更多gpu--</p>
+					</div>
+					<!-- <form method="POST" action="/">
+						<div id="notice_xxx">
+							<p>课程介绍</p>
+							<div id="notice_xxx_xxx">
+								{{course['info']}}
+							</div>
+							<a id="notice_button" href="/course_student/{{course['id']}}/" class="button" style="margin-left:20%;">选课学生情况</a>
+							<a id="notice_button" href="/GPUs/{{gpus['id']}}/" class="button" style="margin-left:35%;">使用的GPU</a>
+						</div>
+					</form> -->
+
+				</div>
+				
 			</div>
+		
 		</div>
 
 	</div>
