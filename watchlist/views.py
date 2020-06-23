@@ -32,7 +32,7 @@ def course_xxx_teacher(id):
     for i in relations:
         if User.query.filter_by(username=i.user_name).first().identity != "teacher":
             relations_stu.append(i)
-    gpus = GPU_course.query.filter_by(course_name=course.name).first()
+    gpus = GPU_course.query.filter_by(course_name=course.name).all()
     if request.method == 'POST':
         button_name = request.form['submit_name']
         if button_name == "确定":
@@ -49,6 +49,14 @@ def course_xxx_teacher(id):
 
         if button_name == "取消":
             return render_template('course_xxx_teacher.html', relations=relations_stu,messages=messages,course=course,  gpus=gpus)
+        if button_name == "修改课程信息":
+            edit=request.form['edit']
+            time=request.form['time']
+            course.info=edit
+            course.time=time
+            db.session.add(course)
+            db.session.commit() 
+            return render_template('course_xxx_teacher.html', relations=relations_stu,messages=messages,course=course,  gpus=gpus)
 
     return render_template('course_xxx_teacher.html',relations=relations_stu, messages=messages,course=course,  gpus=gpus)
 
@@ -58,13 +66,38 @@ def course_xxx_teacher(id):
 def my_courses_teacher():
     courses = Course.query.all()
     relations = Relation.query.filter_by(user_name=current_user.username).all()
+    if request.method == 'POST':
+        time=request.form['time']
+        intro=request.form['intro']
+        course_name=request.form['course_name']
+        course = Course(name=course_name, teacher=current_user.username, time=time, info=intro)
+        relation = Relation(user_name=current_user.username, course_name=course_name)
+        db.session.add(relation)
+        db.session.add(course)
+        db.session.commit() 
+        for k in request.form.keys():
+            if "gpu-" in k:
+                gpu_name = str(k)[4:]
+                gpu_course = GPU_course(gpu_name=gpu_name, course_name=course_name)
+                db.session.add(gpu_course)
+        db.session.commit() 
+        courses = Course.query.all()
+        relations = Relation.query.filter_by(user_name=current_user.username).all()
+        return render_template('my_courses_teacher.html', courses=courses, relations=relations)
     return render_template('my_courses_teacher.html', courses=courses, relations=relations)
 
 # new_courses
 @app.route('/new_courses/', methods=['GET', 'POST'])
 # @login_required
 def new_courses():
-    return render_template('new_courses.html')
+    gpus = GPU.query.all()
+    return render_template('new_courses.html',gpus=gpus)
+
+# new_gpus
+@app.route('/new_gpus/', methods=['GET', 'POST'])
+# @login_required
+def new_gpus():
+    return render_template('new_gpus.html')
 '''
 # GPUs
 @app.route('/GPUs/', methods=['GET', 'POST'])
@@ -96,16 +129,39 @@ def process_teacher():
     processes = Process.query.all()
     courses = Course.query.all()
     if request.method == 'POST':
-        delete_process_id=request.form['delete_process']
-        process = Process.query.filter_by(id=delete_process_id).first()
-        db.session.delete(process)
-        db.session.commit()
-        relations = Relation.query.filter_by(user_name=current_user.username).all()
-        gpus = GPU_course.query.all()
-        processes = Process.query.all()
-        courses = Course.query.all()
-        return render_template('process_teacher.html',relations=relations,gpus=gpus,processes=processes,courses=courses)
-
+        button_name = request.form['submit_name']
+        if button_name == "删除":
+            delete_process_id=request.form['delete_process']
+            process = Process.query.filter_by(id=delete_process_id).first()
+            db.session.delete(process)
+            db.session.commit()
+            relations = Relation.query.filter_by(user_name=current_user.username).all()
+            gpus = GPU_course.query.all()
+            processes = Process.query.all()
+            courses = Course.query.all()
+            return render_template('process_teacher.html',relations=relations,gpus=gpus,processes=processes,courses=courses)
+        if button_name == " 创 建 ": 
+            ip=request.form['ip']
+            port=request.form['port']
+            password=request.form['password']
+            user_name=request.form['user_name']
+            course_name=request.form['course_name']
+            gpu_name=request.form['gpu_name']
+            gpu = GPU(name=gpu_name, ip=ip,port=port,username=user_name,password=password)
+            db.session.add(gpu)
+            db.session.commit()
+            gpu.name="NO."+str(gpu.id)+"-"+gpu.name  #防止名字重复 影响gpu和课程的对应关系
+            db.session.add(gpu)
+            db.session.commit()
+            if course_name != "":
+                gpu_course = GPU_course(gpu_name=gpu.name, course_name=course_name)
+                db.session.add(gpu_course)
+            db.session.commit()
+            relations = Relation.query.filter_by(user_name=current_user.username).all()
+            gpus = GPU_course.query.all()
+            processes = Process.query.all()
+            courses = Course.query.all()
+            return render_template('process_teacher.html',relations=relations,gpus=gpus,processes=processes,courses=courses)
     return render_template('process_teacher.html',relations=relations,gpus=gpus,processes=processes,courses=courses)
 
 # settings_teacher
@@ -213,6 +269,14 @@ def teacher_notice_edit(id):
     message = Message.query.filter_by(id=id).first()
     courses = Course.query.all()
     return render_template('teacher_notice_edit.html', message=message, courses=courses)
+
+#course_xxx_edit
+@app.route('/course_xxx_edit/<int:id>/', methods=['GET', 'POST'])
+# @login_required
+def course_xxx_edit(id):
+    course = Course.query.filter_by(id=id).first()
+    return render_template('course_xxx_edit.html',course=course)
+
 
 #course_student
 @app.route('/course_student/<int:id>/', methods=['GET', 'POST'])
@@ -557,15 +621,17 @@ def forge():
     # 创建消息
      messages = [
          {'course_name': '深度学习', 'title': '作业提交情况', 'info': '甲乙丙丁四个同学没有交作业'},
+         {'course_name': '人工智能原理', 'title': '作业提交情况', 'info': '甲乙丙三个同学没有交作业'}, \
+         {'course_name': '红楼实验室', 'title': '作业提交情况', 'info': '甲乙两人没有交作业'},
+
          {'course_name': '深度学习', 'title': '报告上交日期', 'info': '请于5.20前上交报告'},
+         {'course_name': '人工智能原理', 'title': '报告上交日期', 'info': '请于5.21前上交报告'},
          {'course_name': '深度学习', 'title': 'GPU可使用时间', 'info': '6月的前两周皆可使用'},
 
-         {'course_name': '人工智能原理', 'title': '作业提交情况', 'info': '甲乙丙三个同学没有交作业'},
-         {'course_name': '人工智能原理', 'title': '报告上交日期', 'info': '请于5.21前上交报告'},
+         {'course_name': '红楼实验室', 'title': '报告上交日期', 'info': '请于5.22前上交报告'},
          {'course_name': '人工智能原理', 'title': 'GPU可使用时间', 'info': '7月的前两周皆可使用'},
 
-         {'course_name': '红楼实验室', 'title': '作业提交情况', 'info': '甲乙两人没有交作业'},
-         {'course_name': '红楼实验室', 'title': '报告上交日期', 'info': '请于5.22前上交报告'},
+
          {'course_name': '红楼实验室', 'title': 'GPU可使用时间', 'info': '8月的前两周皆可使用'},
      ]
      for m in messages:
@@ -575,18 +641,18 @@ def forge():
 
     # 创建gpu
      gpus = [
-         {'name': 'GPU_1', 'info': '空闲', 'course_name': '深度学习'},
-         {'name': 'GPU_2', 'info': '占满', 'course_name': '人工神经网络原理'},
-         {'name': 'GPU_3', 'info': '占满', 'course_name': '机器学习'},
-         {'name': 'GPU_4', 'info': '空闲', 'course_name': '人工智能原理'},
-         {'name': 'GPU_5', 'info': '空闲', 'course_name': '红楼实验室'}
+         {'name': 'GPU_1', 'info': '空闲'},
+         {'name': 'GPU_2', 'info': '占满'},
+         {'name': 'GPU_3', 'info': '占满'},
+         {'name': 'GPU_4', 'info': '空闲'},
+         {'name': 'GPU_5', 'info': '空闲'}
      ]
      for g in gpus:
-         gpu = GPU(name=g['name'], info=g['info'], course_name=g['course_name'])
+         gpu = GPU(name=g['name'], info=g['info'])
          db.session.add(gpu)
      db.session.commit()
 
-    # 创建关系
+    # 创建用户-课程关系
      relations = [
          {'user_name': '17363029', 'course_name': '深度学习'},
          {'user_name': '17363029', 'course_name': '人工智能原理'},
@@ -603,6 +669,19 @@ def forge():
          db.session.add(relation)
      db.session.commit()
 
+
+     # 创建GPU-课程关系
+     GPU_courses = [
+         {'gpu_name': 'GPU_1', 'course_name': '深度学习'},
+         {'gpu_name': 'GPU_2', 'course_name': '人工智能原理'},
+         {'gpu_name': 'GPU_3', 'course_name': '机器学习'},
+         {'gpu_name': 'GPU_4', 'course_name': '人工智能原理'},
+         {'gpu_name': 'GPU_5', 'course_name': '红楼实验室'}
+     ]
+     for gc in GPU_courses:
+         gpu_course = GPU_course(gpu_name=gc['gpu_name'], course_name=gc['course_name'])
+         db.session.add(gpu_course)
+     db.session.commit()
 
 """
 @app.cli.command()

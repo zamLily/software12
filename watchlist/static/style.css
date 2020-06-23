@@ -1053,7 +1053,7 @@ html {
 }
 
 .new_course_gpu_box {
-    height: 30%;
+    height: 55%;
     padding: 10px;
     margin: 10px;
     font-size: 20px;
@@ -1063,5 +1063,13 @@ html {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 5px;
     overflow: auto;
+}
+
+#new_gpu_table{
+    width: 500px;
+    height: 200px;
+    font-size: 16px;
+    color: black;
+    margin: 10px 15px;
 }
 

@@ -120,13 +120,13 @@
 						<span>
 							通知
 						</span>
-						<form method="POST" action="/teacher_notice_new/{{ course['id'] }}/">
-							<input id="new_notice_button" type="submit" class="button is-info" value="发布新的通知">
-						</form>
+						<a id="new_notice_submit" href="/teacher_notice_new/{{course['id']}}/" class="button">
+							发布新的通知
+						</a>
 						{% for m in messages %}
 						{% if m['course_name'] == course['name'] %}
 						<div class="coursegpubox">
-							<a href="/message/{{ m['id'] }}/">
+							<a href="/teacher_notice/{{ m['id'] }}/">
 								<div class="index_img">
 									<img src="/static/pic/message_.png" alt="">
 								</div>
@@ -146,9 +146,9 @@
 						<span>
 							选课学生
 						</span>
-						<form method="POST" action="/course_student/{{course['id']}}/">
-							<input id="new_notice_button" type="submit" class="button is-info" value="修改选课名单">
-						</form>
+						<a id="new_notice_submit" href="/course_student/{{course['id']}}/" class="button" >
+							修改选课名单
+						</a>
 						{% for r in relations %}
 						<div class="coursegpubox">
 								<div class="index_img">
@@ -163,7 +163,7 @@
 				<div id="course_below">
 					<div id="courseinfo">
 						<p href="xxx.html" style="font-size: 22px;font-weight: bold;">{{ course.name }}</p>
-						<form method="POST" action="/course_student/{{course['id']}}/">
+						<form method="POST" action="/course_xxx_edit/{{course['id']}}/">
 							<input id="new_notice_button" type="submit" class="button is-info" value="修改简介">
 						</form>
 						<div id="info" class="information">
@@ -182,14 +182,19 @@
 						<span>
 							GPUs
 						</span>
+						
+						{% for g in gpus %}
+						{% if g['course_name'] == course['name'] %}
 						<div class="coursegpubox">
-							<a href="/submit/{{ g['id'] }}/">
+							<a href="/GPUs/{{ g['id'] }}/">
 								<div class="index_img">
 									<img src="/static/pic/gpu.png" alt="">
 								</div>
-								111
+								{{g['gpu_name']}}
 							</a>
 						</div>
+						{% endif %}
+						{% endfor %}
 						<p class="index_box_no">--没有更多gpu--</p>
 					</div>
 					<!-- <form method="POST" action="/">
