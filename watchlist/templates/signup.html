@@ -25,22 +25,47 @@
                     <p>Please Regist&nbsp&nbsp请注册
                         <select name="certification" class="select_button">
                             <option selected="selected">请选择</option>
-                            <option value="student">学生</option>
                             <option value="teacher">老师</option>
+                            <option value="student">学生</option>
+                            
                         </select>
                     </p>
 
                     <table style="color:black;">
                         <tr>
-                            <td>UserName：</td>
+                            <th>UserName：</th>
                             <td>
-                                <input type="text" name="username" required style="line-height: 150%;">
+                                <!-- <input type="text" name="username" required style="line-height:150%;"> -->
+                                <div class="input_block">
+                                    <input type="text" name="username" placeholder="用户名" required style="line-height:150%;"/>
+                                </div>
                             </td>
                         </tr>
                         <tr>
-                            <td>Password：</td>
+                            <th>Password：</th>
                             <td>
-                                <input type="password" name="password" required style="line-height: 150%;">
+                                <!-- <input type="password" id="demo_input" name="password" required style="line-height: 150%;" placeholder="Password"> -->
+                                <!--密码输入框-->
+                                <div class="input_block">
+                                    <img id="demo_img" onclick="hideShowPsw()" src="/static/pic/visible.png">
+                                    <input type="password" id="demo_input" placeholder="密码" name="password" required style="line-height: 150%;" style="background-color:transparent; border-width:0;"/>
+                                </div>
+
+                                <script type="text/javascript">
+                                // 这里使用最原始的js语法实现，可对应换成jquery语法进行逻辑控制
+                                var demoImg = document.getElementById("demo_img");
+                                var demoInput = document.getElementById("demo_input");
+                                //隐藏text block，显示password block
+                                function hideShowPsw(){
+                                if (demoInput.type == "password") {
+                                demoInput.type = "text";
+                                demo_img.src = "/static/pic/invisible.png";
+                                }else {
+                                demoInput.type = "password";
+                                demo_img.src = "/static/pic/visible.png";
+                                }
+                                }
+                                </script>
                             </td>
                         </tr>
                         <tr>
