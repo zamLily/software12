@@ -142,8 +142,11 @@ def process_teacher():
         if button_name == "删除":
             delete_process_id=request.form['delete_process']
             process = Process.query.filter_by(id=delete_process_id).first()
+            process_stu = Process_stu.query.filter_by(process_name=process.name).first()
             db.session.delete(process)
+            db.session.delete(process_stu)
             db.session.commit()
+            
             relations = Relation.query.filter_by(user_name=current_user.username).all()
             gpus = GPU_course.query.all()
             processes = Process.query.all()
