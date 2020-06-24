@@ -581,7 +581,9 @@ def process_xxx(id):
     process = Process.query.filter_by(id=id).first()
     courses = Course.query.all()
     if request.method == 'POST':
+        process_stu = Process_stu.query.filter_by(process_name=process.name).first()
         db.session.delete(process)
+        db.session.delete(process_stu)
         db.session.commit()
         return redirect(url_for('process'))
     return render_template('process_xxx.html', process=process, courses=courses)
