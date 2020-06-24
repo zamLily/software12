@@ -90,13 +90,21 @@
 				<form method="POST" action="/">
 					<div id="ssh">
 						<p>
-							<strong>SSH</strong>
+							<!-- <strong>SSH</strong> -->
+							<strong>进程名称</strong>
+							<input id="ssh_text" type="text" name="SSH方式" required style="height:2em;width:80%;margin-top:1px;margin-left:5px;background:rgba(255,255,255,0.7);border-radius:5px;border:1px solid white;text-align: center;" placeholder="请输入进程名称">
 							<!-- <input id="ssh_button" type="submit" class="#" value="提交"> -->
-						</p>						
-						<input id="ssh_text" type="text" name="SSH方式" required style="height:2em;width:23%;margin-top:3px;background:rgba(255,255,255,0.7);border-radius:5px;border:1px solid white;text-align: center;" placeholder="请输入IP">
+						</p>
+						<p>
+							<!-- <strong>SSH</strong> -->
+							<strong>进程简介</strong>
+							<input id="ssh_text" type="text" name="SSH方式" required style="height:2em;width:80%;margin-top:3px;margin-left:5px;background:rgba(255,255,255,0.7);border-radius:5px;border:1px solid white;text-align: center;" placeholder="请输入进程简介">
+							<!-- <input id="ssh_button" type="submit" class="#" value="提交"> -->
+						</p>					
+						<!-- <input id="ssh_text" type="text" name="SSH方式" required style="height:2em;width:23%;margin-top:3px;background:rgba(255,255,255,0.7);border-radius:5px;border:1px solid white;text-align: center;" placeholder="请输入IP">
 						<input id="ssh_text" type="text" name="SSH方式" required style="height:2em;width:23%;margin-top:3px;background:rgba(255,255,255,0.7);border-radius:5px;border:1px solid white;text-align: center;margin-left:5px;" placeholder="请输入port">
 						<input id="ssh_text" type="text" name="SSH方式" required style="height:2em;width:23%;margin-top:3px;background:rgba(255,255,255,0.7);border-radius:5px;border:1px solid white;text-align: center;margin-left:5px;" placeholder="请输入user_name">
-						<input id="ssh_text" type="text" name="SSH方式" required style="height:2em;width:23%;margin-top:3px;background:rgba(255,255,255,0.7);border-radius:5px;border:1px solid white;text-align: center;margin-left:5px;" placeholder="请输入password">
+						<input id="ssh_text" type="text" name="SSH方式" required style="height:2em;width:23%;margin-top:3px;background:rgba(255,255,255,0.7);border-radius:5px;border:1px solid white;text-align: center;margin-left:5px;" placeholder="请输入password"> -->
 					</div>
 				</form>
 				
@@ -113,7 +121,7 @@
 						<p>
 							<strong>代码编辑器</strong>
 						</p>
-						<textarea id="edit_text" name="edit" cols="140" rows="18" placeholder="请输入代码..."></textarea>
+						<textarea id="edit_text" name="edit" cols="145" rows="20" placeholder="请输入代码..."></textarea>
 						<input id="edit_button" type="submit" class="#" value="运行">
 					</div>
 				</form>

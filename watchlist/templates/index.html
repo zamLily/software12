@@ -106,14 +106,20 @@
 					</a>
 
 					{% for p in processes %}
+					{% for ps in process_stus %}
+					{% if p['name'] in ps['process_name'] %}
 					<div class="index_coursebox">
 						<a href="/process/{{ p['id'] }}/">
 							<div class="index_img">
 								<img src="/static/pic/process_.png" alt="">
 							</div>
-							{{ p['course_name'] }}课程 - {{ p['name'] }} - in {{ p['gpu_name'] }}
+							{{ p['course_name'] }} - {{ p['name'] }}
+							<br>
+							<span style="font-size:20px;"> -- {{ p['gpu_name'] }}</span>
 						</a>
 					</div>
+					{% endif %}
+					{% endfor %}
 					{% endfor %}
 					<p class="index_box_no">--没有更多进程--</p>
 				</div>
@@ -137,7 +143,8 @@
 							<div class="index_img">
 								<img src="/static/pic/process_.png" alt="">
 							</div>
-							{{ m['course_name'] }} - {{ m['title'] }}
+							{{ m['course_name'] }}
+							<br> <span style="font-size:20px;"> -- {{ m['title'] }}</span>
 						</a>
 					</div>
 					{% endif %}

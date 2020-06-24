@@ -92,11 +92,12 @@
 						</p>
 					</div>
 				</div>
-
+				<form method="POST" action="/process/{{ process.id }}/">
 				<div id="result2">
-					<a id="re_edit" href="/" class="button" style="margin-right:72%;">
+					<!-- <a id="re_edit" href="/" class="button" style="margin-right:72%;">
 						删除进程
-					</a>
+					</a> -->
+					<input id="re_edit" type="submit" class="button is-primary" value="删除进程" style="margin-right:72%;">
 					<a id="re_edit" href="/process_edit/{{ process.id }}/" class="button" style="margin-right:20px;">
 						修改代码
 					</a>
@@ -107,7 +108,7 @@
 						{{ process.result }}
 					</p>
 				</div>
-
+				<form>
 
 			</div>
 
