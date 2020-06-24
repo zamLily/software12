@@ -218,6 +218,11 @@ html {
 	border: 1px solid white;
 	border-radius: 8px;
 }
+.login-box th{
+	/*border:1px solid;*/
+	color:black;
+	width:10px;
+}
 
 /*输入框底部半透明横线*/
 .input_block {
@@ -225,6 +230,7 @@ html {
 	width:90%;
 	border-bottom: 1px solid rgba(0,0,0,.2);
 	/*border:1px solid;*/
+	line-height: 32px;
 }
 .input_block input{
 	width: 80%; 
@@ -232,6 +238,7 @@ html {
 	padding-left:5px;  
 	font-size: 18px;
 	background:none;
+	margin-top:-1px;
 	/*border:1px solid; */
 }
 .input_block input:focus {  
@@ -358,7 +365,7 @@ html {
 .index_coursebox{
 	font-size: 22px;
 	border: 1px solid white;
-	height: 50px;
+	height: 55px;
 	width: 100%;
 	border-radius: 5px;
 	margin-top: 8px;
@@ -444,7 +451,7 @@ html {
 }
 
 #edit {
-	height: 380px;
+	height: 385px;
 	padding: 10px;
 	margin: 10px;
 	font-size: 20px;
@@ -455,16 +462,29 @@ html {
 	border-radius: 10px;
 }
 #edit_text{
-	height:82%;
+	height:85%;
 	width:99%;
 	margin:3px;
+	margin-top:5px;
 	overflow: auto;
 	background: rgba(255, 255, 255, 0.65);
 	border: 1px solid rgba(255, 255, 255, 0.6);
 	border-radius: 10px;
 	padding:5px;
 }
-
+#edit_text:focus {  
+    outline: none;
+}
+#edit_text:-webkit-autofill,
+#edit_text:-webkit-autofill:hover,
+#edit_text:-webkit-autofill:focus, 
+#edit_text:-webkit-autofill:active {
+	transition-delay: 99999s;
+    transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-transition-delay: 99999s;
+    -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-text-fill-color: black;
+}
 #result1 {
 	width: 90%;
 	height: 30%;
@@ -586,7 +606,7 @@ html {
 }
 #submit_button{
 	padding:1px 5px;
-	margin-top:8px;
+	margin-top:2px;
 	font-size:15px;
 	background: rgba(255, 255, 255,0.9);
 	color:black;
@@ -750,7 +770,8 @@ html {
 }
 #notice_xxx{
 	height: 80%;
-	padding: 10px;
+	padding: 8px;
+	padding-bottom: 2px;
 	margin: 10px;
 	font-size: 20px;
 	float: auto;
@@ -798,6 +819,7 @@ html {
 	float: left;
 	padding:2px 5px;
 	margin:1px;
+	margin-top: -2px;
 	font-size:16px;
 	background: rgba(255, 255, 255,0.4);
 	color:black;
@@ -826,13 +848,29 @@ html {
 	text-decoration: none;
 	border:1px solid grey;
 }
+#new_notice_submit:hover{
+    cursor: pointer;
+}
 #new_notice_edit {
-	height: 390px;
+	height: 400px;
 	padding: 0 10px;
 	font-size: 20px;
 	float: auto;
 	clear: both;
 	border-radius: 10px;
+}
+#new_notice_edit input:focus {  
+    outline: none;
+}
+#new_notice_edit input:-webkit-autofill,
+#new_notice_edit input:-webkit-autofill:hover,
+#new_notice_edit input:-webkit-autofill:focus, 
+#new_notice_edit input:-webkit-autofill:active {
+	transition-delay: 99999s;
+    transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-transition-delay: 99999s;
+    -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-text-fill-color: black;
 }
 #settings{
 	height: 400px;
@@ -1022,28 +1060,87 @@ html {
     border-radius: 8px;
     overflow: auto;
 }
-
+.new_course_box input{
+	width:30px;
+	line-height: 30px;
+	background: rgba(255,255,255,0.65);
+	border:1px solid rgba(255,255,255,0.65);
+	border-radius: 3px;
+	padding:2px;
+}
+.new_course_box input:focus {  
+    outline: none;
+}
+.new_course_box input:-webkit-autofill,
+.new_course_box input:-webkit-autofill:hover,
+.new_course_box input:-webkit-autofill:focus, 
+.new_course_box input:-webkit-autofill:active {
+	transition-delay: 99999s;
+    transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-transition-delay: 99999s;
+    -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-text-fill-color: black;
+}
+.new_course_box textarea{
+	width:30px;
+	line-height: 30px;
+	background: rgba(255,255,255,0.65);
+	border:1px solid rgba(255,255,255,0.65);
+	border-radius: 3px;
+	padding:2px;
+}
+.new_course_box textarea:focus {  
+    outline: none;
+}
+.new_course_box textarea:-webkit-autofill,
+.new_course_box textarea:-webkit-autofill:hover,
+.new_course_box textarea:-webkit-autofill:focus, 
+.new_course_box textarea:-webkit-autofill:active {
+	transition-delay: 99999s;
+    transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-transition-delay: 99999s;
+    -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-text-fill-color: black;
+}
+.new_course_box th,td{
+	padding:2px;
+	text-align: justify;
+	/*border:1px solid;*/
+	width:200px;
+	justify-content:space-between;
+}
+.new_course_box th{
+	width:100px;
+	/*border:1px solid;*/
+}
+.new_course_box td{
+	width:300px;
+	/*border:1px solid;*/
+}
 .new_course_button{
+	margin: -20px 46% 5px 0;
     height: 30px;
-    padding: 1px 5px;
+    padding: 1px 8px;
     float: right;
     /*margin-left: 2%;*/
     font-size:15px;
-    line-height: 30px;
+    line-height: 100%;
     background: rgba(255, 255, 255, 0.2);
     color:black;
     text-decoration: none;
     border:1px solid white;
     border-radius: 3px;
 }
-
-#new_course_table{
-    width: 50%;
-    height: 70%;
-    font-size: 20px;
-    color: black;
-    float: left;
-    margin: 10px 15px;
+.new_course_button:hover{
+    cursor: pointer;
+}
+.new_course_gpu_box{
+	width:95%;
+	/*border:1px solid;*/
+	height:35px;
+	line-height: 35px;
+	margin:3px;
+	margin-left:15px;
 }
 #course_above{
 	margin:5px;
@@ -1110,4 +1207,33 @@ html {
 }
 #course_upload_img:hover{
     cursor: pointer;
+}
+#new_gpu_table input{
+	width:30px;
+	line-height: 30px;
+	background: rgba(255,255,255,0.65);
+	border:1px solid rgba(255,255,255,0.65);
+	border-radius: 3px;
+	padding:2px;
+}
+#new_gpu_table input:focus {  
+    outline: none;
+}
+#new_gpu_table input:-webkit-autofill,
+#new_gpu_table input:-webkit-autofill:hover,
+#new_gpu_table input:-webkit-autofill:focus, 
+#new_gpu_table input:-webkit-autofill:active {
+	transition-delay: 99999s;
+    transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-transition-delay: 99999s;
+    -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-text-fill-color: black;
+}
+#new_gpu_table th,td{
+	padding:2px;
+	text-align: justify;
+	height:40px;
+	/*border:1px solid;*/
+	width:200px;
+	justify-content:space-between;
 }
