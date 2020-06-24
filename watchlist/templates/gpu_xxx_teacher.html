@@ -72,7 +72,7 @@
 			</div>
 			<div id="content">
 				<div style="width:99%;font-size:30px;text-align:center;">
-					<strong>xxxGPU</strong>
+					<strong>{{ gpus['gpu_name'] }}</strong>
 				</div>
 				{% for p in processes %}
 				<div id="program1" class="program">
@@ -80,7 +80,7 @@
 						<div class="index_img">
 							<img src="/static/pic/process_.png" alt="">
 						</div>
-						{{ p['name'] }} - in {{ p['gpu_name'] }}
+						{{ p['name'] }}
 					</a>
 					<div class="programsum">
 						<p>{{ p['info'] }}</p>

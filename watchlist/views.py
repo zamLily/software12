@@ -17,7 +17,7 @@ def index_teacher():
     courses = Course.query.all()
     relations = Relation.query.filter_by(user_name=current_user.username).all()
     processes = Process.query.all()
-    messages = Message.query.all()
+    messages = Message.query.order_by(Message.id.desc()).all()
     gpus = GPU_course.query.all()
     return render_template('index_teacher.html', gpus=gpus,courses=courses, processes=processes, messages=messages, relations=relations)
 
@@ -26,7 +26,7 @@ def index_teacher():
 @login_required
 def course_xxx_teacher(id):
     course = Course.query.filter_by(id=id).first()
-    messages = Message.query.all()
+    messages = Message.query.order_by(Message.id.desc()).all()
     relations = Relation.query.filter_by(course_name=course.name).all()
     relations_stu=[]
     for i in relations:
@@ -160,7 +160,7 @@ def process_teacher():
                                 distinct_gpus.append(g.gpu_name)
             distinct_gpus=list(set(distinct_gpus))
             return render_template('process_teacher.html',relations=relations,gpus=distinct_gpus,processes=processes,courses=courses)
-        if button_name == " 创 建 ": 
+        if button_name == "创 建": 
             ip=request.form['ip']
             port=request.form['port']
             password=request.form['password']
@@ -240,7 +240,7 @@ def settings_teacher():
 def teacher_notice():
     relations = Relation.query.filter_by(user_name=current_user.username).all()
     courses = Course.query.all()
-    messages = Message.query.all()
+    messages = Message.query.order_by(Message.id.desc()).all()
     if request.method == 'POST':
         if 'delete' in request.form.keys():
             delete_id=request.form['delete']
@@ -249,7 +249,7 @@ def teacher_notice():
             db.session.commit()
             relations = Relation.query.filter_by(user_name=current_user.username).all()
             courses = Course.query.all()
-            messages = Message.query.all()
+            messages = Message.query.order_by(Message.id.desc()).all()
             return render_template('teacher_notice.html', relations=relations,courses=courses, messages=messages)
         elif "title" in request.form.keys():
             title=request.form['title']
@@ -260,7 +260,7 @@ def teacher_notice():
             db.session.commit()
             relations = Relation.query.filter_by(user_name=current_user.username).all()
             courses = Course.query.all()
-            messages = Message.query.all()
+            messages = Message.query.order_by(Message.id.desc()).all()
             return render_template('teacher_notice.html', relations=relations,courses=courses, messages=messages)
 
     return render_template('teacher_notice.html', relations=relations,courses=courses, messages=messages)
@@ -270,7 +270,7 @@ def teacher_notice():
 # @login_required
 def teacher_notice_xxx(id):
     message = Message.query.filter_by(id=id).first()
-    courses = Course.query.all()
+    course = Course.query.filter_by(name=message.course_name).first()
     if request.method == 'POST':
         title=request.form['title']
         edit=request.form['edit']
@@ -279,9 +279,9 @@ def teacher_notice_xxx(id):
         db.session.add(message)
         db.session.commit() 
         message = Message.query.filter_by(id=id).first()
-        courses = Course.query.all()
-        return render_template('teacher_notice_xxx.html', message=message, courses=courses)
-    return render_template('teacher_notice_xxx.html', message=message, courses=courses)
+        course = Course.query.filter_by(name=message.course_name).first()
+        return render_template('teacher_notice_xxx.html', message=message, course=course)
+    return render_template('teacher_notice_xxx.html', message=message, course=course)
 
 #teacher_notice_new
 @app.route('/teacher_notice_new/<int:id>/', methods=['GET', 'POST'])
@@ -295,8 +295,8 @@ def teacher_notice_new(id):
 # @login_required
 def teacher_notice_edit(id):
     message = Message.query.filter_by(id=id).first()
-    courses = Course.query.all()
-    return render_template('teacher_notice_edit.html', message=message, courses=courses)
+    course = Course.query.filter_by(name=message.course_name).first()
+    return render_template('teacher_notice_edit.html', message=message, course=course)
 
 #course_xxx_edit
 @app.route('/course_xxx_edit/<int:id>/', methods=['GET', 'POST'])
