@@ -76,18 +76,22 @@
 			<div id="content">
 					<div id="notice_xxx">
 						<!--<p>xxx课程通知</p>
-						<p style="font-weight:normal;font-size:18px;">xxxx年xx月xx日</p>-->		
+						<p style="font-weight:normal;font-size:18px;">xxxx年xx月xx日</p>-->
 						<div id="new_notice_edit">
-							
+							<a href="/my_courses/all_courses/" class="button">
+								返回课程页面
+								<div class="asidepic" style="margin:5px 2px;">
+									<img src="/static/pic/back.png" alt="">
+								</div>
+							</a>
 							<form method="POST" action="/teacher_notice/">
 								
-								<span style="margin-left:10%;">
+								<p style="margin-left:20px;">
 									<strong>通知标题</strong>
-									<input type="text" name="title" required style="height:2em;width:70%;margin:3px;border-radius:5px;padding-left:2px;">
-								</span>	
-								<textarea id="edit_text" name="edit" cols="145" rows="18"></textarea>
-							<a id="new_notice_submit"  class="button" 
-								style="margin-left:15%;" onclick="$('#submit').trigger('click');">发布</a>
+									<input type="text" name="title" style="height:2em;width:55%;margin: 0 2px; border-radius:5px;padding-left:2px;background:rgba(255, 255, 255, 0.65);border:1px solid rgba(255, 255, 255, 0.65);" placeholder="请输入通知标题">
+								</p>	
+								<textarea id="edit_text" name="edit" cols="145" rows="22.5"  placeholder="请输入通知内容"></textarea>
+							<a id="new_notice_submit"  class="button" style="float:right;margin-right:-5px;" onclick="$('#submit').trigger('click');">发布</a>
 								<input value="{{course['name']}}" style="display: none;" name="course">
 								<input type="submit" id="submit" style="display: none;">
 							</form>

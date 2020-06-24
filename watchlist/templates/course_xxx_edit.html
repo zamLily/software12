@@ -76,24 +76,30 @@
 			<div id="content">
 					<div id="notice_xxx">
 						<div id="new_notice_edit">
-							
+							<a href="/my_courses/all_courses/" class="button">
+								返回课程页面
+								<div class="asidepic" style="margin:5px 2px;">
+									<img src="/static/pic/back.png" alt="">
+								</div>
+							</a>
 							<form method="POST" action="/my_courses_teacher/{{course['id']}}/" ">
 								
-								<span  style="margin-left:40%;">
+								<p style="text-indent:-156px;">
 									<strong>{{course['name']}}</strong>
-								</span>	
-								<span>
-									<br>
-									<strong>授课时间</strong>
+								</p>
+								<p style="font-size:20px;margin:3px;text-indent:-156px;">
+									<strong style="font-size:20px;margin:5px;">
+										授课时间
+									</strong>
 									<input type="text" name="time" 
-									required style="height:2em;width:70%;margin:3px;
-									border-radius:5px;padding-left:2px;" value="{{course['time']}}">
-								</span>	
-								<br>
-								<strong>课程简介</strong>
-								<textarea id="edit_text" name="edit" cols="145" rows="18">{{course['info']}}</textarea>
+									required style="height:2em;width:55%;margin: 0 2px; border-radius:5px;padding-left:2px;background:rgba(255, 255, 255, 0.65);border:1px solid rgba(255, 255, 255, 0.65);" value="{{course['time']}}">
+								</p>
+								<div style="margin:8px;padding:5px;">
+								<strong >课程简介</strong>
+								<textarea id="edit_text" name="edit" cols="100" rows="18" style="float:right;width:88%;">{{course['info']}}</textarea>
+								</div>
 								<a id="new_notice_submit"  class="button" 
-								style="margin-left:15%;" onclick="$('#submit').trigger('click');">修改课程信息</a>
+								style="float:right;clear:both;" onclick="$('#submit').trigger('click');">修改课程信息</a>
 							
 								<input type="submit" id="submit" name="submit_name" value="修改课程信息" style="display: none;">
 							</form>

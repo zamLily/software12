@@ -75,7 +75,13 @@
 
 			<div id="content">
 					<div id="notice_xxx">
-						<p>{{message['course_name']}}-{{message['title']}}</p>
+						<a href="/my_courses/all_courses/" class="button">
+							返回课程页面
+							<div class="asidepic" style="margin:5px 2px;">
+								<img src="/static/pic/back.png" alt="">
+							</div>
+						</a>
+						<p style="text-indent: -156px;">{{message['course_name']}}-{{message['title']}}</p>
 						<div id="notice_xxx_xxx">
 							{{message['info']}}
 						</div>

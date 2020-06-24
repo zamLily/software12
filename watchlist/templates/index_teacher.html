@@ -99,7 +99,7 @@
 				<div id="my_process" class="index_box">
 					<a href="/process_teacher/">
 						<div class="index_img">
-							<img src="/static/pic/process.png" alt="">
+							<img src="/static/pic/gpu_big.png" alt="">
 						</div>
 						&nbsp我的GPU
 					</a>
@@ -111,7 +111,7 @@
 					<div class="index_coursebox">
 						<a href="/GPUs/{{ g['id'] }}/">
 							<div class="index_img">
-								<img src="/static/pic/process_.png" alt="">
+								<img src="/static/pic/gpu.png" alt="">
 							</div>
 							{{g['gpu_name']}}
 						</a>
@@ -136,9 +136,11 @@
 					<div class="index_coursebox">
 						<a href="/teacher_notice/{{ m['id'] }}/">
 							<div class="index_img">
-								<img src="/static/pic/process_.png" alt="">
+								<img src="/static/pic/message_.png" alt="">
 							</div>
-							{{ m['course_name'] }} - {{ m['title'] }}
+							{{ m['course_name'] }}
+							<br>
+							<span style="font-size:20px;"> -- {{ m['title'] }}</span>
 						</a>
 					</div>
 					{% endfor %}

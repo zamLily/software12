@@ -78,83 +78,56 @@
 				<form method="POST" action="/my_courses_teacher/">
 					<div id="notice_xxx">
 						<p>创建课程</p>
-
 						<div id="课程信息" class="new_course_box">
-							<h>课程信息</h>
-							<table id="new_course_table">
-								<br />
-								<br />
-
-								<tr></tr>
+							<h2 style="text-align:center;margin-top:-10px;">课程信息</h2>
+							<table>
 								<tr>
 									<th>课程名称</th>
 									<td>
-										<input type="text" name="course_name" value="课程名称" style="width:199px">
+										<input type="text" name="course_name" placeholder="课程名称" style="width:99%;">
 									</td>
-
-								</tr>
-
-
-								<tr>
-
-									<th><br>课程时间</th>
-									<td>
-										<br> <input type="text" name="time" value="xxxx-xxxx学年 第x学期"
-											style="width:199px">
-									</td>
-
 								</tr>
 
 								<tr>
-									<th><br>课程简介</th>
+									<th>课程时间</th>
 									<td>
-										<br> <textarea name="intro"   
-											style="OVERFLOW:   hidden;height:120px;width:200px"></textarea>
+										<input type="text" name="time" placeholder="xxxx-xxxx学年 第x学期"
+											style="width:99%;">
 									</td>
-
 								</tr>
-
+								<tr>
+									<th>课程简介</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th></th>
+									<td>
+										<textarea name="intro" style="overflow:auto;height:120px;width:99%;margin-top:-35px;" placeholder="请输入课程简介"></textarea>
+									</td>
+								</tr>
 							</table>
-
 						</div>
 
 						<div id="选择GPU" class="new_course_box">
-							<h>分配GPU</h>
-							
-							<br />
-							<br />
-
+							<h2 style="text-align:center;margin-top:-10px;margin-bottom:5px;">分配GPU</h2>
+							{% for g in gpus %}
 							<div id="添加GPU" class="new_course_gpu_box">
-								{% for g in gpus %}
-								<input type="checkbox" name="gpu-{{g['name']}}">
-								<img style="height:10%" src="/static/pic/gpu.png" alt="">
-								<font size="4">{{g['name']}}</font>
-								<br>
-								{% endfor %}
-
+								<input type="checkbox" name="gpu-{{g['name']}}" style="float:left;margin-top:10px;">
+								<div class="index_img" style="margin-left:-8px;">
+									<img src="/static/pic/gpu.png" alt="">
+								</div>
+								<span>{{g['name']}}</span>
 							</div>
-							
-							<a id="new_notice_submit" href="/new_gpus/" class="button">
-								添加新的GPU
-							</a>
-
-							<!--<script>
-								function spanClick0(){
-									var obj=document.getElementById("user_img_edit");
-									var att=obj.getAttribute("open");
-									if(att!="open"){
-										obj.setAttribute("open","open");
-										}
-									else{
-										obj.removeAttribute("open");
-										}
-									}
-								</script>-->
-
+							{% endfor %}
+							<div id="添加GPU" class="new_course_gpu_box">
+								<a id="new_notice_submit" href="/new_gpus/" class="button" style="float: right;margin-right:-5px;">
+									添加新的GPU
+								</a>
+							</div>
 						</div>
 
 						<div align="center">
-							<input type="submit" class="new_course_button" value="确认创建">
+							<input type="submit" class="new_course_button" value="确 认 创 建">
 						</div>
 
 					</div>

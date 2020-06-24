@@ -74,56 +74,56 @@
             <div id="content">
                 <form method="POST" action="/process_teacher/">
                     <div id="notice_xxx">
-                        <p>添加新的GPU</p>
+                    	
+                        <p style="margin:10px;">添加新的GPU</p>
                         
                         <div align="center">
                             <table id="new_gpu_table">
-                                
-                                <tr></tr>
                                 <tr>
-                                  <th><br>GPU ip</th>
+                                  <th>GPU IP</th>
                                   <td>
-                                    <br>  <input type="text" name="ip" value="xxx.xxx.xxx.xxx" style="width:199px">
+                                    <input type="text" name="ip" placeholder="xxx.xxx.xxx.xxx" style="width:199px">
+                                  </td>
+                                </tr>
+                                
+                                <tr>
+                                  <th>GPU 端口号</th>
+                                  <td>
+                                    <input type="text" name="port" placeholder="请输入端口号" style="width:199px">
                                   </td>
                                   
                                 </tr>
                                 
                                 <tr>
-                                  <th><br>GPU 端口号</th>
+                                  <th>连接服务器用户名</th>
                                   <td>
-                                    <br>  <input type="text" name="port" value="请输入端口号" style="width:199px">
+									<input type="text" name="user_name" placeholder="请输入连接GPU的用户名" style="width:199px">
                                   </td>
                                   
                                 </tr>
                                 
                                 <tr>
-                                  <th><br>连接服务器用户名</th>
+                                  <th>连接服务器密码</th>
                                   <td>
-									<br> <input type="text" name="user_name" value="请输入连接GPU的用户名" style="width:199px">
+									<input type="text" name="password" placeholder="请输入连接GPU的密码" style="width:199px">
                                   </td>
                                   
                                 </tr>
                                 
                                 <tr>
-                                  <th><br>连接服务器密码</th>
+                                  <th>GPU 名称</th>
                                   <td>
-									<br> <input type="text" name="password" value="请输入连接GPU的密码" style="width:199px">
-                                  </td>
-                                  
-                                </tr>
-                                
-                                <tr>
-                                  <th><br>GPU 名称</th>
-                                  <td>
-									<br><input type="text" name="gpu_name" value="请输入GPU名称，如1080Ti等" style="width:199px">
+									<input type="text" name="gpu_name" placeholder="请输入GPU名称，如1080Ti等" style="width:199px">
                                   </td>
                                   
                                 </tr>
                                 
                                 
-                                  <th><br>GPU对应课程(选填）</th>
+                                  <th>
+                                  GPU对应课程(选填)
+                                  </th>
                                   <td>
-									<br><input type="text" name="course_name" value="" style="width:199px">
+									<input type="text" name="course_name" placeholder="GPU对应课程(选填）" style="width:199px">
                                   </td>
                                   
                                 </tr>
@@ -134,7 +134,7 @@
 						</div>
 						
                         <div align="center">
-                        <input type="submit" name="submit_name" value=" 创 建 "  class="new_course_button" onClick="spanClick1();">
+                        <input type="submit" name="submit_name" value="创 建"  class="new_course_button" onClick="spanClick1();" style="margin-top:-10px;float:right;margin-right:48%;margin-bottom:10px;padding: 0 10px;">
                         </div>
                         
                     </div>

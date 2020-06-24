@@ -77,11 +77,19 @@
 
 			<div id="content">
 				<div id="notice_xxx">
-					<p>选课情况</p>
-					  <p style="font-size:16px; text-align:left;text-indent:2em;font-weight:normal;">
-					  	请注意导入学生列表的文件必须是【csv】文件，只有【一列】，并且【第一行】必须为【英文】行名（如“StuNum”等），数据需为真实学号！若该学号学生未注册则无法更新数据库会报错！
+					<a href="/my_courses/all_courses/" class="button">
+						返回课程页面
+						<div class="asidepic" style="margin:5px 2px;">
+							<img src="/static/pic/back.png" alt="">
+						</div>
+					</a>
+					<p style="text-indent: -156px;">选课情况</p>
+					  <p style="font-size:16px; text-align:center;text-indent: -156px;font-weight:normal;line-height: 150%;">
+					  	请注意导入学生列表的文件必须是【csv】文件
+					  	<br>只有【一列】，并且【第一行】必须为【英文】行名（如“StuNum”等）
+					  	<br>数据需为真实学号！若该学号学生【未注册】则数据库会报错，无法更新！
 					  </p>
-					<div id="notice_xxx_xxx">
+					<div id="notice_xxx_xxx" style="height: 300px;">
 						{% for r in relations %}
 						&nbsp;{{ r['user_name'] }}&nbsp; 
 						{% endfor %}
