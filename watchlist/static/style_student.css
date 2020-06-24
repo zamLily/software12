@@ -313,7 +313,7 @@ html {
 .index_coursebox{
 	font-size: 22px;
 	border: 1px solid white;
-	height: 50px;
+	height: 55px;
 	width: 100%;
 	border-radius: 5px;
 	margin-top: 8px;
@@ -396,7 +396,19 @@ html {
 	font-size: 20px;
 	border-radius: 10px;
 }
-
+#ssh input:focus {  
+    outline: none;
+}
+#ssh input:-webkit-autofill,
+#ssh input:-webkit-autofill:hover,
+#ssh input:-webkit-autofill:focus, 
+#ssh input:-webkit-autofill:active {
+	transition-delay: 99999s;
+    transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-transition-delay: 99999s;
+    -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-text-fill-color: black;
+}
 #submit {
 	float: right;
 	height: 60px;
@@ -408,9 +420,21 @@ html {
 	background: rgba(255, 255, 255, 0.3);
 	border-radius: 10px;
 }
-
+#submit input:focus {  
+    outline: none;
+}
+#submit input:-webkit-autofill,
+#submit input:-webkit-autofill:hover,
+#submit input:-webkit-autofill:focus, 
+#submit input:-webkit-autofill:active {
+	transition-delay: 99999s;
+    transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-transition-delay: 99999s;
+    -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-text-fill-color: black;
+}
 #edit {
-	height: 345px;
+	height: 385px;
 	padding: 10px;
 	margin: 10px;
 	font-size: 20px;
@@ -421,7 +445,7 @@ html {
 	border-radius: 10px;
 }
 #edit_text{
-	height:80%;
+	height:82%;
 	width:99%;
 	margin:3px;
 	overflow: auto;
@@ -430,7 +454,19 @@ html {
 	border: 1px solid rgba(255, 255, 255, 0.6);
 	border-radius: 10px;
 }
-
+#edit_text:focus {  
+    outline: none;
+}
+#edit_text:-webkit-autofill,
+#edit_text:-webkit-autofill:hover,
+#edit_text:-webkit-autofill:focus, 
+#edit_text:-webkit-autofill:active {
+	transition-delay: 99999s;
+    transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-transition-delay: 99999s;
+    -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-text-fill-color: black;
+}
 #result1 {
 	width: 96%;
 	height: 30%;
@@ -783,6 +819,19 @@ html {
 	font-weight: bold;
 	margin:5px;
 }
+#settings input:focus {  
+    outline: none;
+}
+#settings input:-webkit-autofill,
+#settings input:-webkit-autofill:hover,
+#settings input:-webkit-autofill:focus, 
+#settings input:-webkit-autofill:active {
+	transition-delay: 99999s;
+    transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-transition-delay: 99999s;
+    -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-text-fill-color: black;
+}
 #setting_table{
 	width: 68%;
 	font-size: 20px;
@@ -1063,6 +1112,29 @@ html {
 	border: 1px solid rgba(255, 255, 255, 0.6);
 	border-radius: 5px;
 	text-align: left;
+}
+#re_edit_text{
+	height:82%;
+	width:99%;
+	margin:3px;
+	overflow: auto;
+	background: rgba(255, 255, 255, 0.65);
+	padding: 5px;
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	border-radius: 10px;
+}
+#re_edit_text:focus {  
+    outline: none;
+}
+#re_edit_text:-webkit-autofill,
+#re_edit_text:-webkit-autofill:hover,
+#re_edit_text:-webkit-autofill:focus, 
+#re_edit_text:-webkit-autofill:active {
+	transition-delay: 99999s;
+    transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-transition-delay: 99999s;
+    -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-text-fill-color: black;
 }
 #re_edit_title{
 	width:95%;

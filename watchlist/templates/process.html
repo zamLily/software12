@@ -73,20 +73,23 @@
 
 			<div id="content">
 				{% for p in processes %}
+				{% for ps in process_stus %}
+				{% if p['name'] in ps['process_name'] %}
 				<div id="program1" class="program">
 					<a href="/process/{{ p['id'] }}/">
 						<div class="index_img">
 							<img src="/static/pic/process_.png" alt="">
 						</div>
 						{{ p['name'] }} - in {{ p['gpu_name'] }}
-						<span style="font-weight:normal;">({{ p['course_name'] }}课程)</span>
+						<span style="font-weight:normal;">({{ p['course_name'] }})</span>
 					</a>
 					<div class="programsum">
 						<p>{{ p['info'] }}</p>
 					</div>
 				</div>
+				{% endif %}
 				{% endfor %}
-
+				{% endfor %}
 				<p class="index_box_no">--没有更多进程--</p>
 			</div>
 		</div>
