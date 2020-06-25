@@ -1237,3 +1237,71 @@ html {
 	width:200px;
 	justify-content:space-between;
 }
+#gpu-using{
+	float:left;
+	width: 60%;
+	margin:8px;
+	height:300px;
+	border:1px solid white;
+	padding: 5px;
+	border-radius: 5px;
+}
+#gpu-using img{
+	height: 90%;
+	width: 90%;
+}
+#gpu-using-right{
+	float:left;
+	width: 34%;
+	margin:10px;
+	height:300px;
+	/*border:1px solid white;*/
+	padding: 3px 5px;
+}
+#gpu-using-right th{
+	width:35%;
+	/*border:1px solid;*/
+}
+#gpu-using-right td{
+	height:50px;
+	/*border:1px solid;*/
+	padding:5px;
+	font-weight: bold;
+	font-size:25px;
+}
+#gpu-using-right img{
+	height: 30%;
+	width: 60%;
+}
+#gpu-user-list{
+	clear:both;
+	width: 97%;
+	margin: 0 10px;
+	/*border:1px solid white;*/
+	padding: 5px;
+	text-align:center;
+	background: rgba(255,255,255,0.3);
+	border-radius: 5px;
+}
+#gpu-user-list table{
+	width: 100%;
+	border-top: 1px solid rgba(0,0,0,0.3);
+}
+#gpu-user-list th{
+	width:25%;
+	/*border:1px solid;*/
+	height: 30px;
+	line-height: 30px;
+	font-size: 18px;
+	border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+#gpu-user-list td{
+	width: 25%;
+	height:25px;
+	/*border:1px solid;*/
+	padding:5px;
+	font-weight: normal;
+	font-size:15px;
+	text-align: center;
+	border-bottom: 1px solid rgba(0,0,0,0.3);
+}
