@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>GPU教师端管理系统【GPU信息】</title>
+	<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+	{% for message in get_flashed_messages() %}
+	    <div class="alert" style="float:left;margin-left:45%;margin-top:8px;text-align:center;font-size:18px;color:black;width:20%;font-weight:bold;">
+	    	{{ message }}
+	    </div>
+	{% endfor %}
+	<div id="container">
+		<div id="header" >
+			<div id="logo">
+	            <img src="/static/pic/logo.png" alt="">
+	            <span>GPU管理系统</span>
+	        </div>
+
+			<div id="other">
+				<form form method="POST" action="/logout/">
+					<a id="login_out" href="/logout/" class="button">退出登录</a>
+					<div id="user_img">
+						<img src="{{ current_user.pic_path }}" alt="image">
+					</div>
+					<div id="user_name">
+						<span>{{ current_user.username }}</span>
+					</div>
+				</form>			
+			</div>
+		</div>
+
+		<div id="main">
+			<div id="aside">
+				<br>
+				<div id="Home Page">
+					<div class="asidepic">
+						<img src="/static/pic/home.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/index_teacher/">主页</a>
+					</div>
+				</div>
+
+				<div id="My courses">
+					<div class="asidepic">
+						<img src="/static/pic/courses.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/my_courses_teacher/">我的课程</a>
+					</div>
+				</div>
+
+				<div id="Process">
+					<div class="asidepic">
+						<img src="/static/pic/process.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/process_teacher/">GPU列表</a>
+					</div>
+				</div>
+
+				<div id="Settings">
+					<div class="asidepic">
+						<img src="/static/pic/settings.png" alt="">
+					</div>
+					<div class="asidechoices">
+						<a href="/settings_teacher/">设置</a>
+					</div>
+				</div>
+			</div>
+			<div id="content">
+				<div style="width:99%;font-size:30px;text-align:center;">
+					<strong>{{ gpus['gpu_name'] }}</strong>
+				</div>
+				<div id="gpu-using">
+					GPU使用量的图
+				</div>
+				<div id="gpu-using-right">
+					<table style="margin-top:40px;">
+						<tr>
+							<th>
+								<img src="/static/pic/time.png" alt="">
+							</th>
+							<td>开机时长：xxx</td>
+						</tr>
+						<tr><th></th><td></td></tr>
+						<tr>
+							<th>
+								<img src="/static/pic/use.png" alt="">
+							</th>
+							<td>目前使用量：xxx</td>
+						</tr>
+					</table>
+				</div>
+				<div id="gpu-user-list">
+				<form action="">
+					<table>
+						<h2 style="text-align:center;">使用用户列表</h2>
+						<tr>
+							<th>课程</th>
+							<th>用户名</th>
+							<th>学号</th>
+							<th>使用量</th>
+						</tr>
+						<tr>
+							<td>111</td>
+							<td>111</td>
+							<td>111</td>
+							<td>111</td>
+						</tr>
+						<tr>
+							<td>111</td>
+							<td>111</td>
+							<td>111</td>
+							<td>111</td>
+						</tr>
+					</table>
+					<p class="index_box_no">--没有更多使用者--</p>
+				</form>
+				</div>
+				
+			</div>
+
+			
+		</div>
+
+	</div>
+</body>
+</html>
+				
