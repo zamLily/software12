@@ -25,7 +25,7 @@ class SSHManager:
                               port=self._port,
                               username=self._usr,
                               password=self._passwd,
-                              timeout=5)
+                              timeout=60)
         except Exception :
             raise RuntimeError("ssh connected to [host:%s, usr:%s, passwd:%s] failed" %
                                (self._host, self._usr, self._passwd))
@@ -47,14 +47,17 @@ class SSHManager:
 
 
 class DockerApi():
+    """
+    docker class
+    """
     def __init__(self, ssh_client):
         if not isinstance(ssh_client, SSHManager):
             raise RuntimeError('ssh_client is not SSHManager object')
         self.ssh_client = ssh_client
 
-    def create_container(self, student_id, image_id):
+    def create_container(self,image_id, gpu_num):
         try:
-            command = 'sudo docker run -itd --rm --name={0} {1} /bin/bash'.format(student_id, image_id)
+            command = 'sudo docker run -itd --rm --gpus={0} {1} /bin/bash'.format(gpu_num, image_id)
             # print(command)
             self.container_id = self.ssh_client.ssh_exec_cmd(command)[:12]
         except Exception as e:
@@ -68,7 +71,7 @@ class DockerApi():
         self.ssh_client.ssh_exec_cmd(copy_command)
         # run python file
         if run_file_name.endswith('py'):
-            run_cmd = 'sudo docker exec -i {0} /bin/bash -c \'python {1}/{2}\''.format(self.container_id,'/data', run_file_name)
+            run_cmd = 'sudo docker exec -i {0} /bin/bash -c \'python {1}/{2}\''.format(self.container_id, '/data', run_file_name)
         else:
             run_cmd ='sudo docker exec -i {0} /bin/bash -c \'sh {1}/{2}\''.format(self.container_id, '/data', run_file_name)
         # print(run_cmd)
@@ -80,42 +83,51 @@ class DockerApi():
         self.ssh_client.ssh_exec_cmd(stop_cmd)
 
 
-# def docker_test(user,file_name):
-#     clinet = SSHManager('120.78.13.73', 22, 'root', '1314ILYmm')
-#     api = DockerApi(clinet)
-#     api.create_container(user, 'tensorflow/tensorflow')
-#     # 用户代码在服务器上的路径+代码文件名
-#     result = api.train_file('/root/code', file_name)
-#     api.stop_container()
-#     return result
-
-# user = 'misaka'
-# file_name = 'test.py'
-# res = docker_test(user,file_name)
-# # 本地存储用户代码输出的文件名
-# filename = 'test_tst.txt'
-# with open(filename, 'w') as file_object:
-#     file_object.write(res)
-
-def docker_test(user,file_name,ip,port,username,password):
+def docker_test(file_name, ip, port, password, gpu_user, gpu_num):
+    """
+    :param student_id:
+    :param file_name:
+    :param ip:
+    :param port:
+    :param password:
+    :param gpu_user:
+    :param gpu_num:
+    :return:
+    """
     # clinet = SSHManager('120.78.13.73', 22, 'root', '1314ILYmm')
-    clinet = SSHManager(ip, port, username, password)
+    clinet = SSHManager(ip, port, gpu_user, password)
     api = DockerApi(clinet)
-    api.create_container(user, 'tensorflow/tensorflow')
+    api.create_container('tensorflow/tensorflow:latest-gpu', gpu_num)
     # 用户代码在服务器上的路径+代码文件名
-    result = api.train_file('/root/code', file_name)
-    # result = api.train_file('/root/code', 'test.py')
+    result = api.train_file('/home/dc2-user', file_name)
     api.stop_container()
+    # 释放占用的gpu
+    free_gpu_list.append(gpu)
     return result
 
-# user = 'misaka'
-# file_name = 'test.py'
-# ip = '120.78.13.73'
-# port = 22
-# password = '1314ILYmm'
-# username = 'root'
-# res = docker_test(user,file_name,ip,port,username,password)
-# #本地存储用户代码输出的文件名
-# filename = 'test_tst.txt'
-# with open(filename, 'w') as file_object:
-#    file_object.write(res)
+# gpu列表
+num = 1
+free_gpu_list = []
+for i in range(num):
+    free_gpu_list.append(i)
+gpu = None
+
+file_name = 'mnist.py'
+ip = '116.85.38.198'
+port = 22
+gpu_user = 'dc2-user'
+password = 'Hx1021$&@'
+
+# 获取空闲的gpu
+if free_gpu_list:
+    gpu = free_gpu_list.pop(0)
+    print(gpu)
+    res = docker_test(file_name, ip, port, password, gpu_user, gpu)
+    print(res)
+    # 本地存储用户代码输出的文件名
+    filename = 't_t.txt'
+    with open(filename, 'w') as file_object:
+        file_object.write(res)
+else:
+    print('暂无空闲gpu')
+
