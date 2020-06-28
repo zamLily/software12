@@ -26,8 +26,7 @@ class SSHManager:
                               username=self._usr,
                               password=self._passwd,
                               timeout=60)
-            print("ssh connected to [host:%s, usr:%s, passwd:%s] succeed" %
-                               (self._host, self._usr, self._passwd))
+            # print("ssh connected to [host:%s, usr:%s, passwd:%s] succeed" % (self._host, self._usr, self._passwd))
         except Exception:
             raise RuntimeError("ssh connected to [host:%s, usr:%s, passwd:%s] failed" %
                                (self._host, self._usr, self._passwd))
@@ -60,6 +59,12 @@ class DockerApi():
         self.ssh_client = ssh_client
         self.student = student
 
+    # 保证为用户新建container的时候没有同名的container
+    def pre_delete_container(self):
+        rm_cmd = 'sudo docker rm -v {}'.format(self.student)
+        # print(rm_cmd)
+        self.ssh_client.ssh_exec_cmd(rm_cmd)
+
     def run_container(self, gpu_num, image_name, file_name):
         # self.ssh_client.ssh_exec_cmd('cd /home/dc2-user')
 
@@ -68,30 +73,31 @@ class DockerApi():
             gpu_num, self.student, self.student, image_name, file_name)
         # print(run_cmd)
         self.ssh_client.ssh_exec_cmd(run_cmd)
-        print("running the container...")
+        # print("running the container...")
 
-        save_rm_cmd = 'sudo docker logs {0} > {1}/{2}.txt && sudo docker rm -v {3}'.format(
-            self.student, self.student, self.student, self.student)
+        log_cmd = 'sudo docker logs {0}'.format(self.student)
+        rm_cmd = 'sudo docker rm -v {}'.format(self.student)
 
-        # save the container log and delete the container
+        # return the container log and delete the container
         while True:
             status = self.ssh_client.ssh_exec_cmd('sudo docker ps | grep {0} | wc -l'.format(self.student))
-            if int(status) == 1:
-                print("status is {}, the code is running".format(int(status)))
-            else:
-                print("finished running")
+            # print("status is {}".format(int(status)))
             if int(status) == 0:
-                print("saving now")
-                self.ssh_client.ssh_exec_cmd(save_rm_cmd)
+                # print("saving now")
+                log = self.ssh_client.ssh_exec_cmd(log_cmd)
+                self.ssh_client.ssh_exec_cmd(rm_cmd)
                 break
+        return log
 
 
 def docker_test(file_name, ip, port, password, gpu_user, gpu_num, student_id):
     clinet = SSHManager(ip, port, gpu_user, password)
     api = DockerApi(clinet, student_id)
-    api.run_container(gpu_num, 'tensorflow/tensorflow:latest-gpu', file_name)
+    api.pre_delete_container()
+    result = api.run_container(gpu_num, 'tensorflow/tensorflow:latest-gpu', file_name)
     # 释放占用的gpu
     free_gpu_list.append(gpu)
+    return result
 
 # gpu列表
 num = 1
@@ -110,8 +116,9 @@ stu = '1111'
 # 获取空闲的gpu
 if free_gpu_list:
     gpu = free_gpu_list.pop(0)
-    print(gpu)
-    docker_test(file_name, ip, port, password, gpu_user, gpu, stu)
+    # print(gpu)
+    res = docker_test(file_name, ip, port, password, gpu_user, gpu, stu)
+    print(res)
 else:
     print('暂无空闲gpu')
 
