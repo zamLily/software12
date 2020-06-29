@@ -446,30 +446,47 @@ def index():
 def submit(id):
     if request.method == 'POST':
         # #GPU服务器1信息(暂用，后面改数据库读取)（下面已实现）
-        # ip = '120.78.13.73'
+        # ip = '116.85.38.198'
         # port = 22
-        # username = 'root'
-        # password = '1314ILYmm'
+        # username = 'dc2-user'
+        # password = 'Hx1021$&@'
         gpu = GPU.query.filter_by(id=id).first()
         ip = gpu.ip
         port = gpu.port
         username = gpu.username
         password = gpu.password
+        gpu_num = id 
         # 下面需要用户提供（1.用户名 2.选择上传的代码文件路径）
         # 1.用户名（直接读取）
-        user = 'misaka'
+        gpu_user = 'dc2-user'
+        student_id = '1111'
         # user = current_user.username (这个登录后测试，记得改)
         # 2.需要上传代码文件的路径
-        localfile = r'C:\Users\Administrator\ruangong\software12\watchlist\17364082徐海川.py'
+        localfile = r'C:\Users\Administrator\ruangong\software12\watchlist\11.py'
         # 测试结果：可以有中文，不能有空格
         # 提取文件名
         (path_temp, file_name) = os.path.split(localfile)
         # file_name = 'test.py'
-        remotefile = r'/root/code/' + file_name
+        remotefile = r'/home/dc2-user/code/' + file_name
         submit_file(localfile, remotefile, ip, port, username, password)
-        res = docker_test(user, file_name, ip, port, username, password)
+        # res = docker_test(user, file_name, ip, port, username, password)
+        res = docker_test(file_name, ip, port, password, gpu_user, gpu_num, student_id)
+
+        #存入数据库
+        name = "Process " + file_name
+        info = gpu_user #暂时可用来存用户名
+        state = "运行完成"
+        result = res
+        temp = open(localfile,'r')
+        code = temp.read()
+        course_name = "XXXX课程"
+        gpu_name = "NO." + str(id) + "-1080Ti"
+        process = Process(name=name, info=info, state=state, result=result, code=code, course_name=course_name, gpu_name=gpu_name)
+        db.session.add(process)
+        db.session.commit()  # 提交数据库会话
+
         # 本地存储用户代码输出的文件名
-        filename = user + file_name + '.txt'
+        filename = gpu_user + '+' + file_name + '.txt'
         with open(filename, 'w') as file_object:
             file_object.write(res)
         # flash("success")
@@ -705,9 +722,15 @@ def forge():
     # username = 'root'
     # password = '1314ILYmm'
     # 创建gpu
+
+    #new
+    # ip = '116.85.38.198'
+    # port = 22
+    # username = 'dc2-user'
+    # password = 'Hx1021$&@'
     gpus = [
-        {'name': 'NO.1-1080Ti', 'info': '空闲', 'ip': '120.78.13.73', 'port': 22, 'username': 'root',
-         'password': '1314ILYmm'},
+        {'name': 'NO.1-1080Ti', 'info': '空闲', 'ip': '116.85.38.198', 'port': 22, 'username': 'dc2-user',
+         'password': 'Hx1021$&@'},
         {'name': 'NO.2-1070', 'info': '空闲', 'ip': '120.78.13.73', 'port': 22, 'username': 'root',
          'password': '1314ILYmm'},
         {'name': 'NO.3-P100', 'info': '空闲', 'ip': '120.78.13.73', 'port': 22, 'username': 'root',
