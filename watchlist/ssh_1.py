@@ -69,8 +69,8 @@ class DockerApi():
         # self.ssh_client.ssh_exec_cmd('cd /home/dc2-user')
 
         # run a container
-        run_cmd = 'sudo docker run -itd --gpus={0} --name={1} -v $PWD/{2}/:/data -w /data {3} python {4}'.format(
-            gpu_num, self.student, self.student, image_name, file_name)
+        run_cmd = 'sudo docker run -itd --gpus={0} --name={1} -v $PWD/code/:/data -w /data {2} python {3}'.format(
+            gpu_num, self.student, image_name, file_name)
         # print(run_cmd)
         self.ssh_client.ssh_exec_cmd(run_cmd)
         # print("running the container...")
