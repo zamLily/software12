@@ -95,8 +95,6 @@ def docker_test(file_name, ip, port, password, gpu_user, gpu_num, student_id):
     api = DockerApi(clinet, student_id)
     api.pre_delete_container()
     result = api.run_container(gpu_num, 'tensorflow/tensorflow:latest-gpu', file_name)
-    # 释放占用的gpu
-    free_gpu_list.append(gpu)
     return result
 
 # gpu列表
@@ -119,6 +117,8 @@ if free_gpu_list:
     # print(gpu)
     res = docker_test(file_name, ip, port, password, gpu_user, gpu, stu)
     print(res)
+    # 释放占用的gpu
+    free_gpu_list.append(gpu)
 else:
     print('暂无空闲gpu')
 
