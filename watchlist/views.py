@@ -514,12 +514,19 @@ def submit(id):
             with open(filename, 'w', encoding='UTF-8') as file_object:
                 file_object.write(res)
             # flash("success")
+
+            # 统计提交process的数量
+            current_user.submit_num += 1
+            db.session.add(current_user)
+            db.session.commit()  # 提交数据库会话
+
             return redirect(url_for('process'))
 
         # 文本框写代码方式
         if button_name == "运行":
             name = request.form['进程名称']
             info = request.form['进程简介']
+
 
             #读取
             code = request.form['edit']
@@ -587,6 +594,12 @@ def submit(id):
             with open(filename, 'w', encoding='UTF-8') as file_object:
                 file_object.write(res)
             # flash("success")
+
+            # 统计提交process的数量
+            current_user.submit_num += 1
+            db.session.add(current_user)
+            db.session.commit()  # 提交数据库会话
+
             return redirect(url_for('process'))
 
     courses = Course.query.all()
@@ -785,6 +798,10 @@ def process_edit(id):
         with open(filename, 'w', encoding='UTF-8') as file_object:
             file_object.write(res)
 
+        # 统计提交process的数量
+        current_user.submit_num += 1
+        db.session.add(current_user)
+        db.session.commit()  # 提交数据库会话
 
     return render_template('process_edit.html', process=process)
 
