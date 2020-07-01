@@ -87,18 +87,20 @@
 				{% endif %}
 				{% endfor %}
 				{% endfor %}
-				<form method="POST" action="/">
+
+
+				<form method="POST" action="/submit/{{ gpu.id }}/" enctype=multipart/form-data>
 					<div id="ssh">
 						<p>
 							<!-- <strong>SSH</strong> -->
 							<strong>进程名称</strong>
-							<input id="ssh_text" type="text" name="SSH方式" required style="height:2em;width:80%;margin-top:1px;margin-left:5px;background:rgba(255,255,255,0.7);border-radius:5px;border:1px solid white;text-align: center;" placeholder="请输入进程名称">
+							<input id="ssh_text" type="text" name="进程名称" required style="height:2em;width:80%;margin-top:1px;margin-left:5px;background:rgba(255,255,255,0.7);border-radius:5px;border:1px solid white;text-align: center;" placeholder="请输入进程名称">
 							<!-- <input id="ssh_button" type="submit" class="#" value="提交"> -->
 						</p>
 						<p>
 							<!-- <strong>SSH</strong> -->
 							<strong>进程简介</strong>
-							<input id="ssh_text" type="text" name="SSH方式" required style="height:2em;width:80%;margin-top:3px;margin-left:5px;background:rgba(255,255,255,0.7);border-radius:5px;border:1px solid white;text-align: center;" placeholder="请输入进程简介">
+							<input id="ssh_text" type="text" name="进程简介" required style="height:2em;width:80%;margin-top:3px;margin-left:5px;background:rgba(255,255,255,0.7);border-radius:5px;border:1px solid white;text-align: center;" placeholder="请输入进程简介">
 							<!-- <input id="ssh_button" type="submit" class="#" value="提交"> -->
 						</p>					
 						<!-- <input id="ssh_text" type="text" name="SSH方式" required style="height:2em;width:23%;margin-top:3px;background:rgba(255,255,255,0.7);border-radius:5px;border:1px solid white;text-align: center;" placeholder="请输入IP">
@@ -106,23 +108,24 @@
 						<input id="ssh_text" type="text" name="SSH方式" required style="height:2em;width:23%;margin-top:3px;background:rgba(255,255,255,0.7);border-radius:5px;border:1px solid white;text-align: center;margin-left:5px;" placeholder="请输入user_name">
 						<input id="ssh_text" type="text" name="SSH方式" required style="height:2em;width:23%;margin-top:3px;background:rgba(255,255,255,0.7);border-radius:5px;border:1px solid white;text-align: center;margin-left:5px;" placeholder="请输入password"> -->
 					</div>
-				</form>
-				
-				<form method="POST" action="/">
+
+
 					<div id="submit">
 						<p><strong>直接上传文件</strong></p>
-						<input id="submit_button_file" type="file" class="#">
-						<input id="submit_button" type="submit" class="#" value="提交">
+						<input type="file" name="upload_file" id="upload_file" class="#" onchange="getFileContent();" onClick="spanClick0();">
+
+
+                        <input id="submit_button" name="submit_button" type="submit" class="#" value="提交" >
+
 					</div>
-				</form>
-				
-				<form method="POST" action="/">
+
+
 					<div id="edit">
 						<p>
 							<strong>代码编辑器</strong>
 						</p>
 						<textarea id="edit_text" name="edit" cols="145" rows="20" placeholder="请输入代码..."></textarea>
-						<input id="edit_button" type="submit" class="#" value="运行">
+						<input id="edit_button" name="submit_button"  type="submit" class="#" value="运行">
 					</div>
 				</form>
 			</div>

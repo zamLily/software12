@@ -678,7 +678,7 @@ html {
 }
 #courseinfo{
 	height: 250px;
-	width: 25.5%;
+	width: 27%;
 	float: left;
 	margin: 0 10px;
 	border: 1px solid white;
@@ -687,6 +687,7 @@ html {
 	font-size: 20px;
 	border-radius: 5px;
 	overflow: auto;
+	text-align: justify;
 }
 #courseinfo a{
 	color: black;
@@ -1091,6 +1092,7 @@ html {
 	border-radius: 5px;
 	font-size: 15px;
 	overflow: auto;
+	max-height: 340px;
 }
 
 
@@ -1113,7 +1115,7 @@ html {
 	border-radius: 5px;
 	text-align: left;
 }
-#re_edit_text{
+/*#re_edit_text{
 	height:82%;
 	width:99%;
 	margin:3px;
@@ -1122,7 +1124,7 @@ html {
 	padding: 5px;
 	border: 1px solid rgba(255, 255, 255, 0.6);
 	border-radius: 10px;
-}
+}*/
 #re_edit_text:focus {  
     outline: none;
 }

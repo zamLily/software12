@@ -444,53 +444,92 @@ def index():
 @app.route('/submit/<int:id>/', methods=['GET', 'POST'])
 # @login_required
 def submit(id):
-    if request.method == 'POST':
-        # #GPU服务器1信息(暂用，后面改数据库读取)（下面已实现）
-        # ip = '116.85.38.198'
-        # port = 22
-        # username = 'dc2-user'
-        # password = 'Hx1021$&@'
-        gpu = GPU.query.filter_by(id=id).first()
-        ip = gpu.ip
-        port = gpu.port
-        username = gpu.username
-        password = gpu.password
-        gpu_num = id 
-        # 下面需要用户提供（1.用户名 2.选择上传的代码文件路径）
-        # 1.用户名（直接读取）
-        gpu_user = 'dc2-user'
-        student_id = '1111'
-        # user = current_user.username (这个登录后测试，记得改)
-        # 2.需要上传代码文件的路径
-        localfile = r'C:\Users\Administrator\ruangong\software12\watchlist\11.py'
-        # 测试结果：可以有中文，不能有空格
-        # 提取文件名
-        (path_temp, file_name) = os.path.split(localfile)
-        # file_name = 'test.py'
-        remotefile = r'/home/dc2-user/code/' + file_name
-        submit_file(localfile, remotefile, ip, port, username, password)
-        # res = docker_test(user, file_name, ip, port, username, password)
-        res = docker_test(file_name, ip, port, password, gpu_user, gpu_num, student_id)
+    if request.method == 'POST':  
+        button_name = request.form['submit_button']
+        if button_name == "提交":
+            #读取
+            f = request.files.get('upload_file')
 
-        #存入数据库
-        name = "Process " + file_name
-        info = gpu_user #暂时可用来存用户名
-        state = "运行完成"
-        result = res
-        temp = open(localfile,'r')
-        code = temp.read()
-        course_name = "XXXX课程"
-        gpu_name = "NO." + str(id) + "-1080Ti"
-        process = Process(name=name, info=info, state=state, result=result, code=code, course_name=course_name, gpu_name=gpu_name)
-        db.session.add(process)
-        db.session.commit()  # 提交数据库会话
+            basepath = os.path.dirname(__file__)
+            localfile = os.path.join(basepath, 'code/user_code', f.filename)
+            f.save(localfile)
 
-        # 本地存储用户代码输出的文件名
-        filename = gpu_user + '+' + file_name + '.txt'
-        with open(filename, 'w') as file_object:
-            file_object.write(res)
-        # flash("success")
+            # path = "/static/photo/"
+            # file_path = path + file.filename
+            # #GPU服务器1信息(暂用，后面改数据库读取)（下面已实现）
+            #ip = '116.85.38.198'
+            #port = 22
+            #username = 'dc2-user'
+            #password = 'Hx1021$&@'
+            gpu = GPU.query.filter_by(id=id).first()
+            ip = gpu.ip
+            port = gpu.port
+            username = gpu.username
+            password = gpu.password
+            gpu_num = id 
+            # 下面需要用户提供（1.用户名 2.选择上传的代码文件路径）
+            # 1.用户名（直接读取）
+            # gpu_user = 'dc2-user'
+            gpu_user = gpu.username
 
+            # 2.需要上传代码文件的路径
+            # localfile = r'C:\Users\Administrator\ruangong\software12\watchlist\徐海川.py'
+
+            # 存入进程表
+            name = request.form['进程名称']
+            info = request.form['进程简介']
+            state = "正在运行"
+            temp = open(localfile, 'r', encoding='UTF-8')
+            code = temp.read()     # 代码内容
+            gpu_course = GPU_course.query.filter_by(gpu_name=gpu.name).first()  # 找到对应的关系
+            course_name = gpu_course.course_name
+            gpu_name = gpu_course.gpu_name
+            process = Process(name=name, info=info, state=state, code=code, course_name=course_name,
+                              gpu_name=gpu_name)
+            db.session.add(process)
+            db.session.commit()  # 提交数据库会话
+            # name = "Process " + file_name
+            # info = gpu_user #暂时可用来存用户名
+            #state = "运行完成"
+            #result = res
+            # code = "temp代码"
+
+            # 存入用户-进程表
+            process_name = name
+            #user_name = current_user.username #(这个登录后测试，记得改)
+            user_name = current_user.username
+            process_stu = Process_stu(process_name=process_name, user_name=user_name)
+            db.session.add(process_stu)
+            db.session.commit()  # 提交数据库会话
+
+            #redirect(url_for('process'))
+
+            # 测试结果：可以有中文，不能有空格
+            # 提取文件名
+            (path_temp, file_name) = os.path.split(localfile)
+            # file_name = 'test.py'
+            remotefile = r'/home/dc2-user/code/' + file_name
+            submit_file(localfile, remotefile, ip, port, username, password)
+            # res = docker_test(user, file_name, ip, port, username, password)
+            res = docker_test(file_name, ip, port, password, gpu_user, gpu_num)
+
+            # 出结果后更新进程表的参数
+            state = "运行完成"
+            result = res
+            process_now = Process.query.filter_by(name=name).first()  # 找到当前这个程序
+            process_now.state = state
+            process_now.result = result
+            #process = process_now(state=state, result=result)
+            db.session.add(process_now)
+            db.session.commit()  # 提交数据库会话
+
+
+            # 本地存储用户代码输出的文件名
+            filename = gpu_user + '+' + file_name + '.txt'
+            with open(filename, 'w', encoding='UTF-8') as file_object:
+                file_object.write(res)
+            # flash("success")
+            return redirect(url_for('process'))
     courses = Course.query.all()
     gpu = GPU.query.filter_by(id=id).first()
     return render_template('submit.html', courses=courses, gpu=gpu)
@@ -731,14 +770,14 @@ def forge():
     gpus = [
         {'name': 'NO.1-1080Ti', 'info': '空闲', 'ip': '116.85.38.198', 'port': 22, 'username': 'dc2-user',
          'password': 'Hx1021$&@'},
-        {'name': 'NO.2-1070', 'info': '空闲', 'ip': '120.78.13.73', 'port': 22, 'username': 'root',
-         'password': '1314ILYmm'},
-        {'name': 'NO.3-P100', 'info': '空闲', 'ip': '120.78.13.73', 'port': 22, 'username': 'root',
-         'password': '1314ILYmm'},
-        {'name': 'NO.4-RTX2080Ti', 'info': '空闲', 'ip': '120.78.13.73', 'port': 22, 'username': 'root',
-         'password': '1314ILYmm'},
-        {'name': 'NO.5-1080Ti', 'info': '空闲', 'ip': '120.78.13.73', 'port': 22, 'username': 'root',
-         'password': '1314ILYmm'}
+        {'name': 'NO.2-1070', 'info': '空闲', 'ip': '116.85.38.198', 'port': 22, 'username': 'dc2-user',
+         'password': 'Hx1021$&@'},
+        {'name': 'NO.3-P100', 'info': '空闲', 'ip': '116.85.38.198', 'port': 22, 'username': 'dc2-user',
+         'password': 'Hx1021$&@'},
+        {'name': 'NO.4-RTX2080Ti', 'info': '空闲', 'ip': '116.85.38.198', 'port': 22, 'username': 'dc2-user',
+         'password': 'Hx1021$&@'},
+        {'name': 'NO.5-1080Ti', 'info': '空闲', 'ip': '116.85.38.198', 'port': 22, 'username': 'dc2-user',
+         'password': 'Hx1021$&@'}
     ]
     for g in gpus:
         gpu = GPU(name=g['name'], info=g['info'], ip=g['ip'], port=g['port'], username=g['username'],

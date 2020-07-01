@@ -90,6 +90,7 @@ def docker_test(file_name, ip, port, password, gpu_user, gpu_num):
     result = api.run_container(gpu_num, 'tensorflow/tensorflow:latest-gpu', file_name)
     return result
 
+"""
 # gpu列表
 num = 1
 free_gpu_list = []
@@ -114,3 +115,4 @@ if free_gpu_list:
 else:
     print('暂无空闲gpu')
 
+"""
