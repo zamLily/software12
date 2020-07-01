@@ -736,7 +736,7 @@ def process_edit(id):
         name = process.name
         #读取
         code = request.form['edit']
-        print(code)
+        # print(code)
         f_name = str(name) + ".py"
         basepath = os.path.dirname(__file__)
         localfile = os.path.join(basepath, 'code/user_code', f_name)
@@ -769,7 +769,7 @@ def process_edit(id):
         submit_file(localfile, remotefile, ip, port, username, password)
 
         flash("提交成功，可在本页面查看进程运行结果！")
-        print(file_name)
+        # print(file_name)
         res = docker_test(file_name, ip, port, password, gpu_user, gpu_num)
 
         # 出结果后更新进程表的参数
