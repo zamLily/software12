@@ -730,9 +730,9 @@ def process_xxx_run(id,user,file_name,ip,port,password):
 @app.route('/process_edit/<int:id>/', methods=['GET', 'POST'])
 @login_required
 def process_edit(id):
-
+    process = Process.query.filter_by(id=id).first()
     if request.method == 'POST':
-        process = Process.query.filter_by(id=id).first()
+
         name = process.name
         #读取
         code = request.form['edit']
