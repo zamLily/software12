@@ -64,6 +64,8 @@ class Relation(db.Model):
     user_name = db.Column(db.String(50), db.ForeignKey('User.username'))  # 存储用户名
     course_name = db.Column(db.String(50), db.ForeignKey('Course.name'))  # 用户对应的课程
 
+
+# GPU-课程关系table
 class GPU_course(db.Model):
     __tablename__ = 'GPU_course'
 
@@ -71,6 +73,8 @@ class GPU_course(db.Model):
     gpu_name = db.Column(db.String(50), db.ForeignKey('GPU.name'))        # gpu name
     course_name = db.Column(db.String(50), db.ForeignKey('Course.name'))  # 用户对应的课程
 
+
+# 用户-进程关系table
 class Process_stu(db.Model):
     __tablename__ = 'Process_stu'
 
