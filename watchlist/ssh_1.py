@@ -26,14 +26,16 @@ class SSHManager:
                               username=self._usr,
                               password=self._passwd,
                               timeout=60)
-        except Exception :
+            # print("ssh connected to [host:%s, usr:%s, passwd:%s] succeed" % (self._host, self._usr, self._passwd))
+        except Exception:
             raise RuntimeError("ssh connected to [host:%s, usr:%s, passwd:%s] failed" %
                                (self._host, self._usr, self._passwd))
 
     def ssh_exec_cmd(self, cmd):
         try:
             result = self._exec_command(cmd)
-            # print(result)
+            #print(result)
+            # print("exec cmd [%s] succeed" % cmd)
             return result[0]
         except Exception:
             raise RuntimeError('exec cmd [%s] failed' % cmd)
@@ -41,6 +43,7 @@ class SSHManager:
     def _exec_command(self, cmd):
         try:
             _, stdout, stderr = self._ssh.exec_command(cmd)
+            # print("Exec command [%s] succeed" % str(cmd))
             return stdout.read().decode(), stderr.read().decode()
         except Exception:
             raise RuntimeError('Exec command [%s] failed' % str(cmd))
@@ -55,56 +58,39 @@ class DockerApi():
             raise RuntimeError('ssh_client is not SSHManager object')
         self.ssh_client = ssh_client
 
-    def create_container(self,image_id, gpu_num):
-        try:
-            command = 'sudo docker run -itd --rm --gpus={0} {1} /bin/bash'.format(gpu_num, image_id)
-            # print(command)
-            self.container_id = self.ssh_client.ssh_exec_cmd(command)[:12]
-        except Exception as e:
-            print(e.args)
-            print('start container error')
+    def run_container(self, gpu_num, image_name, file_name):
+        # self.ssh_client.ssh_exec_cmd('cd /home/dc2-user')
 
-    def train_file(self, remote_file_dir, run_file_name):
-        # copy file to container
-        copy_command = 'sudo docker cp {0} {1}:/data/'.format(remote_file_dir, self.container_id)
-        # print(copy_command)
-        self.ssh_client.ssh_exec_cmd(copy_command)
-        # run python file
-        if run_file_name.endswith('py'):
-            run_cmd = 'sudo docker exec -i {0} /bin/bash -c \'python {1}/{2}\''.format(self.container_id, '/data', run_file_name)
-        else:
-            run_cmd ='sudo docker exec -i {0} /bin/bash -c \'sh {1}/{2}\''.format(self.container_id, '/data', run_file_name)
-        # print(run_cmd)
-        result = self.ssh_client.ssh_exec_cmd(run_cmd)
-        return result
+        # run a container
+        run_cmd = 'sudo docker run -itd --gpus={0} -v $PWD/code/:/data -w /data {1} python {2}'.format(
+            gpu_num, image_name, file_name)
+        print(run_cmd)
+        container = self.ssh_client.ssh_exec_cmd(run_cmd)
+        self.container_id = container[:12]
+        # print("running the container...")
 
-    def stop_container(self):
-        stop_cmd = 'sudo docker stop {}'.format(self.container_id)
-        self.ssh_client.ssh_exec_cmd(stop_cmd)
+        log_cmd = 'sudo docker logs {0}'.format(self.container_id)
+        rm_cmd = 'sudo docker rm -v {}'.format(self.container_id)
+
+        # return the container log and delete the container
+        while True:
+            status = self.ssh_client.ssh_exec_cmd('sudo docker ps | grep {0} | wc -l'.format(self.container_id))
+            # print("status is {}".format(int(status)))
+            if int(status) == 0:
+                # print("saving now")
+                log = self.ssh_client.ssh_exec_cmd(log_cmd)
+                self.ssh_client.ssh_exec_cmd(rm_cmd)
+                break
+        return log
 
 
 def docker_test(file_name, ip, port, password, gpu_user, gpu_num):
-    """
-    :param student_id:
-    :param file_name:
-    :param ip:
-    :param port:
-    :param password:
-    :param gpu_user:
-    :param gpu_num:
-    :return:
-    """
-    # clinet = SSHManager('120.78.13.73', 22, 'root', '1314ILYmm')
     clinet = SSHManager(ip, port, gpu_user, password)
     api = DockerApi(clinet)
-    api.create_container('tensorflow/tensorflow:latest-gpu', gpu_num)
-    # 用户代码在服务器上的路径+代码文件名
-    result = api.train_file('/home/dc2-user', file_name)
-    api.stop_container()
-    # 释放占用的gpu
-    free_gpu_list.append(gpu)
+    result = api.run_container(gpu_num, 'tensorflow/tensorflow:latest-gpu', file_name)
     return result
 
+"""
 # gpu列表
 num = 1
 free_gpu_list = []
@@ -112,7 +98,7 @@ for i in range(num):
     free_gpu_list.append(i)
 gpu = None
 
-file_name = 'mnist.py'
+file_name = 'mnist1.py'
 ip = '116.85.38.198'
 port = 22
 gpu_user = 'dc2-user'
@@ -121,13 +107,12 @@ password = 'Hx1021$&@'
 # 获取空闲的gpu
 if free_gpu_list:
     gpu = free_gpu_list.pop(0)
-    print(gpu)
+    # print(gpu)
     res = docker_test(file_name, ip, port, password, gpu_user, gpu)
     print(res)
-    # 本地存储用户代码输出的文件名
-    filename = 't_t.txt'
-    with open(filename, 'w') as file_object:
-        file_object.write(res)
+    # 释放占用的gpu
+    free_gpu_list.append(gpu)
 else:
     print('暂无空闲gpu')
 
+"""

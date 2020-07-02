@@ -728,7 +728,7 @@ html {
 }
 #courseinfo{
 	height: 250px;
-	width: 25.5%;
+	width: 27%;
 	float: left;
 	margin: 0 10px;
 	border: 1px solid white;
@@ -737,6 +737,7 @@ html {
 	font-size: 20px;
 	border-radius: 5px;
 	overflow: auto;
+	text-align: justify;
 }
 #courseinfo a{
 	color: black;
