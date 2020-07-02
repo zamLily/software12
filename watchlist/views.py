@@ -112,7 +112,8 @@ def GPUs():
 def gpu_xxx_teacher(id):
     gpus = GPU_course.query.filter_by(id=id).first()
     processes = Process.query.filter_by(gpu_name=gpus.gpu_name).all()
-    return render_template('gpu_xxx_teacher.html',gpus=gpus,processes=processes) 
+    usages = Usage.query.filter_by(gpu_name=gpus.gpu_name).all()
+    return render_template('gpu_xxx_teacher.html',gpus=gpus,processes=processes,usages=usages) 
 
 # process_xxx_teacher
 @app.route('/process_teacher/<int:id>/', methods=['GET', 'POST'])
@@ -969,4 +970,15 @@ def forge():
     for ps in process_stus:
         pss = Process_stu(process_name=ps['process_name'], user_name=ps['user_name'])
         db.session.add(pss)
+    db.session.commit()
+
+    # 创建用户-课程-gpu-使用量-最后使用时间 关系table
+    usages = [
+        {'user_name': '17363029', 'course_name': '深度学习','gpu_name': 'NO.1-1080Ti'},
+        {'user_name': '17363029', 'course_name': '人工智能原理','gpu_name': 'NO.2-1070'},
+        {'user_name': '17363027', 'course_name': '红楼实验室','gpu_name': 'NO.5-1080Ti'},
+    ]
+    for u in usages:
+        usage = Usage(user_name=u['user_name'], course_name=u['course_name'],gpu_name=u['gpu_name'])
+        db.session.add(usage)
     db.session.commit()

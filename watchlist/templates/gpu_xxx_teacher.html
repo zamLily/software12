@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>GPU教师端管理系统【GPU程序】</title>
+	<title>GPU教师端管理系统【GPU信息】</title>
 	<link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
@@ -39,7 +39,7 @@
 						<img src="/static/pic/home.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/index_teacher/">我的主页</a>
+						<a href="/index_teacher/">主页</a>
 					</div>
 				</div>
 
@@ -66,34 +66,93 @@
 						<img src="/static/pic/settings.png" alt="">
 					</div>
 					<div class="asidechoices">
-						<a href="/settings_teacher/">我的设置</a>
+						<a href="/settings_teacher/">设置</a>
 					</div>
 				</div>
 			</div>
 			<div id="content">
-				<div style="width:99%;font-size:30px;text-align:center;">
+				<div style="width:99%;font-size:30px;text-align:center;margin-top:3px;">
 					<strong>{{ gpus['gpu_name'] }}</strong>
 				</div>
-				{% for p in processes %}
-				<div id="program1" class="program">
-					<a href="/process_teacher/{{ p['id'] }}/">
-						<div class="index_img">
-							<img src="/static/pic/process_.png" alt="">
+
+				<!-- <div id="gpu_above">
+					<div id="gpu-using-right">
+						<table style="margin-top:15px;">
+							<tr>
+								<th>
+									<img src="/static/pic/time.png" alt="">
+								</th>
+								<td>开 机 时 长</td>
+								<td style="text-align: left;">xxx</td>
+							</tr>
+							<tr>
+								<th>
+									<img src="/static/pic/use.png" alt="">
+								</th>
+								<td>目前使用量</td>
+								<td style="text-align: left;">xxx</td>
+							</tr>
+							<tr>
+								<th>
+									<img src="/static/pic/temperature.png" alt="">
+								</th>
+								<td>温&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp度</td>
+								<td style="text-align: left;">xxx</td>
+							</tr>
+						</table>
+					</div>
+
+					<div id="gpu-using">
+						GPU使用量的图
+						<img src="" alt="">
+					</div>
+				</div> -->
+				
+				<div id="gpu_below">
+					<div id="gpu-user-list">
+						<form action="">
+							<table>
+								<h2 style="text-align:center;height:35px;line-height:35px;">使用用户列表（每月）</h2>
+								<tr>
+									<th>课程</th>
+									<th>用户名</th>
+									<th>使用量</th>
+									<th>最后使用时间</th>
+								</tr>
+								{% for u in usages %}
+								<tr>
+									<td>{{u.course_name}}</td>
+									<td>{{u.user_name}}</td>
+									<td>{{u.submit_num}}</td>
+									<td>{{u.last_time}}</td>
+								</tr>
+								{% endfor %}
+							</table>
+							<p class="index_box_no">--没有更多使用者--</p>
+						</form>
+					</div>
+
+					<div id="gpu-process-list">
+						<h2 style="text-align:center;height:30px;line-height:30px;">GPU进程</h2>
+						{% for p in processes %}
+						<div id="program1" class="gpu-process-list-program">
+							<a href="/process_teacher/{{ p['id'] }}/">
+								<div class="index_img">
+									<img src="/static/pic/process_.png" alt="">
+								</div>
+								{{ p['name'] }}
+							</a>
+							<p>{{ p['info'] }}</p>
 						</div>
-						{{ p['name'] }}
-					</a>
-					<div class="programsum">
-						<p>{{ p['info'] }}</p>
+						{% endfor %}
+						<p class="index_box_no">--没有更多进程--</p>
 					</div>
 				</div>
-				{% endfor %}
-
-				<p class="index_box_no">--没有更多进程--</p>
+				
 			</div>
-
-			
 		</div>
 
 	</div>
 </body>
 </html>
+				
