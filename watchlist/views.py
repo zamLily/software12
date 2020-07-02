@@ -7,6 +7,7 @@ from watchlist.models import *
 from watchlist.ssh_1 import *
 from watchlist.submit import *
 import os
+from datetime import datetime
 
 # -------------------------------- 教师端 --------------------------------------------#
 
@@ -410,6 +411,13 @@ def signup():
                 user.set_password(password)  # 设置密码
                 db.session.add(user)
                 db.session.commit()  # 提交数据库会话
+
+                # Usage 关系表
+                usage = Usage(user_name=username)
+                print(usage)
+                db.session.add(usage)
+                db.session.commit()  # 提交数据库会话
+
                 flash('成功注册！')
                 return redirect(url_for('visitor'))  # 返回主页
 
@@ -515,9 +523,13 @@ def submit(id):
                 file_object.write(res)
             # flash("success")
 
-            # 统计提交process的数量
-            current_user.submit_num += 1
-            db.session.add(current_user)
+            # 统计提交process的数量以及提交时间
+            usage = Usage.query.filter_by(user_name=user_name).first()
+            usage.course_name = course_name
+            usage.gpu_name = gpu_name
+            usage.submit_num += 1
+            usage.last_time = datetime.utcnow
+            db.session.add(usage)
             db.session.commit()  # 提交数据库会话
 
             return redirect(url_for('process'))
@@ -595,9 +607,13 @@ def submit(id):
                 file_object.write(res)
             # flash("success")
 
-            # 统计提交process的数量
-            current_user.submit_num += 1
-            db.session.add(current_user)
+            # 统计提交process的数量以及提交时间
+            usage = Usage.query.filter_by(user_name=user_name).first()
+            usage.course_name = course_name
+            usage.gpu_name = gpu_name
+            usage.submit_num += 1
+            usage.last_time = datetime.utcnow
+            db.session.add(usage)
             db.session.commit()  # 提交数据库会话
 
             return redirect(url_for('process'))
@@ -798,9 +814,11 @@ def process_edit(id):
         with open(filename, 'w', encoding='UTF-8') as file_object:
             file_object.write(res)
 
-        # 统计提交process的数量
-        current_user.submit_num += 1
-        db.session.add(current_user)
+        # 统计提交process的数量以及提交时间
+        usage = Usage.query.filter_by(user_name=current_user.name).first()
+        usage.submit_num += 1
+        usage.last_time = datetime.utcnow
+        db.session.add(usage)
         db.session.commit()  # 提交数据库会话
 
     return render_template('process_edit.html', process=process)
@@ -870,7 +888,7 @@ def forge():
     # 创建消息
     messages = [
         {'course_name': '深度学习', 'title': '作业提交情况', 'info': '甲乙丙丁四个同学没有交作业'},
-        {'course_name': '人工智能原理', 'title': '作业提交情况', 'info': '甲乙丙三个同学没有交作业'}, \
+        {'course_name': '人工智能原理', 'title': '作业提交情况', 'info': '甲乙丙三个同学没有交作业'},
         {'course_name': '红楼实验室', 'title': '作业提交情况', 'info': '甲乙两人没有交作业'},
 
         {'course_name': '深度学习', 'title': '报告上交日期', 'info': '请于5.20前上交报告'},
