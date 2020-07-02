@@ -40,7 +40,7 @@ class Course(db.Model):
     time = db.Column(db.String(50))               # 授课时间（学年、学期）
     info = db.Column(db.String(300))              # 课程其他信息
     course_name = db.Column(db.String(50), db.ForeignKey('Course.name'))  # 用户对应的课程
-    gpu_name = db.Column(db.String(50), db.ForeignKey('GPU.name'))  # 存储用户名（记得包括老师本人）
+    gpu_name = db.Column(db.String(50), db.ForeignKey('GPU.name'))  # gpu name
     pic_path = db.Column(db.String(128), default="/static/pic/course_logo.png")  # 课程头像
 
 
@@ -61,7 +61,7 @@ class Relation(db.Model):
     __tablename__ = 'Relation'
 
     id = db.Column(db.Integer, primary_key=True)                          # id（主键）
-    user_name = db.Column(db.String(50), db.ForeignKey('User.username'))  # 存储用户名（记得包括老师本人）
+    user_name = db.Column(db.String(50), db.ForeignKey('User.username'))  # 存储用户名
     course_name = db.Column(db.String(50), db.ForeignKey('Course.name'))  # 用户对应的课程
 
 class GPU_course(db.Model):
