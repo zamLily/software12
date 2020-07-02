@@ -390,18 +390,15 @@ def logout():
 @app.route('/signup/', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        """Create user."""
-        username = request.form['username']
-        password = request.form['password']
-
-        select = request.form['certification']
+        username = request.form['username']  # 获取用户名
+        password = request.form['password']  # 获取密码
+        select = request.form['certification']  # 获取身份
 
         if select == "请选择":
             flash("请选择 学生or老师")
 
         else:
             user = User.query.filter_by(username=username).first()  # 找有没有注册过
-            # user = User.query.first()
 
             if user is not None:  # 该用户注册过
                 flash('用户已经存在！')
@@ -421,10 +418,6 @@ def signup():
                 flash('成功注册！')
                 return redirect(url_for('visitor'))  # 返回主页
 
-            # flash(select)
-            # db.drop_all()   # 想要重置数据库可以用这个
-            # db.create_all()  # create数据库
-
     return render_template('signup.html')
 
 
@@ -443,14 +436,13 @@ def index():
     processes = Process.query.all()
     messages = Message.query.order_by(Message.id.desc()).all()
     process_stus = Process_stu.query.filter_by(user_name=current_user.username).all()
-    print(process_stus)
     return render_template('index.html', courses=courses, processes=processes, messages=messages, relations=relations, process_stus=process_stus)
 
 
 # submit
 # curl -X POST http://127.0.0.1:5000/submit/1/
 @app.route('/submit/<int:id>/', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def submit(id):
     if request.method == 'POST':  
         button_name = request.form['submit_button']
