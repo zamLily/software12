@@ -68,23 +68,49 @@ def my_courses_teacher():
     courses = Course.query.all()
     relations = Relation.query.filter_by(user_name=current_user.username).all()
     if request.method == 'POST':
-        time=request.form['time']
-        intro=request.form['intro']
-        course_name=request.form['course_name']
-        course = Course(name=course_name, teacher=current_user.username, time=time, info=intro)
-        relation = Relation(user_name=current_user.username, course_name=course_name)
-        db.session.add(relation)
-        db.session.add(course)
-        db.session.commit() 
-        for k in request.form.keys():
-            if "gpu-" in k:
-                gpu_name = str(k)[4:]
-                gpu_course = GPU_course(gpu_name=gpu_name, course_name=course_name)
-                db.session.add(gpu_course)
-        db.session.commit() 
-        courses = Course.query.all()
-        relations = Relation.query.filter_by(user_name=current_user.username).all()
-        return render_template('my_courses_teacher.html', courses=courses, relations=relations)
+        button_name = request.form['submit_button']
+        if button_name == "确 认 创 建":
+            time=request.form['time']
+            intro=request.form['intro']
+            course_name=request.form['course_name']
+            course = Course(name=course_name, teacher=current_user.username, time=time, info=intro)
+            relation = Relation(user_name=current_user.username, course_name=course_name)
+            db.session.add(relation)
+            db.session.add(course)
+            db.session.commit() 
+            for k in request.form.keys():
+                if "gpu-" in k:
+                    gpu_name = str(k)[4:]
+                    gpu_course = GPU_course(gpu_name=gpu_name, course_name=course_name)
+                    db.session.add(gpu_course)
+            db.session.commit() 
+            courses = Course.query.all()
+            relations = Relation.query.filter_by(user_name=current_user.username).all()
+            return render_template('my_courses_teacher.html', courses=courses, relations=relations)
+        elif button_name == "删除课程":
+            delete_course_id=request.form['delete_course']
+            course = Course.query.filter_by(id=delete_course_id).first()
+            usage_c = Usage.query.filter_by(course_name=course.name).all()
+            relation_c = Relation.query.filter_by(course_name=course.name).all()
+            GPU_course_c = GPU_course.query.filter_by(course_name=course.name).all()
+            Process_c = Process.query.filter_by(course_name=course.name).all()
+            Message_c = Message.query.filter_by(course_name=course.name).all()
+            for m_c in Message_c:
+                db.session.delete(m_c)
+            for p_c in Process_c:
+                db.session.delete(p_c)
+            for g_c_c in GPU_course_c:
+                db.session.delete(g_c_c)
+            for r_c in relation_c:
+                db.session.delete(r_c)
+            for u_c in usage_c:
+                db.session.delete(u_c)
+            db.session.delete(course)
+            db.session.commit()
+            courses = Course.query.all()
+            relations = Relation.query.filter_by(user_name=current_user.username).all()
+            return render_template('my_courses_teacher.html', courses=courses, relations=relations)
+
     return render_template('my_courses_teacher.html', courses=courses, relations=relations)
 
 # new_courses
