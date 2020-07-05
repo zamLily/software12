@@ -496,7 +496,7 @@ def submit(id):
             remotefile = r'/home/dc2-user/code/' + file_name
             submit_file(localfile, remotefile, ip, port, username, password)
 
-            flash("提交成功，可移至进程页面查看相应进程运行结果！")
+            flash("提交成功，用户可以在此页面继续提交进程，或者移至我的进程页面查看进程")
 
             res = docker_test(file_name, ip, port, password, gpu_user, gpu_num)
 
@@ -525,7 +525,7 @@ def submit(id):
             db.session.add(usage)
             db.session.commit()  # 提交数据库会话
 
-            return redirect(url_for('process'))
+            #return redirect(url_for('process'))
 
         # 文本框写代码方式
         if button_name == "运行":
@@ -580,7 +580,7 @@ def submit(id):
             submit_file(localfile, remotefile, ip, port, username, password)
             # res = docker_test(user, file_name, ip, port, username, password)
 
-            flash("提交成功，可移至进程页面查看相应进程运行结果！")
+            flash("提交成功，用户可以在此页面继续提交进程，或者移至我的进程页面查看进程")
 
             res = docker_test(file_name, ip, port, password, gpu_user, gpu_num)
 
@@ -609,7 +609,7 @@ def submit(id):
             db.session.add(usage)
             db.session.commit()  # 提交数据库会话
 
-            return redirect(url_for('process'))
+            #return redirect(url_for('process'))
 
     courses = Course.query.all()
     gpu = GPU.query.filter_by(id=id).first()
