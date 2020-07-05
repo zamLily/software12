@@ -1034,6 +1034,22 @@ html {
 	background: rgba(255,255,255,0.2);
 	text-decoration:none;
 }
+#re_edit_delete {
+	height: 28px;
+	float:right;
+	border:1px solid white;
+	font-size: 15px;
+	font-weight: normal;
+	padding: 0 5px;
+	border-radius: 5px;
+	line-height: 25px;
+	background: rgba(255,255,255,0.2);
+	text-decoration:none;
+}
+#re_edit_delete:hover{  
+    outline: none;
+    cursor: pointer;
+}
 #left{
 	width: 48%;
 	float: left;
