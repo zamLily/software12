@@ -507,6 +507,7 @@ html {
 	border-radius: 5px;
 	font-size: 15px;
 	overflow: auto;
+	max-height: 350px;
 }
 
 
