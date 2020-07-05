@@ -73,29 +73,33 @@
 
 			<div id="content">
 				<div id="left">
-					<div id="result1_1">
+					<div id="result1_1" style="background:none;">
 						<p style="font-weight:bold;margin-bottom:5px;">
 							{{ process.name }} - {{ process.info }} - 运行情况
 						</p>
-						<div id="box1" >
+						<div id="box1" style="background:rgba(255,255,255,0.4);">
 							<p>
 								{{ process.state }}
 							</p>
 						</div>
 					</div>
 
-					<div id="result2_2">
+					<div id="result2_2" style="background:none;">
+						<form method="post" action="/process/{{ process.id }}/">
+							<input id="re_edit_delete" type="submit" class="button is-primary" value="删除进程">
+						</form>
 						<p style="font-weight:bold;margin-bottom:5px;">
 							运行结果
 						</p>
-						<p id="box2" >
+						<p id="box2" style="height:340px;overflow:auto;background:rgba(255,255,255,0.4); margin-top:6px;">
 							{{ process.result }}
 						</p>
 					</div>
 				</div>
 
-				<form method="POST" action="/process_edit/{{ process.id }}/">
 				<div id="right">
+					<form method="POST" action="/process_edit/{{ process.id }}/">
+				
 					<div id="re_edit_title">
 						<p style="font-weight:bold;margin-bottom:5px;">
 							重新编辑
@@ -103,8 +107,9 @@
 					</div>			
 					<textarea id="re_edit_text" name="edit" cols="80" rows="25">{{ process.code }}</textarea>
 					<input id="re_edit_button" type="submit" class="#" value="重新运行">
+					</form>
 				</div>
-				</form>
+				
 
 
 			</div>

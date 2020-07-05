@@ -77,37 +77,43 @@
 			</div>
 
 			<div id="content">
-				<div id="result1">
+				<div id="left">
+					<div id="result1_1" style="background:none;">
+						<p style="font-weight:bold;margin-bottom:5px;">
+							{{ process.name }} - {{ process.info }} - 运行情况
+						</p>
+						<div id="box1" style="background:rgba(255,255,255,0.4);">
+							<p>
+								{{ process.state }}
+							</p>
+						</div>
+					</div>
 
-					<p style="font-weight:bold;margin-bottom:5px;">
-						{{ process.name }} - {{ process.info }} - 运行情况
-					</p>
-					<div id="box1">
-						<p>
-							{{ process.state }}
+					<div id="result2_2" style="background:none;">
+						<form method="post" action="/process_teacher/">
+							<input id="delete_process" value="{{ process.id }}" name="delete_process" style="display: none;">
+ 							<input type="submit" name="submit_name" value="删除" id="submit" style="display: none;">
+							<a id="re_edit_delete" class="button"
+							onclick="$('#submit').trigger('click');">
+							删除进程
+							</a>
+						</form>
+						<p style="font-weight:bold;margin-bottom:5px;">
+							运行结果
+						</p>
+						<p id="box2" style="height:325px;overflow:auto;background:rgba(255,255,255,0.4); margin-top:6px;">
+							{{ process.result }}
 						</p>
 					</div>
 				</div>
 
-				<div id="result2">
-					<form method="post" action="/process_teacher/">
-						<input id="delete_process" value="{{ process.id }}" name="delete_process" style="display: none;">
- 						<input type="submit" name="submit_name" value="删除" id="submit" style="display: none;">
-						<a id="re_edit" class="button" style="margin-right:82%;"
-							onclick="$('#submit').trigger('click');">
-							删除进程
-						</a>
-						
-					</form>
-					<!-- <a id="re_edit" href="/process_edit/{{ process.id }}/" class="button" style="margin-right:20px;">
-						修改代码
-					</a> -->
-					<p style="font-weight:bold;margin-bottom:5px;">
-						运行结果
-					</p>
-					<p id="box2">
-						{{ process.result }}
-					</p>
+				<div id="right">
+					<div id="re_edit_title">
+						<p style="font-weight:bold;margin-bottom:5px;font-size:22px;">
+							进程代码
+						</p>
+					</div>			
+					<pre id="re_edit_text" name="edit" style="height:450px;padding:5px;overflow:auto;background:rgba(255,255,255,0.4);">{{ process.code }}</pre>
 				</div>
 
 
