@@ -488,7 +488,7 @@ def submit(id):
             port = gpu.port
             username = gpu.username
             password = gpu.password
-            gpu_num = id 
+            gpu_num = 1
 
             gpu_user = gpu.username
 
@@ -522,6 +522,15 @@ def submit(id):
             remotefile = r'/home/dc2-user/code/' + file_name
             submit_file(localfile, remotefile, ip, port, username, password)
 
+            # 统计提交process的数量以及提交时间
+            usage = Usage.query.filter_by(user_name=user_name).first()
+            usage.course_name = course_name
+            usage.gpu_name = gpu_name
+            usage.submit_num += 1
+            usage.last_time = datetime.utcnow
+            db.session.add(usage)
+            db.session.commit()  # 提交数据库会话
+
             flash("提交成功，用户可以在此页面继续提交进程，或者移至我的进程页面查看进程")
 
             res = docker_test(file_name, ip, port, password, gpu_user, gpu_num)
@@ -541,15 +550,6 @@ def submit(id):
             with open(filename, 'w', encoding='UTF-8') as file_object:
                 file_object.write(res)
             # flash("success")
-
-            # 统计提交process的数量以及提交时间
-            usage = Usage.query.filter_by(user_name=user_name).first()
-            usage.course_name = course_name
-            usage.gpu_name = gpu_name
-            usage.submit_num += 1
-            usage.last_time = datetime.utcnow
-            db.session.add(usage)
-            db.session.commit()  # 提交数据库会话
 
             #return redirect(url_for('process'))
 
@@ -575,7 +575,7 @@ def submit(id):
             port = gpu.port
             username = gpu.username
             password = gpu.password
-            gpu_num = id
+            gpu_num = 1
 
             gpu_user = gpu.username
 
@@ -606,6 +606,15 @@ def submit(id):
             submit_file(localfile, remotefile, ip, port, username, password)
             # res = docker_test(user, file_name, ip, port, username, password)
 
+            # 统计提交process的数量以及提交时间
+            usage = Usage.query.filter_by(user_name=user_name).first()
+            usage.course_name = course_name
+            usage.gpu_name = gpu_name
+            usage.submit_num += 1
+            usage.last_time = datetime.utcnow
+            db.session.add(usage)
+            db.session.commit()  # 提交数据库会话
+
             flash("提交成功，用户可以在此页面继续提交进程，或者移至我的进程页面查看进程")
 
             res = docker_test(file_name, ip, port, password, gpu_user, gpu_num)
@@ -626,14 +635,6 @@ def submit(id):
                 file_object.write(res)
             # flash("success")
 
-            # 统计提交process的数量以及提交时间
-            usage = Usage.query.filter_by(user_name=user_name).first()
-            usage.course_name = course_name
-            usage.gpu_name = gpu_name
-            usage.submit_num += 1
-            usage.last_time = datetime.utcnow
-            db.session.add(usage)
-            db.session.commit()  # 提交数据库会话
 
             #return redirect(url_for('process'))
 
@@ -806,7 +807,7 @@ def process_edit(id):
         port = gpu.port
         username = gpu.username
         password = gpu.password
-        gpu_num = id
+        gpu_num = 1
 
         gpu_user = gpu.username
 
@@ -815,6 +816,13 @@ def process_edit(id):
         (path_temp, file_name) = os.path.split(localfile)
         remotefile = r'/home/dc2-user/code/' + file_name
         submit_file(localfile, remotefile, ip, port, username, password)
+
+        # 统计提交process的数量以及提交时间
+        usage = Usage.query.filter_by(user_name=current_user.name).first()
+        usage.submit_num += 1
+        usage.last_time = datetime.utcnow
+        db.session.add(usage)
+        db.session.commit()  # 提交数据库会话
 
         flash("提交成功，可在本页面查看进程运行结果！")
         # print(file_name)
@@ -833,12 +841,6 @@ def process_edit(id):
         with open(filename, 'w', encoding='UTF-8') as file_object:
             file_object.write(res)
 
-        # 统计提交process的数量以及提交时间
-        usage = Usage.query.filter_by(user_name=current_user.name).first()
-        usage.submit_num += 1
-        usage.last_time = datetime.utcnow
-        db.session.add(usage)
-        db.session.commit()  # 提交数据库会话
 
     return render_template('process_edit.html', process=process)
 
@@ -936,16 +938,16 @@ def forge():
     # username = 'dc2-user'
     # password = 'Hx1021$&@'
     gpus = [
-        {'name': 'NO.1-1080Ti', 'info': '空闲', 'ip': '116.85.38.198', 'port': 22, 'username': 'dc2-user',
-         'password': 'Hx1021$&@'},
-        {'name': 'NO.2-1070', 'info': '空闲', 'ip': '116.85.38.198', 'port': 22, 'username': 'dc2-user',
-         'password': 'Hx1021$&@'},
-        {'name': 'NO.3-P100', 'info': '空闲', 'ip': '116.85.38.198', 'port': 22, 'username': 'dc2-user',
-         'password': 'Hx1021$&@'},
-        {'name': 'NO.4-RTX2080Ti', 'info': '空闲', 'ip': '116.85.38.198', 'port': 22, 'username': 'dc2-user',
-         'password': 'Hx1021$&@'},
-        {'name': 'NO.5-1080Ti', 'info': '空闲', 'ip': '116.85.38.198', 'port': 22, 'username': 'dc2-user',
-         'password': 'Hx1021$&@'}
+        {'name': 'NO.1-1080Ti', 'info': '空闲', 'ip': '116.85.47.16', 'port': 22, 'username': 'root',
+         'password': 'Rg123456!'},
+        {'name': 'NO.2-1070', 'info': '空闲', 'ip': '116.85.47.16', 'port': 22, 'username': 'root',
+         'password': 'Rg123456!'},
+        {'name': 'NO.3-P100', 'info': '空闲', 'ip': '116.85.47.16', 'port': 22, 'username': 'root',
+         'password': 'Rg123456!'},
+        {'name': 'NO.4-RTX2080Ti', 'info': '空闲', 'ip': '116.85.47.16', 'port': 22, 'username': 'root',
+         'password': 'Rg123456!'},
+        {'name': 'NO.5-1080Ti', 'info': '空闲', 'ip': '116.85.47.16', 'port': 22, 'username': 'root',
+         'password': 'Rg123456!'}
     ]
     for g in gpus:
         gpu = GPU(name=g['name'], info=g['info'], ip=g['ip'], port=g['port'], username=g['username'],
