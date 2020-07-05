@@ -417,7 +417,7 @@ def signup():
                 db.session.commit()  # 提交数据库会话
 
                 flash('成功注册！')
-                return redirect(url_for('login'))  # 返回主页
+                return redirect(url_for('login'))  # 跳转至登录界面
 
     return render_template('signup.html')
 
