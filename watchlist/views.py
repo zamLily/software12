@@ -527,7 +527,7 @@ def submit(id):
             usage.course_name = course_name
             usage.gpu_name = gpu_name
             usage.submit_num += 1
-            usage.last_time = datetime.utcnow
+            usage.last_time = datetime.utcnow()
             db.session.add(usage)
             db.session.commit()  # 提交数据库会话
 
@@ -611,7 +611,7 @@ def submit(id):
             usage.course_name = course_name
             usage.gpu_name = gpu_name
             usage.submit_num += 1
-            usage.last_time = datetime.utcnow
+            usage.last_time = datetime.utcnow()
             db.session.add(usage)
             db.session.commit()  # 提交数据库会话
 
@@ -818,9 +818,9 @@ def process_edit(id):
         submit_file(localfile, remotefile, ip, port, username, password)
 
         # 统计提交process的数量以及提交时间
-        usage = Usage.query.filter_by(user_name=current_user.name).first()
+        usage = Usage.query.filter_by(user_name=current_user.username).first()
         usage.submit_num += 1
-        usage.last_time = datetime.utcnow
+        usage.last_time = datetime.utcnow()
         db.session.add(usage)
         db.session.commit()  # 提交数据库会话
 
@@ -938,15 +938,15 @@ def forge():
     # username = 'dc2-user'
     # password = 'Hx1021$&@'
     gpus = [
-        {'name': 'NO.1-1080Ti', 'info': '空闲', 'ip': '116.85.47.16', 'port': 22, 'username': 'root',
+        {'name': 'NO.1-1080Ti', 'info': '空闲', 'ip': '116.85.68.244', 'port': 22, 'username': 'dc2-user',
          'password': 'Rg123456!'},
-        {'name': 'NO.2-1070', 'info': '空闲', 'ip': '116.85.47.16', 'port': 22, 'username': 'root',
+        {'name': 'NO.2-1070', 'info': '空闲', 'ip': '116.85.68.244', 'port': 22, 'username': 'dc2-user',
          'password': 'Rg123456!'},
-        {'name': 'NO.3-P100', 'info': '空闲', 'ip': '116.85.47.16', 'port': 22, 'username': 'root',
+        {'name': 'NO.3-P100', 'info': '空闲', 'ip': '116.85.68.244', 'port': 22, 'username': 'dc2-user',
          'password': 'Rg123456!'},
-        {'name': 'NO.4-RTX2080Ti', 'info': '空闲', 'ip': '116.85.47.16', 'port': 22, 'username': 'root',
+        {'name': 'NO.4-RTX2080Ti', 'info': '空闲', 'ip': '116.85.68.244', 'port': 22, 'username': 'dc2-user',
          'password': 'Rg123456!'},
-        {'name': 'NO.5-1080Ti', 'info': '空闲', 'ip': '116.85.47.16', 'port': 22, 'username': 'root',
+        {'name': 'NO.5-1080Ti', 'info': '空闲', 'ip': '116.85.68.244', 'port': 22, 'username': 'dc2-user',
          'password': 'Rg123456!'}
     ]
     for g in gpus:
