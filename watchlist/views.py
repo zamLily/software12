@@ -903,11 +903,11 @@ def forge():
         {'name': 'Process 3', 'info': 'simple_3', 'result': '3', 'course_name': '人工智能原理',
          'gpu_name': "NO.2-1070", 'code': 'print(3)', 'state': '运行完成'},
         {'name': 'Process 4', 'info': 'simple_4', 'result': '4', 'course_name': '机器学习', 'gpu_name': "NO.3-P100",
-         'code': 'print(4)', 'state': '正在运行'},
+         'code': 'print(4)', 'state': '运行完成'},
         {'name': 'Process 5', 'info': 'simple_5', 'result': '5', 'course_name': '人工智能原理',
          'gpu_name': "NO.4-RTX2080Ti", 'code': 'print(5)', 'state': '运行完成'},
         {'name': 'Process 6', 'info': 'simple_6', 'result': '6', 'course_name': '人工智能原理',
-         'gpu_name': "NO.4-RTX2080Ti", 'code': 'print(6)', 'state': '正在运行'},
+         'gpu_name': "NO.4-RTX2080Ti", 'code': 'print(6)', 'state': '运行完成'},
         {'name': 'Process 7', 'info': 'simple_7', 'result': '7', 'course_name': '红楼实验室',
          'gpu_name': "NO.5-1080Ti", 'code': 'print(7)', 'state': '运行完成'}
     ]
