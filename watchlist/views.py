@@ -883,10 +883,21 @@ def forge():
         db.session.add(course)
     db.session.commit()
 
+
+
+    basepath = os.path.dirname(__file__)
+    localfile = os.path.join(basepath, 'code/user_code', "mnist.py")
+    temp = open(localfile, 'r', encoding='UTF-8')
+    codes = temp.read()  # 代码内容
+
+    localfile = os.path.join(basepath, 'code/user_code', "result.txt")
+    temp = open(localfile, 'r', encoding='UTF-8')
+    results = temp.read()  # 代码内容
+
     # 创建进程
     processes = [
-        {'name': 'Process 1', 'info': 'simple_1', 'result': '您的计算结果是：1', 'course_name': '深度学习',
-         'gpu_name': "NO.1-1080Ti", 'code': 'print(1)', 'state': '正在运行'},
+        {'name': 'Process 1', 'info': 'mnist', 'result': str(results), 'course_name': '深度学习',
+         'gpu_name': "NO.1-1080Ti", 'code': str(codes), 'state': '运行完成'},
         {'name': 'Process 2', 'info': 'simple_2', 'result': '您的计算结果是：2', 'course_name': '深度学习',
          'gpu_name': "NO.1-1080Ti", 'code': 'print(2)', 'state': '运行完成'},
         {'name': 'Process 3', 'info': 'simple_3', 'result': '您的计算结果是：3', 'course_name': '人工智能原理',
